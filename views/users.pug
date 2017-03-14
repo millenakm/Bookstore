@@ -1,0 +1,13 @@
+- var dados=param;
+- var dadosTam=param.length
+- var s = 'string';
+
+doctype html
+html
+	head
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		h3 Dados
+		ul
+			- for (var i=0; i<dadosTam; i++)
+				li !{dados[i].nome} : !{dados[i].idade} anos - !{dados[i].cidade}
