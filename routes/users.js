@@ -6,8 +6,7 @@ var fs = require('fs');
 router.get('/', function(req, res, next){//rota (localhost:porta/list-users)
 	fs.readFile(__dirname + '/../db/data.json', 'utf8', function(err, data){
 		var dados = JSON.parse(data);
-		res.render('users', {param: dados});
-		// res.send(dados[1].nome);
+		res.render('users', {title: 'Usuários', dados: dados, dadosTam: dados.length});
 	});
 });
 
