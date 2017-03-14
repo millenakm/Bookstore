@@ -1,0 +1,22 @@
+[
+	{
+		"nome":"Millena",
+		"idade": 19,
+		"cidade": "Novo Hamburgo"
+	},
+	{
+		"nome":"Suelem",
+		"idade": 22,
+		"cidade": "Estância Velha"
+	},
+	{
+		"nome":"Bianca",
+		"idade": 18,
+		"cidade": "Ivoti"
+	},
+	{
+		"nome":"Vinícius",
+		"idade": 18,
+		"cidade": "Estância Velha"
+	}
+]
