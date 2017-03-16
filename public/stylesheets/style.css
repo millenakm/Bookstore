@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #009973;
 }
 
 a {
@@ -7,14 +8,26 @@ a {
 }
 
 .container{
-	background-color: #f2f2f2;
 	text-align: left;
 	padding: 2%;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: black;
+	border-radius: 10px;
+}
+
+.form{
+	background-color: black;
+	color: white;
+}
+
+input.form-control{
+	margin-bottom: 5px;
+	background-color: #fff;
+	color: black;
 }
 
 form{
 	margin-left: 1%;
 	margin-right: 1%;
-	background: white;
 	padding: 1%;
 }
