@@ -22,11 +22,13 @@ $(document).ready(function(){
 function search(){
     $(".search-box").animate({width: '100%'});
     $('.search-input').focus();
+    $('.bookmark').css({'display':'block'});
 }
 
 function closeSearch(){
     $(".search-box").animate({width: '0%'});
     $('.search-input').val(''); 
+    $('.bookmark').css({'display':'none'});
 }
 
 function offSetManager(){
@@ -35,7 +37,7 @@ function offSetManager(){
 
     if(yOffset < currYOffSet) {
         $('.navig').addClass('navig-top');
-        $('.titulo-pg').css({'font-size':'45px', 'width':'auto'});
+        $('.titulo-pg').css({'font-size':'45px', 'width':'50%', 'margin':'0 auto'});
     }
     else if(currYOffSet == yOffset){
         $('.navig').removeClass('navig-top');
