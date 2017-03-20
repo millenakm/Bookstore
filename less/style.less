@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina|Barrio|Baumans|Cinzel+Decorative:400,700,900|Dancing+Script:400,700|Fredericka+the+Great|Lobster+Two:400,400i,700,700i|Megrim|Oleo+Script+Swash+Caps|Parisienne|Rochester|Sacramento|Sue+Ellen+Francisco|Tangerine:400,700');
 
-@colorLinkHover: #ccffee;
-@colorNav: #00cc88;
-@colorSection: #99ffdd;
-@colorInput: #333333;
+@colorNav: #C12127;
+@colorSection: #000;
+@colorInput: #c71f27;
+@colorText: #e6e6e6;
 
 html,body {
     overflow-x: hidden;
@@ -13,10 +13,35 @@ body {
 	display: none;
     padding-top: 170px;
 }
+.valor-fixo{
+	text-decoration: line-through;
+}
+
+.thumbnail{
+	height: auto;
+	text-align: center;
+	color: black;
+}
+
+.thumbnail:hover{
+	text-decoration: none;
+}
+
+.catalogo{
+	border: 3px solid black;
+}
+
+.catalogo-content,.catalogo-content> h2{
+	margin: 1%;
+}
+
+.container{
+	width: 85%;
+}
 
 /*cor dos links ativos*/
 .navbar-content .navbar-nav .active{
-	color: @colorLinkHover;
+	border-bottom: 3px solid white;
 }
 
 
@@ -33,15 +58,23 @@ body {
 	left: 2%;
 }
 
+.navbar-content .navbar-nav a{
+	padding: 2px;
+	padding-bottom: 5px;
+	margin: 13px;
+	margin-bottom: 0px;
+}
+
 .navbar-content .navbar-nav a:hover{
 	background-color: transparent;
-	color: @colorLinkHover;
+	border-bottom: 1px solid white;
 }
 
 .navbar-content .navbar-nav a, .navbar-content .navbar-nav{
 	font-family: 'Baloo Bhaina', cursive;
-	color: black;
+	color: white;
 	font-size: 18px;
+	border-bottom: 1px solid transparent;
 }
 
 .titulo-pg{
@@ -64,11 +97,12 @@ body {
 }
 
 .search a{
-	color: black;
+	color: white;
+	border: 1px solid transparent;
 }
 
 .search a:hover{
-	color: @colorLinkHover;
+	color: pink;
 	cursor: pointer;
 }
 
@@ -98,7 +132,7 @@ body {
 }
 
 #close-search{
-	color: black;
+	color: @colorText;
 	top: 8%;
 	left: 8%;
 	font-size: 24px;
@@ -106,7 +140,7 @@ body {
 }
 
 #close-search:hover{
-	color: grey;
+	color: @colorInput;
 }
 
 .search-section{
@@ -118,11 +152,15 @@ body {
 .search-input{
 	background-color: transparent;
 	border: none;
-	border-bottom: 3px solid black;
+	border-bottom: 3px solid @colorText;
 	outline: none;
 	font-size: 38px;
 	width: 100%;
 	color: @colorInput;
+}
+
+.search-section h4{
+	color: @colorText;
 }
 
 .bookmark{

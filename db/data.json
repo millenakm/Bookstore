@@ -568,23 +568,5 @@
 		"categoria":"Coleção",
 		"capa":"38",
 		"vendidos":0
-	},
+	}
 ]
-
-
-
-// {
-// 		"id":,
-// 		"isbn":"",
-// 		"titulo":"",
-// 		"autor":"",
-// 		"editora":"",
-// 		"ano":"",
-// 		"descrição":"",
-// 		"estoque":,
-// 		"paginas":"",
-// 		"preço": ,
-// 		"categoria":"",
-// 		"capa":"",
-// 		"vendidos":0
-// 	},

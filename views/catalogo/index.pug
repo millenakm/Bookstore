@@ -1,0 +1,19 @@
+extends ./../layout
+
+block content
+	include ./../navbar.pug
+	div.container
+		-for(var i=0; i<dados.length; i++){
+			div.col-xs-6.col-md-3.col-sm-6
+				a(href="#").thumbnail
+					img(src="../images/livros/"+dados[i].capa+".jpg")
+					p= dados[i].titulo
+					-var valorFixo = dados[i].preço;
+					-var desconto = 20/100;
+					-var valorOferta = valorFixo-(valorFixo*desconto);
+					-function string(valor){
+						-return valor.toFixed(2).toString().replace(".", ",");
+					-}
+					h3 R$ #{string(valorOferta)}
+					p.valor-fixo R$ #{string(valorFixo)}
+		-}
