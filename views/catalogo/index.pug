@@ -11,6 +11,7 @@ block content
 				a(href="#").thumbnail
 					img(src="../images/livros/"+dados[i].capa+".jpg")
 					p= dados[i].titulo
+					p= dados[i].autor
 					-var valorFixo = dados[i].preço;
 					-var desconto = 20/100;
 					-var valorOferta = valorFixo-(valorFixo*desconto);

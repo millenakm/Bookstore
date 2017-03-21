@@ -74,20 +74,19 @@ function searchJson(){
             return;
         }
 
-        var output = '<div>';//cria a div para mostras os resultados
+        var output = '';//cria a div para mostras os resultados
         var regex = new RegExp(searchField, "i");//define a busca sem case sensitive
         $.get("http://localhost:3000/dados", function(data){//procura os dados
             $(data).each(function (){//percorre um por um
                 var titulo = this.titulo;
                 if (titulo.search(regex) != -1 || this.autor.search(regex) != -1 || this.editora.search(regex) != -1){//se houver dados correspondentes à busca
                     //mostra a div de resultados e printa 
-                    output +="<div class='col-md-12 well'><div class='col-md-2'><h4>" + titulo + "</h4></div>"+
-                    "<div class='col-md-2'><h4>Preço: " + this.preço.toString() + "</h4></div>"+
-                    "<div class='col-md-2'><h4>Autor: "+ this.autor +"</h4></div>"+
-                    "<div class='col-md-4'><h4>Editora: "+ this.editora +"</h4></div></div>";
+                    output+='<div class="col-xs-6 col-md-3 col-sm-6><a href="#" class="thumbnail"><img src="../images/livros/'+this.capa+'.jpg">'
+                    +'<p>'+this.titulo+'</p><p>'+this.autor+'</p>'
+                    +'<h3>R$ '+this.preço.toString()+'</h3></a></div>'
                 }
             });
-            output += '</div>';
+            output += '';
             $('#searchResult').html(output);//define a div com os resultados
         });
     });
