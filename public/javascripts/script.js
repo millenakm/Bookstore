@@ -1,4 +1,6 @@
-$(document).ready(function(){
+var tallest = 0;
+
+$(document).ready(function(){ 
     offSetManager();
     window.onscroll = function() {
         offSetManager();
@@ -8,6 +10,9 @@ $(document).ready(function(){
     });
     $('#close-search').click(function(){
         closeSearch();
+    });
+    $('#carrinho').click(function(){
+        carrinho();
     });
     $("body").fadeIn(500);
     $('.navbar-content .navbar-nav a').click(function(){
@@ -39,16 +44,19 @@ function offSetManager(){
 
     if(yOffset < currYOffSet) {
         $('.navig').addClass('navig-top');
-        $('.titulo-pg').css({'font-size':'45px', 'width':'50%', 'margin':'0 auto', 'color':'white'});
+        $('.carrinho-box').addClass('carrinho-top');
+        $('.navbar-content').css({top: '15%'});
+        $('#imagem').fadeOut(200);
     }
     else if(currYOffSet == yOffset){
         $('.navig').removeClass('navig-top');
-        $('.titulo-pg').css({'font-size':'60px', 'color':'black'});
+        $('.carrinho-box').removeClass('carrinho-top');
+        $('.navbar-content').css({top: '10%'});
+        $('#imagem').fadeIn(500);
     }
 }
 
-function equalHeight(group) {    
-    var tallest = 0;    
+function equalHeight(group) {      
     group.each(function() {       
         var thisHeight = $(this).height();       
         if(thisHeight > tallest) {          
@@ -71,10 +79,9 @@ function searchJson(){
         $.get("http://localhost:3000/dados", function(data){//procura os dados
             $(data).each(function (){//percorre um por um
                 var titulo = this.titulo;
-                if (titulo.search(regex) != -1 || this.autor.search(regex) != -1){//se houver dados correspondentes à busca
+                if (titulo.search(regex) != -1 || this.autor.search(regex) != -1 || this.editora.search(regex) != -1){//se houver dados correspondentes à busca
                     //mostra a div de resultados e printa 
-                    output += "<div class='col-md-12' id='rowBusca'><div class='col-md-12' data-id="+ this.id+">"+
-                    "<div class='col-md-2'><h4>" + titulo + "</h4></div>"+
+                    output +="<div class='col-md-12 well'><div class='col-md-2'><h4>" + titulo + "</h4></div>"+
                     "<div class='col-md-2'><h4>Preço: " + this.preço.toString() + "</h4></div>"+
                     "<div class='col-md-2'><h4>Autor: "+ this.autor +"</h4></div>"+
                     "<div class='col-md-4'><h4>Editora: "+ this.editora +"</h4></div></div>";
@@ -84,4 +91,10 @@ function searchJson(){
             $('#searchResult').html(output);//define a div com os resultados
         });
     });
+}
+
+function carrinho(){
+    var state = parseInt($('.carrinho-box').css('height')) > 1;
+    $('.carrinho-box').animate({height:(state ? "30%" : '0')}, 100);
+    $('.carrinho-box').animate({height:(state ? '0': '30%')}, 200);
 }

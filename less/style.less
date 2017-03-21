@@ -13,6 +13,28 @@ body {
 	display: none;
     padding-top: 170px;
 }
+
+.background-image{
+	background-image: url("../images/wallpaper.jpg");
+    background-size: cover;
+   	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.background{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 0;
+}
+
 .valor-fixo{
 	text-decoration: line-through;
 }
@@ -25,6 +47,10 @@ body {
 
 .thumbnail:hover{
 	text-decoration: none;
+}
+
+#imagem{
+	display: none;
 }
 
 .catalogo{
@@ -44,6 +70,19 @@ body {
 	border-bottom: 3px solid white;
 }
 
+.titulo-pg{
+	position: fixed;
+	top: 0;
+	width: 24%;
+	margin-left: 38%;
+	height: 85px;
+}
+
+.titulo-pg img{
+	position: inherit;
+	height: inherit;
+}
+
 
 .navbar-content, .search, #close-search, .search-section{
 	position: absolute;
@@ -54,8 +93,9 @@ body {
 }
 
 .navbar-content{
-	top: 15%;
+	top: 10%;
 	left: 2%;
+	width: 95%;
 }
 
 .navbar-content .navbar-nav a{
@@ -77,37 +117,22 @@ body {
 	border-bottom: 1px solid transparent;
 }
 
-.titulo-pg{
-	z-index: 1023;
-	top: 0;
-	right: 5%;
-	left: 5%;
-	height: 70px;
-	text-align: center;
-	font-size: 60px;
-	font-family: 'Barrio', cursive;
+.nav > .glyphicon{
+	font-size: 15px;
 }
 
-.search{
-	right: 2%;
-	top: 25%;
-	background-color: transparent;
-	text-align: right;
-	font-size: 24px;
-}
-
-.search a{
+#search, #carrinho{
 	color: white;
-	border: 1px solid transparent;
+	border: none;
 }
 
-.search a:hover{
+#search:hover, #carrinho:hover{
 	color: pink;
 	cursor: pointer;
 }
 
 .search-box{
-	z-index: 1024;
+	z-index: 1023;
 	height: 100%;
 	width: 0;
 	background-color: @colorSection;
@@ -116,13 +141,29 @@ body {
 	bottom: 0;
 }
 
+.carrinho-box{
+	position: fixed;
+	z-index: 1024;
+	height: 0;
+	width: 50%;
+	background-color: @colorSection;
+	top: 150px;
+	right: 10%;
+}
+
+.carrinho-top{
+	top: 70px;
+}
+
 .navig{
+	box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 	top: 90px;
 	right: 5%;
 	left: 5%;
 	height: 60px;
 	background: @colorNav;
-	border-radius: 50px;
+	border-radius: 10px;
+
 }
 
 .navig-top{
@@ -143,10 +184,23 @@ body {
 	color: @colorInput;
 }
 
-.search-section{
+.search-container{
+	position: absolute;
 	top: 28%;
 	left: 8%;
+	width: 84%;
+}
+
+.search-section{
+	position: relative;
 	width: 50%;
+}
+
+#searchResult{
+	position: relative;
+	top: 15px;
+	height: 330px;
+	overflow-y: auto;
 }
 
 .search-input{
@@ -187,7 +241,7 @@ body {
 	position:absolute;bottom:0;
 }
 
-.bookmark-display, .bookmark, .bookmark:after, .navig-top, .navig, .titulo-pg-none, .titulo-pg{
+.bookmark-display, .bookmark, .bookmark:after, .navig-top, .navig, .titulo-pg-none, .titulo-pg, .carrinho-top, .carrinho-box{
 	transition: 0.5s;
     -webkit-transition:  0.5s;
 }
