@@ -1,4 +1,5 @@
-div.titulo-pg Bookstore
+div.titulo-pg
+	img(src="../images/logo2.jpg")#imagem
 nav.navig
 	div.navbar-header
 		button(type="button", data-toggle="collapse",data-target="#colaspse-content", aria-expanded="false").navbar-toggle.collapsed
@@ -10,13 +11,16 @@ nav.navig
 		div.navbar-content
 				ul.nav.navbar-nav
 					li
-						a(href="#").active Home
+						a(href="/") Página Inicial
 					li
-						a(href="#") About
+						a(href="/catalogo") Catálogo
+				ul.nav.navbar-nav.navbar-right
 					li
-						a(href="#") Contact
-	div.search
-		a#search
-			span.glyphicon.glyphicon-search
+						a#carrinho
+							span.glyphicon.glyphicon-shopping-cart
+					li
+						a#search
+							span.glyphicon.glyphicon-search
 
 include search.pug
+include carrinho.pug
