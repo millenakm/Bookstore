@@ -5,6 +5,31 @@
 @colorInput: #c71f27;
 @colorText: #e6e6e6;
 
+.loop (0) {}
+.loop (@index) when (@index >= 0) {
+  .livrosCor-@{index} {
+    background-color: lighten(#638fbf, @index * 2%);
+  }
+  .livrosCor-@{index} > a{
+    color: black;
+  }
+  .loop (@index - 1);
+}
+ 
+#livros {
+  .loop(38);
+}
+
+
+
+.fixed{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
 html,body {
     overflow-x: hidden;
 }
@@ -45,6 +70,7 @@ body {
 .thumbnail:hover{
 	text-decoration: none;
 	border: none;
+	box-shadow: 0 0 10px 5px rgba(0,0,0,.5);
 }
 
 #imagem{
@@ -173,7 +199,6 @@ body {
 #close-search{
 	color: @colorText;
 	top: 8%;
-	left: 8%;
 	font-size: 24px;
 	cursor: pointer;
 }
@@ -183,22 +208,21 @@ body {
 }
 
 .search-container{
-	position: absolute;
-	top: 28%;
-	left: 8%;
-	width: 84%;
+	margin-left: 4%;
 }
 
 .search-section{
-	position: relative;
-	width: 50%;
+	position: initial;
+	padding: initial;
+	width: 90%;
+	margin-top: 20%;
 }
 
-#searchResult{
-	position: relative;
-	top: 15px;
-	height: 330px;
+.list-result{
 	overflow-y: auto;
+	max-height: 100%;
+	position: absolute;
+	right: 0;
 }
 
 .search-input{
@@ -239,7 +263,7 @@ body {
 	position:absolute;bottom:0;
 }
 
-.bookmark-display, .bookmark, .bookmark:after, .navig-top, .navig, .titulo-pg-none, .titulo-pg, .carrinho-top, .carrinho-box{
+.bookmark-display, .bookmark, .bookmark:after, .navig-top, .navig, .titulo-pg, .carrinho-top, .carrinho-box{
 	transition: 0.5s;
     -webkit-transition:  0.5s;
 }

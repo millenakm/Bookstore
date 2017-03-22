@@ -1,125 +1,244 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina|Barrio|Baumans|Cinzel+Decorative:400,700,900|Dancing+Script:400,700|Fredericka+the+Great|Lobster+Two:400,400i,700,700i|Megrim|Oleo+Script+Swash+Caps|Parisienne|Rochester|Sacramento|Sue+Ellen+Francisco|Tangerine:400,700');
-.ch-item {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  position: relative;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  cursor: default;
+#livros .livrosCor-38 {
+  background-color: #ffffff;
 }
-.ch-info-wrap,
-.ch-info {
-  position: absolute;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  transition: all 0.4s ease-in-out;
+#livros .livrosCor-38 > a {
+  color: black;
 }
-.ch-info-wrap {
-  top: 20px;
-  left: 20px;
-  background-color: #f9f9f9;
-  background-image: url("../images/livros/20.jpg");
-  box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2), inset 0 0 3px rgba(115, 114, 23, 0.8);
-  perspective: 800px;
+#livros .livrosCor-37 {
+  background-color: #ffffff;
 }
-.ch-info {
-  transform-style: preserve-3d;
+#livros .livrosCor-37 > a {
+  color: black;
 }
-.ch-info > div {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-position: center center;
-  transition: all 0.6s ease-in-out;
+#livros .livrosCor-36 {
+  background-color: #ffffff;
 }
-.ch-info .ch-info-front {
-  transform-origin: 50% 100%;
-  z-index: 100;
-  box-shadow: inset 2px 1px 4px rgba(0, 0, 0, 0.1);
+#livros .livrosCor-36 > a {
+  color: black;
 }
-.ch-info .ch-info-back {
-  background: rgba(230, 132, 107, 0);
+#livros .livrosCor-35 {
+  background-color: #ffffff;
 }
-.ch-img-1 {
-  background-image: url("../images/livros/16.jpg");
+#livros .livrosCor-35 > a {
+  color: black;
 }
-.ch-img-2 {
-  background-image: url("../images/livros/17.jpg");
+#livros .livrosCor-34 {
+  background-color: #ffffff;
 }
-.ch-img-3 {
-  background-image: url("../images/livros/18.jpg");
+#livros .livrosCor-34 > a {
+  color: black;
 }
-.ch-info h3 {
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 14px;
-  margin: 0 25px;
-  padding: 40px 0 0 0;
-  height: 90px;
-  font-family: 'Open Sans', Arial, sans-serif;
-  text-shadow: 0 0 1px #fff, 0 1px 2px rgba(0, 0, 0, 0.3);
+#livros .livrosCor-33 {
+  background-color: #ffffff;
 }
-.ch-info p {
-  color: #fff;
-  padding: 10px 5px;
-  font-style: italic;
-  margin: 0 30px;
-  font-size: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
+#livros .livrosCor-33 > a {
+  color: black;
 }
-.ch-info p a {
-  display: block;
-  color: rgba(255, 255, 255, 0.7);
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 9px;
-  letter-spacing: 1px;
-  padding-top: 4px;
-  font-family: 'Open Sans', Arial, sans-serif;
+#livros .livrosCor-32 {
+  background-color: #ffffff;
 }
-.ch-info p a:hover {
-  color: rgba(255, 242, 34, 0.8);
+#livros .livrosCor-32 > a {
+  color: black;
 }
-.ch-item:hover .ch-info-front {
-  transform: rotate3d(1, 0, 0, -180deg);
-  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2), inset 0 0 3px rgba(0, 0, 0, 0.3);
+#livros .livrosCor-31 {
+  background-color: #ffffff;
 }
-.ch-item:hover .ch-info-back {
-  background: rgba(230, 132, 107, 0.6);
+#livros .livrosCor-31 > a {
+  color: black;
 }
-.ch-grid {
-  margin: 20px 0 0 0;
-  padding: 0;
-  list-style: none;
-  display: block;
-  text-align: center;
-  width: 100%;
+#livros .livrosCor-30 {
+  background-color: #ffffff;
 }
-.ch-grid:after,
-.ch-item:before {
-  content: '';
-  display: table;
+#livros .livrosCor-30 > a {
+  color: black;
 }
-.ch-grid:after {
-  clear: both;
+#livros .livrosCor-29 {
+  background-color: #ffffff;
 }
-.ch-grid li {
-  width: 220px;
-  height: 220px;
-  display: inline-block;
-  margin: 20px;
+#livros .livrosCor-29 > a {
+  color: black;
+}
+#livros .livrosCor-28 {
+  background-color: #ffffff;
+}
+#livros .livrosCor-28 > a {
+  color: black;
+}
+#livros .livrosCor-27 {
+  background-color: #ffffff;
+}
+#livros .livrosCor-27 > a {
+  color: black;
+}
+#livros .livrosCor-26 {
+  background-color: #ffffff;
+}
+#livros .livrosCor-26 > a {
+  color: black;
+}
+#livros .livrosCor-25 {
+  background-color: #ffffff;
+}
+#livros .livrosCor-25 > a {
+  color: black;
+}
+#livros .livrosCor-24 {
+  background-color: #ffffff;
+}
+#livros .livrosCor-24 > a {
+  color: black;
+}
+#livros .livrosCor-23 {
+  background-color: #ffffff;
+}
+#livros .livrosCor-23 > a {
+  color: black;
+}
+#livros .livrosCor-22 {
+  background-color: #ffffff;
+}
+#livros .livrosCor-22 > a {
+  color: black;
+}
+#livros .livrosCor-21 {
+  background-color: #fbfcfd;
+}
+#livros .livrosCor-21 > a {
+  color: black;
+}
+#livros .livrosCor-20 {
+  background-color: #f4f7fa;
+}
+#livros .livrosCor-20 > a {
+  color: black;
+}
+#livros .livrosCor-19 {
+  background-color: #ecf2f7;
+}
+#livros .livrosCor-19 > a {
+  color: black;
+}
+#livros .livrosCor-18 {
+  background-color: #e5ecf4;
+}
+#livros .livrosCor-18 > a {
+  color: black;
+}
+#livros .livrosCor-17 {
+  background-color: #dee7f1;
+}
+#livros .livrosCor-17 > a {
+  color: black;
+}
+#livros .livrosCor-16 {
+  background-color: #d7e2ee;
+}
+#livros .livrosCor-16 > a {
+  color: black;
+}
+#livros .livrosCor-15 {
+  background-color: #cfddec;
+}
+#livros .livrosCor-15 > a {
+  color: black;
+}
+#livros .livrosCor-14 {
+  background-color: #c8d8e9;
+}
+#livros .livrosCor-14 > a {
+  color: black;
+}
+#livros .livrosCor-13 {
+  background-color: #c1d3e6;
+}
+#livros .livrosCor-13 > a {
+  color: black;
+}
+#livros .livrosCor-12 {
+  background-color: #bacde3;
+}
+#livros .livrosCor-12 > a {
+  color: black;
+}
+#livros .livrosCor-11 {
+  background-color: #b3c8e0;
+}
+#livros .livrosCor-11 > a {
+  color: black;
+}
+#livros .livrosCor-10 {
+  background-color: #abc3dd;
+}
+#livros .livrosCor-10 > a {
+  color: black;
+}
+#livros .livrosCor-9 {
+  background-color: #a4beda;
+}
+#livros .livrosCor-9 > a {
+  color: black;
+}
+#livros .livrosCor-8 {
+  background-color: #9db9d7;
+}
+#livros .livrosCor-8 > a {
+  color: black;
+}
+#livros .livrosCor-7 {
+  background-color: #96b3d4;
+}
+#livros .livrosCor-7 > a {
+  color: black;
+}
+#livros .livrosCor-6 {
+  background-color: #8eaed1;
+}
+#livros .livrosCor-6 > a {
+  color: black;
+}
+#livros .livrosCor-5 {
+  background-color: #87a9ce;
+}
+#livros .livrosCor-5 > a {
+  color: black;
+}
+#livros .livrosCor-4 {
+  background-color: #80a4cb;
+}
+#livros .livrosCor-4 > a {
+  color: black;
+}
+#livros .livrosCor-3 {
+  background-color: #799fc8;
+}
+#livros .livrosCor-3 > a {
+  color: black;
+}
+#livros .livrosCor-2 {
+  background-color: #7199c5;
+}
+#livros .livrosCor-2 > a {
+  color: black;
+}
+#livros .livrosCor-1 {
+  background-color: #6a94c2;
+}
+#livros .livrosCor-1 > a {
+  color: black;
+}
+#livros .livrosCor-0 {
+  background-color: #638fbf;
+}
+#livros .livrosCor-0 > a {
+  color: black;
 }
 .fixed {
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
   left: 0;
+  right: 0;
 }
 html,
 body {
@@ -136,15 +255,15 @@ body {
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
   left: 0;
+  right: 0;
 }
 .background {
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
   left: 0;
+  right: 0;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 0;
 }
@@ -157,9 +276,13 @@ body {
   color: black;
   box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.35);
 }
+.thumbnail > p {
+  margin: 0 0 0 0;
+}
 .thumbnail:hover {
   text-decoration: none;
   border: none;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
 }
 #imagem {
   display: none;
@@ -273,7 +396,6 @@ body {
 #close-search {
   color: #e6e6e6;
   top: 8%;
-  left: 8%;
   font-size: 24px;
   cursor: pointer;
 }
@@ -281,20 +403,20 @@ body {
   color: #c71f27;
 }
 .search-container {
-  position: absolute;
-  top: 28%;
-  left: 8%;
-  width: 84%;
+  margin-left: 4%;
 }
 .search-section {
-  position: relative;
-  width: 50%;
+  position: initial;
+  padding: initial;
+  width: 90%;
+  margin-top: 20%;
 }
-#searchResult {
-  position: relative;
-  top: 15px;
-  height: 330px;
+.list-result {
   overflow-y: auto;
+  max-height: 100%;
+  position: absolute;
+  right: 0;
+  vertical-align: 50%;
 }
 .search-input {
   background-color: transparent;
@@ -337,7 +459,6 @@ body {
 .bookmark:after,
 .navig-top,
 .navig,
-.titulo-pg-none,
 .titulo-pg,
 .carrinho-top,
 .carrinho-box {

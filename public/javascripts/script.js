@@ -36,6 +36,9 @@ function closeSearch(){
     $(".search-box").animate({width: '0%'});
     $('.search-input').val(''); 
     $('body, html').css({'overflow-y':'auto'});
+    $('.list-result').html('');
+    $("#searchResult").html('');
+
 }
 
 function offSetManager(){
@@ -56,7 +59,7 @@ function offSetManager(){
     }
 }
 
-function equalHeight(group) {      
+function equalHeight(group) { 
     group.each(function() {       
         var thisHeight = $(this).height();       
         if(thisHeight > tallest) {          
@@ -70,24 +73,44 @@ function searchJson(){
     $('#searchInput').keyup(function(){//quando escrever na input, realiza a busca
         var searchField = $(this).val();
         if(searchField === '')  {//se não houver nada no campo de busca, esconde a div de resultados
-            $("#searchResult").html('');
+            $(".list-result").html('');
             return;
         }
 
         var output = '';//cria a div para mostras os resultados
         var regex = new RegExp(searchField, "i");//define a busca sem case sensitive
         $.get("http://localhost:3000/dados", function(data){//procura os dados
-            $(data).each(function (){//percorre um por um
-                var titulo = this.titulo;
-                if (titulo.search(regex) != -1 || this.autor.search(regex) != -1 || this.editora.search(regex) != -1){//se houver dados correspondentes à busca
+            var cor = 0;
+            for(i in data){
+                var titulo = data[i].titulo;
+                if (titulo.search(regex) != -1 || data[i].autor.search(regex) != -1 || data[i].editora.search(regex) != -1){//se houver dados correspondentes à busca
                     //mostra a div de resultados e printa 
-                    output+='<div class="col-xs-6 col-md-3 col-sm-6><a href="#" class="thumbnail"><img src="../images/livros/'+this.capa+'.jpg">'
-                    +'<p>'+this.titulo+'</p><p>'+this.autor+'</p>'
-                    +'<h3>R$ '+this.preço.toString()+'</h3></a></div>'
+                    output+='<a data-id="'+data[i].id+'" onmouseover="painelResult(this)"><div id="livros"><div id="livros-result" class="row livrosCor-'+cor+'">'
+                    +'<h5 class="col-md-3">'+data[i].titulo+'</h5><h5 class="col-md-3">'+data[i].autor+'</h5>'
+                    +'<h3 class="col-md-3">R$ '+data[i].preço.toString()+'</h3></a></div></div>';
+
+                    cor++;
                 }
-            });
+            }
             output += '';
-            $('#searchResult').html(output);//define a div com os resultados
+            $('.list-result').html(output);//define a div com os resultados
+            align();
+        });
+    });
+}
+
+function align(){
+    var marginBottom = $('.list-result').css('bottom');
+    var marginTop = marginBottom/2;
+}
+
+function painelResult(elem){
+    $.get("http://localhost:3000/dados", function(data){//procura os dados
+        $(data).each(function (){//percorre um por um
+            if($(elem).data('id') == this.id){
+                var livro = '<div><h3>'+this.titulo+'</h3></div>';
+                $("#searchResult").html(livro);
+            }
         });
     });
 }
