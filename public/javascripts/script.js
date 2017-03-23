@@ -131,6 +131,9 @@ function actions(){
 	$('.box-book').on('click', function(){
 		product(this);
 	});
+	$('.box-catalogo').on('mouseover', function(){
+		$(this).animate({'margin-top': '-2%', 'margin-bottom': '-15%', 'margin-rigth': '-15%', 'margin-left': '-2%' });
+	});
 }
 
 $(document).ready(function(){ 
