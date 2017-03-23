@@ -233,6 +233,39 @@
 #livros .livrosCor-0 > a {
   color: black;
 }
+.titulo-catalogo {
+  position: absolute;
+  right: 2%;
+  left: 65%;
+  top: 5%;
+  bottom: 1%;
+  color: black;
+  font-size: 18px;
+}
+.img-catalogo {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  bottom: 2%;
+  right: 38%;
+  background-image: url("../images/livros/01.jpg");
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.box-catalogo {
+  background-color: #ffffff;
+}
+.box-catalogo:before {
+  content: "";
+  display: block;
+  padding-top: 70%;
+}
+.box-info {
+  background-color: black;
+  margin-top: 5%;
+  padding: 0;
+}
 .fixed {
   position: fixed;
   top: 0;
@@ -257,8 +290,9 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  overflow-y: hidden;
 }
-.background {
+.background-color {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -266,9 +300,14 @@ body {
   right: 0;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 0;
+  overflow-y: hidden;
 }
 .valor-fixo {
   text-decoration: line-through;
+}
+.produto {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 1%;
 }
 .thumbnail {
   height: auto;
@@ -284,7 +323,10 @@ body {
   border: none;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
 }
-#imagem {
+.box-book:hover {
+  cursor: pointer;
+}
+#pg-title {
   display: none;
 }
 .catalogo {
@@ -296,19 +338,21 @@ body {
 }
 .container {
   width: 85%;
+  padding-bottom: 2%;
+  overflow-y: hidden;
 }
 /*cor dos links ativos*/
 .navbar-content .navbar-nav .active {
   border-bottom: 3px solid white;
 }
-.titulo-pg {
+.pg-title {
   position: fixed;
   top: 0;
   width: 24%;
   margin-left: 38%;
   height: 85px;
 }
-.titulo-pg img {
+.pg-title img {
   position: inherit;
   height: inherit;
 }
@@ -318,8 +362,8 @@ body {
 .search-section {
   position: absolute;
 }
-.titulo-pg,
-.search-box,
+.pg-title,
+.search-modal,
 .navig {
   position: fixed;
 }
@@ -348,17 +392,17 @@ body {
 .nav > .glyphicon {
   font-size: 15px;
 }
-#search,
-#carrinho {
+#open-search,
+#cart {
   color: white;
   border: none;
 }
-#search:hover,
-#carrinho:hover {
+#open-search:hover,
+#cart:hover {
   color: pink;
   cursor: pointer;
 }
-.search-box {
+.search-modal {
   z-index: 1023;
   height: 100%;
   width: 0;
@@ -367,16 +411,16 @@ body {
   right: 0;
   bottom: 0;
 }
-.carrinho-box {
+.cart-box {
   position: fixed;
-  z-index: 1024;
+  z-index: 1022;
   height: 0;
   width: 50%;
   background-color: #000;
   top: 150px;
   right: 10%;
 }
-.carrinho-top {
+.cart-top {
   top: 70px;
 }
 .navig {
@@ -416,7 +460,6 @@ body {
   max-height: 100%;
   position: absolute;
   right: 0;
-  vertical-align: 50%;
 }
 .search-input {
   background-color: transparent;
@@ -459,9 +502,9 @@ body {
 .bookmark:after,
 .navig-top,
 .navig,
-.titulo-pg,
-.carrinho-top,
-.carrinho-box {
+.pg-title,
+.cart-top,
+.cart-box {
   transition: 0.5s;
   -webkit-transition: 0.5s;
 }

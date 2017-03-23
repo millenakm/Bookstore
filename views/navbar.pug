@@ -1,5 +1,5 @@
-div.titulo-pg
-	img(src="../images/logo.jpg")#imagem
+div.pg-title
+	img(src="../images/logo.jpg")#pg-title
 nav.navig
 	div.navbar-header
 		button(type="button", data-toggle="collapse",data-target="#colaspse-content", aria-expanded="false").navbar-toggle.collapsed
@@ -16,10 +16,10 @@ nav.navig
 						a(href="/catalogo") Catálogo
 				ul.nav.navbar-nav.navbar-right
 					li
-						a#carrinho
+						a#cart
 							span.glyphicon.glyphicon-shopping-cart
 					li
-						a#search
+						a#open-search
 							span.glyphicon.glyphicon-search
 
 include search.pug

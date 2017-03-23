@@ -1,15 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var file = require('./../controller/file');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	fs.readFile(__dirname + '/../db/data.json', 'utf8', function(err, data){
-		data = JSON.parse(data);
-  		res.json(data);
-		res.end();
+	file.read(function(data){
+		res.json(data);
 	});
-
 });
 
 module.exports = router;
