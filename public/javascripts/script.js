@@ -134,26 +134,26 @@ function actions(){
 }
 
 function heart(elem){
-	if($(elem).hasClass('glyphicon-heart-empty')){
-		$(elem).addClass('glyphicon-heart').removeClass('glyphicon-heart-empty');
-		$(elem).css({'color':'red'});
-	}
-	else if($(elem).hasClass('glyphicon-heart')){
-		$(elem).addClass('glyphicon-heart-empty').removeClass('glyphicon-heart');	
-		$(elem).css({'color':'white'});	
-	}
 	var isbn = { add: $(elem).data('id') };
 	$.get( '/desejo',isbn, function(data) {
-		console.log(data);
+		if(data == true){
+			$(elem).addClass('glyphicon-heart').removeClass('glyphicon-heart-empty');
+			$(elem).css({'color':'red'});
+		}
+		else if(data == false){
+			$(elem).addClass('glyphicon-heart-empty').removeClass('glyphicon-heart');	
+			$(elem).css({'color':'white'});	
+		}
 	});
-
-
 }
 
 $(document).ready(function(){ 
 	$("body").fadeIn(500);
 	offSetManager();
 	actions();
+	$("#heart").each(function() {
+		heart(this);
+	});
 	// equalHeight($(".box-book"));
 	equalHeight($(".grid")); 
 	searchJson();

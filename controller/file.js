@@ -21,7 +21,7 @@ module.exports = {
 			callback(data);
 		});
 	},
-	write: function(dataJson, res){
+	writeDesejos: function(dataJson, res){
 		fs.writeFile(__dirname + '/../'+'db/desejos.json', dataJson, function(err){
 			if(err)
 				return console.log(err);
