@@ -131,15 +131,30 @@ function actions(){
 	$('.box-book').on('click', function(){
 		product(this);
 	});
-	$('.box-catalogo').on('mouseover', function(){
-		$(this).animate({'margin-top': '-2%', 'margin-bottom': '-15%', 'margin-rigth': '-15%', 'margin-left': '-2%' });
+}
+
+function heart(elem){
+	if($(elem).hasClass('glyphicon-heart-empty')){
+		$(elem).addClass('glyphicon-heart').removeClass('glyphicon-heart-empty');
+		$(elem).css({'color':'red'});
+	}
+	else if($(elem).hasClass('glyphicon-heart')){
+		$(elem).addClass('glyphicon-heart-empty').removeClass('glyphicon-heart');	
+		$(elem).css({'color':'white'});	
+	}
+	var isbn = { add: $(elem).data('id') };
+	$.get( '/desejo',isbn, function(data) {
+		console.log(data);
 	});
+
+
 }
 
 $(document).ready(function(){ 
 	$("body").fadeIn(500);
 	offSetManager();
 	actions();
-	equalHeight($(".box-book")); 
+	// equalHeight($(".box-book"));
+	equalHeight($(".grid")); 
 	searchJson();
 });
