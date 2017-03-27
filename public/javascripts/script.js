@@ -82,7 +82,7 @@ function align(){
 }
 
 function painelResult(elem){
-	$.get("http://localhost:3000/dados", function(data){//procura os dados
+	$.get("/dados", function(data){//procura os dados
 		$(data).each(function (){//percorre um por um
 			if($(elem).data('id') == this.isbn){
 				var livro = '<div><h3>'+this.titulo+'</h3></div>';
@@ -131,19 +131,42 @@ function actions(){
 	$('.box-book').on('click', function(){
 		product(this);
 	});
+	$('.heart').click(function(){
+		var param = {add: $(this).data('id'), op: 'adicionar'};
+		heart(this, param);
+	});
+	$('.cart').click(function(){
+		var param = {add: $(this).data('id'), op: 'adicionar'};
+		carrinho(this, param);
+	});
 }
 
-function heart(elem){
-	var isbn = { add: $(elem).data('id') };
-	$.get( '/desejo',isbn, function(data) {
+function heart(elem, param){
+	$.get( '/catalogo/desejo',param, function(data) {
 		if(data == true){
-			$(elem).addClass('glyphicon-heart').removeClass('glyphicon-heart-empty');
-			$(elem).css({'color':'red'});
+			$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
 		}
-		else if(data == false){
-			$(elem).addClass('glyphicon-heart-empty').removeClass('glyphicon-heart');	
-			$(elem).css({'color':'white'});	
+		else if(data == false){	
+			$(elem).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty').css({'color':'white'});	
 		}
+		else{
+			var check = 0;
+			for(var i=0; i< data.length; i++){
+				if (data[i] == param.add){
+					$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
+					check = 1;
+				}
+			}
+			if (check == 0){
+				$(elem).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty').css({'color':'white'});	
+			}
+		}
+	});
+}
+
+function carrinho(elem, param) {
+	$.get( '/carrinho',param, function(data) {
+		console.log(data);
 	});
 }
 
@@ -151,10 +174,14 @@ $(document).ready(function(){
 	$("body").fadeIn(500);
 	offSetManager();
 	actions();
-	$("#heart").each(function() {
-		heart(this);
+	$(".heart").each(function() {
+		var param = {add: $(this).data('id'), op: 'listar'};
+		heart(this, param);
 	});
-	// equalHeight($(".box-book"));
+	// $(".cart").each(function() {
+	// 	var param = {add: $(this).data('id'), op: 'listar'};
+	// 	carrinho(this, param);
+	// });
 	equalHeight($(".grid")); 
 	searchJson();
 });

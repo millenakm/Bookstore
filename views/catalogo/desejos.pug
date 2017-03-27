@@ -1,0 +1,27 @@
+extends ./../layout
+
+block content
+	include ./../navbar.pug
+	div.container
+		-for(var z=0; z<dados.length; z++){
+			-for(var i=0; i<total.length; i++){
+				-if(total[i].isbn == dados[z]){
+					div.grid.col-md-4.col-lg-4.col-sm-6
+						figure.effect-terry
+							img(src=("../images/livros/"+total[i].capa+".jpg"))
+							div.infoCatalogo
+								h2.tagsNome.col-md-7(data-id=""+total[i].isbn+"").box-book #{total[i].titulo}
+									br
+									span= total[i].autor
+								h2.tagsPreco.col-md-5(data-id=""+total[i].isbn+"").box-book R$ #{total[i].preço}
+							figcaption.col-md-12
+								p
+									a
+										i(data-id=""+total[i].isbn+"").glyphicon.glyphicon-heart-empty.heart
+									a(href="#") 
+										i.glyphicon.glyphicon-shopping-cart
+									a(data-id=""+total[i].isbn+"").box-book 
+										i.glyphicon.glyphicon-info-sign
+				-}
+			-}
+		-}

@@ -4,40 +4,20 @@ block content
 	include ./../navbar.pug
 	div.container
 		-for(var i=0; i<dados.length; i++){
-			// div.col-xs-6.col-md-3.col-sm-6
-			// 	div.thumbnail
-			// 		a(data-id=""+dados[i].isbn+"").box-book
-			// 			img(src="../images/livros/"+dados[i].capa+".jpg")
-			// 			p= dados[i].titulo
-			// 			p= dados[i].autor
-			// 			h3= dados[i].preço
-			// div.col-md-4.box-info
-			// 	div.col-md-12.box-catalogo
-			// 		div.img-catalogo
-			// 	div.titulo-catalogo 
-			// 		h2 bla
 			div.grid.col-md-4.col-lg-4.col-sm-6
-				// a(data-id=""+dados[i].isbn+"").box-book
 				figure.effect-terry
 					img(src=("../images/livros/"+dados[i].capa+".jpg"))
-					figcaption.col-md-12
-						h2(data-id=""+dados[i].isbn+"").box-book #{dados[i].titulo}
+					div.infoCatalogo
+						h2.tagsNome.col-md-7(data-id=""+dados[i].isbn+"").box-book #{dados[i].titulo}
 							br
 							span= dados[i].autor
+						h2.tagsPreco.col-md-5(data-id=""+dados[i].isbn+"").box-book R$ #{dados[i].preço}
+					figcaption.col-md-12
 						p
 							a
-								i(onclick='heart(this)', data-id=""+dados[i].isbn+"").glyphicon.glyphicon-heart-empty#heart
-							a(href="#") 
-								i.glyphicon.glyphicon-shopping-cart
-							a(href="#") 
-								i.glyphicon.glyphicon-usd
+								i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-heart-empty.heart
+							a 
+								i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-shopping-cart.cart
+							a(data-id=""+dados[i].isbn+"").box-book 
+								i.glyphicon.glyphicon-info-sign
 		-}
-
-		//- div.col-md-4
-		//- 	div.col-md-12.box
-		//- 		div.fotos-paises
-		//- 		div.titulo bla
-		//- div.col-md-4
-		//- 	div.col-md-12.box
-		//- 		div.fotos-paises
-		//- 		div.titulo blalabllabla babla

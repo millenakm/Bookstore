@@ -28,5 +28,19 @@ module.exports = {
 			
 			res.end();
 		});
+	},
+	readCarrinho: function(callback){//callback é executado depois que a função terminar
+		fs.readFile(__dirname + '/../'+'db/carrinho.json', 'utf8', function(err, data){
+			data = JSON.parse(data);//transforma o json em um objeto js manipulável
+			callback(data);
+		});
+	},
+	writeCarrinho: function(dataJson, res){
+		fs.writeFile(__dirname + '/../'+'db/carrinho.json', dataJson, function(err){
+			if(err)
+				return console.log(err);
+			
+			res.end();
+		});
 	}
 }

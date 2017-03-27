@@ -15,17 +15,22 @@
   }
   .loop (@index - 1);
 }
+
+
  
 #livros {
   .loop(38);
 }
 
+.infoCatalogo{
+	font-size: 20px;
+	color: white;
+	z-index: 1000;
+	background-color: #111;
+}
+
 .grid {
 	position: relative;
-	/*clear: both;*/
-	/*margin: 0 auto;*/
-	/*padding: 1em 0 4em;*/
-	/*max-width: 1000px;*/
 	list-style: none;
 	text-align: center;
 }
@@ -43,7 +48,6 @@
 	height: auto;
 	background: #fff;
 	text-align: center;
-	cursor: pointer;
 }
 
 .grid figure img {
@@ -52,20 +56,26 @@
 	min-height: 100%;
 	max-width: 90%;
 	opacity: 0.5;
+	margin-bottom: 13%;
 }
 
-.grid figure figcaption {
-	padding: 2em;
+.grid figure .infoCatalogo {
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 1.25em;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
 }
 
 .grid figure figcaption::before,
 .grid figure figcaption::after {
 	pointer-events: none;
+}
+
+.grid figure figcaption p a{
+	cursor: pointer;
 }
 
 .grid figure figcaption,
@@ -119,7 +129,7 @@ figure.effect-terry {
 
 figure.effect-terry figcaption {
 	padding: 1.5em;
-	border: solid 7px #111;
+	border: solid 5px #111;
 }
 
 figure.effect-terry figcaption::before,
@@ -137,15 +147,15 @@ figure.effect-terry figcaption::after {
 figure.effect-terry figcaption::before {
 	right: 0;
 	bottom: 0;
-	border-width: 0 70px 60px 0;
-	-webkit-transform: translate3d(70px,60px,0);
-	transform: translate3d(70px,60px,0);
+	border-width: 0 100px 0 0;
+	-webkit-transform: translate3d(100px,0,0);
+	transform: translate3d(100px,0,0);
 }
 
 figure.effect-terry figcaption::after {
 	top: 0;
 	left: 0;
-	border-width: 15px 0 0 15px;
+	border-width: 0;
 	-webkit-transform: translate3d(-15px,-15px,0);
 	transform: translate3d(-15px,-15px,0);
 }
@@ -160,22 +170,20 @@ figure.effect-terry img {
 	transition: 0.5s;
     -webkit-transition:  0.5s;
 	margin-left: 15px;
+	margin-bottom: 15%;
 	opacity: 0.9;
 }
 
-figure.effect-terry h2 {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	padding: 0.6em;
+.tagsNome, .tagsPreco{
+	padding: 0.8em;
 	padding-left: 20px;
-	width: 100%;
 	text-align: left;
-	-webkit-transition: -webkit-transform 0.35s;
-	transition: transform 0.35s;
-/*	-webkit-transform: translate3d(120%,0,0);
-	transform: translate3d(120%,0,0);*/
+	line-height: 1;
+}
+
+.infoCatalogo > .tagsPreco{
+	font-size: 22px;
+	color: aqua;
 }
 
 @media screen and (max-width: 920px) {
@@ -188,9 +196,10 @@ figure.effect-terry h2 {
 figure.effect-terry p {
 	float: right;
 	clear: both;
-	text-align: left;
+	width: 20%;
+	text-align: center;
 	text-transform: none;
-	font-size: 111%;
+	font-size: 140%;
 }
 
 figure.effect-terry p a {
@@ -217,7 +226,7 @@ figure.effect-terry:hover img {
 	transition: 0.5s;
     -webkit-transition:  0.5s;
 	opacity: 0.8;
-	margin-left: -10px;
+	margin-left: -33px;
 }
 
 figure.effect-terry:hover h2,
@@ -231,75 +240,19 @@ figure.effect-terry:hover p a {
 }
 
 figure.effect-terry:hover p a:first-child {
-	-webkit-transition-delay: 0.025s;
-	transition-delay: 0.025s;
+	-webkit-transition-delay: 0.03s;
+	transition-delay: 0.03s;
 }
 
 figure.effect-terry:hover p a:nth-child(2) {
-	-webkit-transition-delay: 0.05s;
-	transition-delay: 0.05s;
+	-webkit-transition-delay: 0.06s;
+	transition-delay: 0.06s;
 }
 
 figure.effect-terry:hover p a:nth-child(3) {
-	-webkit-transition-delay: 0.075s;
-	transition-delay: 0.075s;
+	-webkit-transition-delay: 0.09s;
+	transition-delay: 0.09s;
 }
-
-figure.effect-terry:hover p a:nth-child(4) {
-	-webkit-transition-delay: 0.1s;
-	transition-delay: 0.1s;
-}
-
-.img{
-	position: absolute;
-	top: 2%;
-	left: 2%;
-	bottom: 2%;
-	right: 2%;
-	background-image: url("../images/livros/01.jpg");
-	background-size: auto 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-/*
-.titulo-catalogo{
-	position: absolute;
-	left: 5%;
-	bottom: 3%;
-	right: 5%;
-}
-
-.titulo-catalogo h2{
-	margin: 0;
-}
-
-.box-catalogo{
-	max-height: 220px;
-	height: 220px;
-	border: 0;
-	background-color: #ffffff;
-}
-
-.box-catalogo:hover{
-	transition: 0.3s;
-    -webkit-transition:  0.3s;
-    height: 220px;
-	border-top: solid 10px black;
-	border-left: solid 10px black;
-	border-bottom: solid 50px black;
-	border-right: solid 50px black;
-}
-
-.box-catalogo:before{
-	content: "";
-	display: block;
-	padding-top: 70%;
-}
-
-.box-info{
-	margin-top: 2%;
-}*/
-
 
 .fixed{
 	position: fixed;
@@ -438,14 +391,15 @@ body {
 	font-size: 15px;
 }
 
-#open-search, #cart{
+.navbar-right li a{
 	color: white;
 	border: none;
 }
 
-#open-search:hover, #cart:hover{
+.navbar-content > .navbar-right > li > a:hover{
 	color: pink;
 	cursor: pointer;
+	border: none;
 }
 
 .search-modal{

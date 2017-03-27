@@ -9,50 +9,35 @@ var $ = require('jquery')(window);
 
 
 router.get('/', function(req, res, next) {
-var check = true;
+	var check = true;
+	var param = req.query;
 	file.readDesejos(function(data){
-		var isbn = req.query;
-		for(var i=0; i<data.length; i++){
-			if(data[i].add==isbn.add){
-				check = false;
-				// data = JSON.stringify(data);
-				dataJson = data.splice(i, 1);
-				dataJson = JSON.stringify(data);
-				file.writeDesejos(dataJson, res);
-				// res.send(i);
-				// file.deleteDesejos(i, res, data);
+		if(param.op == 'adicionar'){
+			for(var i=0; i<data.length; i++){
+				if(data[i]==param.add){
+					check = false;
+					dataJson = data.splice(i, 1);
+					dataJson = JSON.stringify(data);
+					file.writeDesejos(dataJson, res);
+				}
 			}
+			if(check==true){
+				data.push(param.add);
+				var dataJson = JSON.stringify(data);					
+				file.writeDesejos(dataJson, res);
+			}
+			res.send(check);
 		}
-		if(check==true){
-			data.push(isbn);
-			var dataJson = JSON.stringify(data);					
-			file.writeDesejos(dataJson, res);
+		else if(param.op == 'listar'){
+			res.send(data);
 		}
-		res.send(check);
+		else{
+			file.read(function(dadosGerais){
+				res.render('./catalogo/desejos', {title: "Desejos", dados: data, total: dadosGerais});
+				res.end();
+			});	
+		}
 	});
-
 });
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-// 	file.readDesejos(function(data){
-// 		var isbn = req.query;
-// 		$(data).each(function(){
-// 			if(this.isbn==isbn){
-// 				check = 1;
-// 			}
-// 		});
-// 		if(check==1){
-// 			data.push(isbn);
-// 		var dataJson = JSON.stringify(data);					
-// 		file.write(dataJson, res);
-// 		res.send(data);
-// 		}
-		
-//   		// res.render('./catalogo/index', {title: "Bookstore", dados: data});
-// 		// res.send('adicionado');
-// 	});
-
-// });
-
 
 module.exports = router;
