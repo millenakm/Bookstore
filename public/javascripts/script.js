@@ -178,10 +178,6 @@ $(document).ready(function(){
 		var param = {add: $(this).data('id'), op: 'listar'};
 		heart(this, param);
 	});
-	// $(".cart").each(function() {
-	// 	var param = {add: $(this).data('id'), op: 'listar'};
-	// 	carrinho(this, param);
-	// });
 	equalHeight($(".grid")); 
 	searchJson();
 });
