@@ -1,0 +1,31 @@
+extends ./../layout
+
+block content
+	include ./../navbar.pug
+	div.container
+		table.table
+			thead
+				tr
+					th
+					th Produto
+					th Título
+					th Preço
+					th
+			-for(var z=0; z<dados.length; z++){
+				-for(var i=0; i<total.length; i++){
+					-if(total[i].isbn == dados[z]){
+						tbody
+							tr
+								td
+									img(src="../images/livros/"+total[i].capa+".jpg", height="100px")
+								td= total[i].isbn
+								td= total[i].titulo
+								td.valor(data-valor=total[i].preço) #{total[i].preço}
+								td 
+									a
+										i(data-id=""+total[i].isbn+"").glyphicon.glyphicon-remove.cart
+					-}
+				-}
+			-}
+					tr
+						td.valorTotal

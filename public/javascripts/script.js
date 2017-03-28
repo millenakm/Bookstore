@@ -99,9 +99,10 @@ function product(elem){
 };
 
 function cart(){
-    var state = parseInt($('.cart-box').css('height')) > 1;
-    $('.cart-box').animate({height:(state ? "30%" : '0')}, 100);
-    $('.cart-box').animate({height:(state ? '0': '30%')}, 200);
+    // var state = parseInt($('.cart-box').css('height')) > 1;
+    // $('.cart-box').animate({height:(state ? "30%" : '0')}, 100);
+    // $('.cart-box').animate({height:(state ? '0': '30%')}, 200);
+    $(".cart-box").slideToggle('slow');
 }
 
 function activeLink(){
@@ -139,6 +140,9 @@ function actions(){
 		var param = {add: $(this).data('id'), op: 'adicionar'};
 		carrinho(this, param);
 	});
+	$('#filter').change(function(){
+		filter($(this).val());
+	});
 }
 
 function heart(elem, param){
@@ -164,11 +168,44 @@ function heart(elem, param){
 	});
 }
 
-function carrinho(elem, param) {
-	$.get( '/carrinho',param, function(data) {
-		console.log(data);
+function filter(value){
+	value = {select: value};
+	$.get( '/catalogo', value, function(data){
+		
 	});
 }
+
+function carrinho(elem, param) {
+	$.get( '/carrinho', param, function(data){
+		if(data == true){
+			$(elem).css({'color':'aqua'});
+		}
+		else if(data == false){	
+			$(elem).css({'color':'white'});	
+		}
+		else{
+			var check = 0;
+			for(var i=0; i< data.length; i++){
+				if (data[i] == param.add){
+					$(".nome").append(data[i]);
+					$(elem).css({'color':'aqua'});
+					check = 1;
+				}
+			}
+			if (check == 0){
+				$(elem).css({'color':'white'});	
+			}
+		}
+	});
+}
+
+function valorTotal(group) {
+	group.each(function() {
+		var thisHeight = $(this).data('valor');
+		tallest = thisHeight;
+	});
+	group.each(function() { $(this).height(tallest); });
+} 
 
 $(document).ready(function(){ 
 	$("body").fadeIn(500);
@@ -178,6 +215,12 @@ $(document).ready(function(){
 		var param = {add: $(this).data('id'), op: 'listar'};
 		heart(this, param);
 	});
+	$(".cart").each(function() {
+		var param = {add: $(this).data('id'), op: 'listar'};
+		carrinho(this, param);
+	});
+	valorTotal($(".valor"));
 	equalHeight($(".grid")); 
 	searchJson();
+	filter($("#filter").val());
 });
