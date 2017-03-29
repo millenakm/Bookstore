@@ -146,11 +146,11 @@ function actions(){
 		filter($(this).val());
 	});
 	$(".heart").each(function() {
-		var param = {add: $(this).data('id'), op: 'listar'};
+		var param = {add: $(this).parents('.grid').data('id'), op: 'listar'};
 		heart(this, param);
 	});
 	$(".cart").each(function() {
-		var param = {add: $(this).data('id'), op: 'listar'};
+		var param = {add: $(this).parents('.grid').data('id'), op: 'listar'};
 		carrinho(this, param);
 	});
 	$("#select").change(function(){
