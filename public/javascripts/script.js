@@ -1,11 +1,13 @@
 var tallest = 0;
 	
+// Abre a tela de pesquisa
 function openSearch(){
 	$(".search-modal").animate({width: '100%'});
 	$('body, html').css({'overflow-y':'hidden'});
 	$('.search-input').focus();
 }
 
+// Fecha a tela de pesquisa
 function closeSearch(){
 	$(".search-modal").animate({width: '0%'});
 	$('.search-input').val(''); 
@@ -14,6 +16,7 @@ function closeSearch(){
 	$("#box-result").html('');
 }
 
+// Muda caracteristicas conforme a scrollbar
 function offSetManager(){
 	var yOffset = 0;
 	var currYOffSet = window.pageYOffset;
@@ -31,6 +34,7 @@ function offSetManager(){
 	}
 }
 
+// muda a altura das divs .grid, para todas da mesma altura
 function equalHeight(group) {
 	group.each(function() {
 		var thisHeight = $(this).height();
@@ -41,6 +45,7 @@ function equalHeight(group) {
 	group.each(function() { $(this).height(tallest); });
 } 
 
+// faz a busca dos dados
 function searchJson(){
 	$('#search-input').keyup(function(){//quando escrever na input, realiza a busca
 		var searchField = $(this).val();
@@ -66,21 +71,15 @@ function searchJson(){
 			}
 			output += '';
 			$('.list-result').html(output);//define a div com os resultados
-			align();
 			$('.box-book').on('click', function(){
 				$(".search-modal").animate({display: 'none'});
-				product(this);
+				product($(this).data('id'));
 			}); 		
 		});
 	});
 }
 
-function align(){
-	var marginBottom = $('.list-result').css('bottom');
-	var marginTop = marginBottom/2;
-	$('.list-result').css('mar')
-}
-
+// painel com informações de resultados da pesquisa
 function painelResult(elem){
 	$.get("/dados", function(data){//procura os dados
 		$(data).each(function (){//percorre um por um
@@ -92,12 +91,13 @@ function painelResult(elem){
 	});
 }
 
-function product(elem){
-	var parameters = $(elem).data('id');
+// vai para a página do produto clicado
+function product(parameters){
 	window.location=('/catalogo/produto?cod='+parameters);
 
 };
 
+// box do carrinho
 function cart(){
     // var state = parseInt($('.cart-box').css('height')) > 1;
     // $('.cart-box').animate({height:(state ? "30%" : '0')}, 100);
@@ -105,6 +105,7 @@ function cart(){
     $(".cart-box").slideToggle('slow');
 }
 
+// link ativo
 function activeLink(){
 	$(this).css({'background-color':'transparent'});
 	$('a').each(function () {
@@ -113,6 +114,7 @@ function activeLink(){
 	$(this).addClass('active');
 }
 
+// ações
 function actions(){
 	window.onscroll = function() {
 		offSetManager();
@@ -130,21 +132,33 @@ function actions(){
 		activeLink();
 	});
 	$('.box-book').on('click', function(){
-		product(this);
+		product($(this).parents('.grid').data('id'));
 	});
 	$('.heart').click(function(){
-		var param = {add: $(this).data('id'), op: 'adicionar'};
+		var param = {add: $(this).parents('.grid').data('id'), op: 'adicionar'};
 		heart(this, param);
 	});
 	$('.cart').click(function(){
-		var param = {add: $(this).data('id'), op: 'adicionar'};
+		var param = {add: $(this).parents('.grid').data('id'), op: 'adicionar'};
 		carrinho(this, param);
 	});
 	$('#filter').change(function(){
 		filter($(this).val());
 	});
+	$(".heart").each(function() {
+		var param = {add: $(this).data('id'), op: 'listar'};
+		heart(this, param);
+	});
+	$(".cart").each(function() {
+		var param = {add: $(this).data('id'), op: 'listar'};
+		carrinho(this, param);
+	});
+	$("#select").change(function(){
+		filter(this);	
+	});
 }
 
+// lista de desejos
 function heart(elem, param){
 	$.get( '/catalogo/desejo',param, function(data) {
 		if(data == true){
@@ -168,13 +182,21 @@ function heart(elem, param){
 	});
 }
 
-function filter(value){
-	value = {select: value};
-	$.get( '/catalogo', value, function(data){
-		
+// filtro
+function filter(elem){
+	var categoria = $(elem).val();
+	$('.grid').hide();
+	$('.grid').each(function(){
+		if($(this).data('categ')==categoria){
+			$(this).show();
+		}
 	});
+	if(categoria=='all'){
+		$('.grid').show();
+	}
 }
 
+// carrinho
 function carrinho(elem, param) {
 	$.get( '/carrinho', param, function(data){
 		if(data == true){
@@ -199,28 +221,21 @@ function carrinho(elem, param) {
 	});
 }
 
+// valor total do carrinho
 function valorTotal(group) {
 	group.each(function() {
 		var thisHeight = $(this).data('valor');
-		tallest = thisHeight;
 	});
-	group.each(function() { $(this).height(tallest); });
+	group.each(function() { $(this); });
 } 
+
 
 $(document).ready(function(){ 
 	$("body").fadeIn(500);
 	offSetManager();
 	actions();
-	$(".heart").each(function() {
-		var param = {add: $(this).data('id'), op: 'listar'};
-		heart(this, param);
-	});
-	$(".cart").each(function() {
-		var param = {add: $(this).data('id'), op: 'listar'};
-		carrinho(this, param);
-	});
 	valorTotal($(".valor"));
 	equalHeight($(".grid")); 
 	searchJson();
-	filter($("#filter").val());
+	filter($("#select"));
 });

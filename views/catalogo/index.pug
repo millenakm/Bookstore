@@ -4,20 +4,20 @@ block content
 	include ./../navbar.pug
 	div.container
 		-for(var i=0; i<dados.length; i++){
-			div.grid.col-md-4.col-lg-4.col-sm-6
+			div(data-categ=dados[i].categoria, data-id=dados[i].isbn).grid.col-md-4.col-lg-4.col-sm-6
 				figure.effect-terry
 					img(src=("../images/livros/"+dados[i].capa+".jpg"))
 					div.infoCatalogo
-						h2.tagsNome.col-md-7(data-id=""+dados[i].isbn+"").box-book #{dados[i].titulo}
+						h2.tagsNome.col-md-7.box-book #{dados[i].titulo}
 							br
 							span= dados[i].autor
-						h2.tagsPreco.col-md-5(data-id=""+dados[i].isbn+"").box-book R$ #{dados[i].preço}
+						h2.tagsPreco.col-md-5.box-book R$ #{dados[i].preço}
 					figcaption.col-md-12
 						p
 							a
-								i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-heart-empty.heart
+								i.glyphicon.glyphicon-heart-empty.heart
 							a 
-								i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-shopping-cart.cart
-							a(data-id=""+dados[i].isbn+"").box-book 
+								i.glyphicon.glyphicon-shopping-cart.cart
+							a.box-book 
 								i.glyphicon.glyphicon-info-sign
 		-}
