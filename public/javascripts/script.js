@@ -84,19 +84,7 @@ function painelResult(elem){
 	$.get("/dados", function(data){//procura os dados
 		$(data).each(function (){//percorre um por um
 			if($(elem).data('id') == this.isbn){
-				var livro = '<div data-categ='+this.categoria+' data-id='+this.isbn+' class="grid col-md-6 col-lg-6 col-sm-6">';
-				livro += '<figure class="effect-terry">'
-				livro += '<img src="../images/livros/'+this.capa+'.jpg">'
-				livro += '<div class="infoCatalogo">';
-				livro += '<h2 class="tagsNome col-md-7 box-book">'+this.titulo+'<br>';
-				livro += '<span>'+this.autor+'</span></h2>';
-				livro += '<h2 class="tagsPreco col-md-5 box-book">R$ '+this.preço+'</h2>';
-				livro += '<figcaption class="col-md-12"><p>';
-				livro += '<a><i class="glyphicon glyphicon-heart-empty heart"></i></a>';
-				livro += '<a><i class="glyphicon glyphicon-shopping-cart cart"></i></a>';
-				livro += '<a class="box-book"><i class="glyphicon glyphicon-info-sign"></i></a>';
-				livro += '</p></figcaption></figure></div>';
-
+				var livro = '<img src="../images/livros/'+this.capa+'.jpg" height="400px">';
 				$("#box-result").html(livro);
 			}
 		});
@@ -198,6 +186,7 @@ function heart(elem, param){
 function filter(elem){
 	var categoria = $(elem).val();
 	$('.grid').hide();
+	$('.mensagem').hide();
 	$('.grid').each(function(){
 		if($(this).data('categ')==categoria){
 			$(this).show();
@@ -205,6 +194,9 @@ function filter(elem){
 	});
 	if(categoria=='all'){
 		$('.grid').show();
+	}
+	if($('.grid:visible').length==0){
+		$('.mensagem').show();
 	}
 }
 
@@ -244,6 +236,7 @@ function valorTotal(group) {
 
 $(document).ready(function(){ 
 	$("body").fadeIn(500);
+	$('.mensagem').hide();
 	offSetManager();
 	actions();
 	valorTotal($(".valor"));

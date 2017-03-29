@@ -1,6 +1,7 @@
 extends ./../layout
 
 block content
+	-var categorias = true
 	include ./../navbar.pug
 	div.container
 		-for(var z=0; z<dados.length; z++){
@@ -25,3 +26,4 @@ block content
 				-}
 			-}
 		-}
+		h2.mensagem Não foram encontrados produtos nesta categoria
