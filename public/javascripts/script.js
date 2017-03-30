@@ -161,7 +161,6 @@ function actions(){
 	$(".cart").each(function() {
 		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
 		cart(this, param);
-		count({count:'carrinho'});
 	});
 	$("#select").change(function(){
 		filter(this);	
@@ -294,4 +293,5 @@ $(document).ready(function(){
 	searchJson();
 	categFilter();
 	filter($("#select"));
+	count({count:'carrinho'});
 });
