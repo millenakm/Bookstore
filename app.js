@@ -11,6 +11,7 @@ var produto = require('./routes/produto');
 var dados = require('./routes/dados');
 var desejo = require('./routes/desejo');
 var carrinho = require('./routes/carrinho');
+var count = require('./routes/count');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/catalogo/produto', produto);
 app.use('/dados', dados);
 app.use('/catalogo/desejo', desejo);
 app.use('/carrinho', carrinho);
+app.use('/count', count);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

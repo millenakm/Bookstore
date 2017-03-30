@@ -161,6 +161,7 @@ function actions(){
 	$(".cart").each(function() {
 		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
 		cart(this, param);
+		count({count:'carrinho'});
 	});
 	$("#select").change(function(){
 		filter(this);	
@@ -168,6 +169,14 @@ function actions(){
 	$('.removeDesejo').on('click', function(){
 		$(this).parents('.grid').fadeOut();
 	})
+}
+
+function count(param){
+	$.get('/count', param, function(data){
+		if (param.count=='carrinho'){
+			$("#numberCart").html(data.length);
+		}
+	});
 }
 
 function cartProducts(elem){
@@ -190,6 +199,7 @@ function heart(elem, param){
 		}
 		else{
 			var check = 0;
+			quant = data.length;
 			for(var i=0; i< data.length; i++){
 				if (data[i] == param.add){
 					$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
@@ -243,6 +253,7 @@ function cart(elem, param) {
 				$(elem).css({'color':'white'});	
 			}
 		}
+		count({count:'carrinho'});
 	});
 }
 
