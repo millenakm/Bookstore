@@ -3,27 +3,12 @@ extends ./../layout
 block content
 	-var categorias = true
 	include ./../navbar.pug
-	div.container
-		-for(var z=0; z<dados.length; z++){
-			-for(var i=0; i<total.length; i++){
-				-if(total[i].isbn == dados[z]){
-					div(data-id=total[i].isbn, data-categ=total[i].categoria).grid.col-md-4.col-lg-4.col-sm-6
-						figure.effect-terry
-							img(src=("../images/livros/"+total[i].capa+".jpg"))
-							div.infoCatalogo
-								h2.tagsNome.col-md-7.box-book #{total[i].titulo}
-									br
-									span= total[i].autor
-								h2.tagsPreco.col-md-5.box-book R$ #{total[i].preço}
-							figcaption.col-md-12
-								p
-									a
-										i.glyphicon.glyphicon-heart-empty.heart
-									a 
-										i.glyphicon.glyphicon-shopping-cart
-									a.box-book 
-										i.glyphicon.glyphicon-info-sign
+	div.container#desejos
+		-for(var z=0; z<desejados.length; z++){
+			-for(var i=0; i<dados.length; i++){
+				-if(dados[i].isbn == desejados[z]){
+					include livros.pug
 				-}
 			-}
 		-}
-		h2.mensagem Não foram encontrados produtos nesta categoria
+		h2#mensagem Não foram encontrados produtos nesta categoria

@@ -5,20 +5,6 @@ block content
 	include ./../navbar.pug
 	div.container
 		-for(var i=0; i<dados.length; i++){
-			div(data-categ=dados[i].categoria, data-id=dados[i].isbn).grid.col-md-4.col-lg-4.col-sm-6
-				figure.effect-terry
-					img(src=("../images/livros/"+dados[i].capa+".jpg"))
-					div.infoCatalogo
-						h2.tagsNome.col-md-7.box-book #{dados[i].titulo}
-							br
-							span= dados[i].autor
-						h2.tagsPreco.col-md-5.box-book R$ #{dados[i].preço}
-					figcaption.col-md-12
-						p
-							a
-								i.glyphicon.glyphicon-heart-empty.heart
-							a 
-								i.glyphicon.glyphicon-shopping-cart.cart
-							a.box-book 
-								i.glyphicon.glyphicon-info-sign
+			include livros.pug
 		-}
+		h2#mensagem Não foram encontrados produtos nesta categoria

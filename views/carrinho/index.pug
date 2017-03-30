@@ -11,21 +11,22 @@ block content
 					th Título
 					th Preço
 					th
-			-for(var z=0; z<dados.length; z++){
-				-for(var i=0; i<total.length; i++){
-					-if(total[i].isbn == dados[z]){
-						tbody
-							tr
+			tbody
+				-for(var z=0; z<dados.length; z++){
+					-for(var i=0; i<total.length; i++){
+						-if(total[i].isbn == dados[z]){
+							tr.isbn(data-id=total[i].isbn)
 								td
-									img(src="../images/livros/"+total[i].capa+".jpg", height="100px")
+									img(src="../images/livros/"+total[i].capa+".jpg", height="100px").box-book
 								td= total[i].isbn
 								td= total[i].titulo
-								td.valor(data-valor=total[i].preço) #{total[i].preço}
+								td.valor(data-valor=total[i].preço)
+									h4 R$ #{total[i].preço}
 								td 
 									a
-										i(data-id=""+total[i].isbn+"").glyphicon.glyphicon-remove.cart
+										i(data-id=""+total[i].isbn+"").glyphicon.glyphicon-remove.cart.deletar
+						-}
 					-}
 				-}
-			-}
-					tr
-						td.valorTotal
+				tr
+					td(align="right", colspan="5").valorTotal 
