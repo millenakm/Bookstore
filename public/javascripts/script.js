@@ -69,14 +69,14 @@ function searchJson(){
 					// +'<h5 class="col-md-3">'+data[i].titulo+'</h5><h5 class="col-md-3">'+data[i].autor+'</h5>'
 					// +'<h4 class="col-md-3">R$ '+data[i].preço.toString()+'</h4>'
 					// +'<h5 class="col-md-3">Editora: '+data[i].editora+'</h5></a></div></div>';
-					results+='<a><tr id="livros" class="box-book" data-id="'+data[i].isbn+'" onmouseover="painelResult(this)">'
+					results+='<tr id="livros" class="box-book" data-id="'+data[i].isbn+'" onmouseover="painelResult(this)">'
 					+'<td class="cod">'+data[i].isbn+'</td>'
 					+'<td class="colored">'+data[i].titulo+'</td>'
 					+'<td class="autor">'+data[i].autor+'</td>'
 					+'<td class="colored">'+data[i].preço+'</td>'
 					+'<td>'+data[i].editora+'</td>'
 					+'<td>'+data[i].categoria+'</td>'
-					+'</tr></a>';
+					+'</tr>';
 
 					cor++;
 				}
@@ -241,7 +241,7 @@ function categFilter(){
 			}
 		});
 		for(i in categorias){
-			$("#select").append('<option value="'+categorias[i]+'">'+categorias[i]+'</option>');
+			$("#select-categ").append('<option value="'+categorias[i]+'">'+categorias[i]+'</option>');
 		}
 	});
 }
@@ -289,7 +289,7 @@ function actions(){
 		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
 		cart(this, param);
 	});
-	$("#select").change(function(){
+	$("#select-categ").change(function(){
 		filter(this);	
 	});
 	$('.removeDesejo').on('click', function(){
@@ -313,7 +313,7 @@ $(document).ready(function(){
 	equalHeight($(".grid")); 
 	searchJson();
 	categFilter();
-	filter($("#select"));
+	filter($("#select-categ"));
 	count({count:'carrinho'});
 	count({count:'desejos'});
 });
