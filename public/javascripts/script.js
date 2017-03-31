@@ -13,8 +13,7 @@ function closeSearch(){
 	$(".search-modal").animate({width: '0%'});
 	$('.search-input').val(''); 
 	$('body, html').css({'overflow-y':'auto'});
-	$('.list-result').html('');
-	$("#box-result").html('');
+	$('.list-result, #box-result').html('');
 }
 
 // Muda caracteristicas conforme a scrollbar
@@ -35,15 +34,15 @@ function onScroll(){
 	}
 }
 
-// muda a altura das divs .grid, para todas da mesma altura
-function equalHeight(group){
-	group.each(function(){
+// muda a altura das divs .grid, para todas terem a mesma altura
+function equalHeight(grid){
+	grid.each(function(){
 		var thisHeight = $(this).height();
 		if(thisHeight > tallest) {
 			tallest = thisHeight;
 		}
 	});
-	group.each(function(){ 
+	grid.each(function(){ 
 		$(this).height(tallest); 
 	});
 } 
@@ -57,33 +56,47 @@ function searchJson(){
 			return;
 		}
 
-		var results = '';//cria a div para mostras os resultados
+		var results = '<table class="table"><thead><tr><th>Produto</th><th>Título</th><th>Autor</th><th>Preço(R$)</th><th>Categoria</th><th>Editora</th></tr></thead><tbody>';
+	
 		var regex = new RegExp(searchField, "i");//define a busca sem case sensitive
 		$.get("/dados", function(data){//procura os dados
-			var cor = 0;
+			var cor = 1;
 			for(i in data){
 				var titulo = data[i].titulo;
-				if (titulo.search(regex) != -1 || data[i].autor.search(regex) != -1 || data[i].editora.search(regex) != -1){//se houver dados correspondentes à busca
+				if (titulo.search(regex) != -1 || data[i].autor.search(regex) != -1 || data[i].editora.search(regex) != -1 || data[i].categoria.search(regex) != -1 || data[i].isbn.search(regex) != -1){//se houver dados correspondentes à busca
 					//mostra a div de resultados e printa 
-					results+='<a><div id="livros" class="box-book" data-id="'+data[i].isbn+'" onmouseover="painelResult(this)"><div id="livros-result" class="row livrosCor-'+cor+'">'
-					+'<h5 class="col-md-3">'+data[i].titulo+'</h5><h5 class="col-md-3">'+data[i].autor+'</h5>'
-					+'<h4 class="col-md-3">R$ '+data[i].preço.toString()+'</h4>'
-					+'<h5 class="col-md-3">Editora: '+data[i].editora+'</h5></a></div></div>';
+					// results+='<a><div id="livros" class="box-book" data-id="'+data[i].isbn+'" onmouseover="painelResult(this)"><div id="livros-result" class="row livrosCor-'+cor+'">'
+					// +'<h5 class="col-md-3">'+data[i].titulo+'</h5><h5 class="col-md-3">'+data[i].autor+'</h5>'
+					// +'<h4 class="col-md-3">R$ '+data[i].preço.toString()+'</h4>'
+					// +'<h5 class="col-md-3">Editora: '+data[i].editora+'</h5></a></div></div>';
+					results+='<a><tr id="livros" class="box-book" data-id="'+data[i].isbn+'" onmouseover="painelResult(this)">'
+					+'<td class="cod">'+data[i].isbn+'</td>'
+					+'<td class="colored">'+data[i].titulo+'</td>'
+					+'<td class="autor">'+data[i].autor+'</td>'
+					+'<td class="colored">'+data[i].preço+'</td>'
+					+'<td>'+data[i].editora+'</td>'
+					+'<td>'+data[i].categoria+'</td>'
+					+'</tr></a>';
 
 					cor++;
 				}
 			}
-			results += '';
-			$('.list-result').html(results);//define a div com os resultados
-			$('.box-book').on('click', function(){
-				$(".search-modal").animate({display: 'none'});
-				product($(this).data('id'));
-			}); 
-			if($(".list-result").height()==1){
-				$(".list-result").html("<h2>Nenhum resultado encontrado.</h2>");
-			}		
+			results+='</tbody></table>';
+			searchResult(results);
 		});
 	});
+}
+
+function searchResult(results){
+	$('.list-result').html(results);//define a div com os resultados
+	$('.box-book').on('click', function(){
+		$(".search-modal").animate({display: 'none'});
+		productPage($(this).data('id'));
+	}); 
+	if($(".list-result td").length==0){
+		$(".list-result").html("<h2>Nenhum resultado encontrado.</h2>");
+		$("#box-result").html("");
+	}		
 }
 
 // painel com informações de resultados da pesquisa
@@ -99,7 +112,7 @@ function painelResult(elem){
 }
 
 // vai para a página do produto clicado
-function product(parameters){
+function productPage(parameters){
 	window.location=('/catalogo/produto?cod='+parameters);
 }
 
@@ -120,60 +133,14 @@ function activeLink(){
 	$(this).addClass('active');
 }
 
-// ações
-function actions(){
-	window.onscroll = function() {
-		onScroll();
-	}
-	$('#open-search').click(function(){
-		openSearch();
-	});
-	$('#close-search').click(function(){
-		closeSearch();
-	});
-	$('#cart').click(function(){
-		cart();
-	});
-	$('.navbar-content .navbar-nav a').click(function(){
-		activeLink();
-	});
-	$('.box-book').on('click', function(){
-		product($(this).parents('.isbn').data('id'));
-	});
-	$('.heart').click(function(){
-		var param = {add: $(this).parents('.isbn').data('id'), op: 'adicionar'};
-		heart(this, param);
-	});
-	$('.cart').click(function(){
-		var param = {add: $(this).parents('.isbn').data('id'), op: 'adicionar'};
-		cart(this, param);
-	});
-	$('.deletar').click(function(){
-		cartProducts(this);
-	});
-	$('#filter').change(function(){
-		filter($(this).val());
-	});
-	$(".heart").each(function() {
-		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
-		heart(this, param);
-	});
-	$(".cart").each(function() {
-		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
-		cart(this, param);
-	});
-	$("#select").change(function(){
-		filter(this);	
-	});
-	$('.removeDesejo').on('click', function(){
-		$(this).parents('.grid').fadeOut();
-	})
-}
 
 function count(param){
 	$.get('/count', param, function(data){
 		if (param.count=='carrinho'){
 			$("#numberCart").html(data.length);
+		}
+		else if (param.count=='desejos'){
+			$("#numberWish").html(data.length);
 		}
 	});
 }
@@ -188,7 +155,7 @@ function cartProducts(elem){
 }
 
 // lista de desejos
-function heart(elem, param){
+function wishList(elem, param){
 	$.get( '/catalogo/desejo',param, function(data) {
 		if(data == true){
 			$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
@@ -209,6 +176,7 @@ function heart(elem, param){
 				$(elem).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty').css({'color':'white'});	
 			}
 		}
+		count({count:'desejos'});
 	});
 }
 
@@ -219,14 +187,14 @@ function filter(elem){
 	$('#mensagem').hide();
 	$('.grid').each(function(){
 		if($(this).data('categ')==categoria){
-			$(this).show();
+			$(this).slideDown(1000);
 		}
 	});
 	if(categoria=='all'){
-		$('.grid').show();
+		$('.grid').slideDown(1000);
 	}
 	if($('.grid:visible').length==0){
-		$('#mensagem').show();
+		$('#mensagem').show(300);
 	}
 }
 
@@ -268,9 +236,9 @@ function categFilter(){
 	var categorias = [];
 	$.get('/dados', function(data){
 		$.each(data, function(index, value) {
-		    if ($.inArray(value.categoria, categorias)==-1) {
-		        categorias.push(value.categoria);
-		    }
+			if ($.inArray(value.categoria, categorias)==-1) {
+				categorias.push(value.categoria);
+			}
 		});
 		for(i in categorias){
 			$("#select").append('<option value="'+categorias[i]+'">'+categorias[i]+'</option>');
@@ -278,13 +246,66 @@ function categFilter(){
 	});
 }
 
-function removeDesejos(elem){
-	$(elem).find('.heart').addClass('removeDesejo');
+function removeWhish(elem){
+	$(elem).find('.wish').addClass('removeDesejo');
+}
+
+// ações
+function actions(){
+	window.onscroll = function() {
+		onScroll();
+	}
+	$('#open-search').click(function(){
+		openSearch();
+	});
+	$('#close-search').click(function(){
+		closeSearch();
+	});
+	$('.navbar-content .navbar-nav a').click(function(){
+		activeLink();
+	});
+	$('.box-book').on('click', function(){
+		productPage($(this).parents('.isbn').data('id'));
+	});
+	$('.wish').click(function(){
+		var param = {add: $(this).parents('.isbn').data('id'), op: 'adicionar'};
+		wishList(this, param);
+	});
+	$('.cart').click(function(){
+		var param = {add: $(this).parents('.isbn').data('id'), op: 'adicionar'};
+		cart(this, param);
+	});
+	$('.deletar').click(function(){
+		cartProducts(this);
+	});
+	$('#filter').change(function(){
+		filter($(this).val());
+	});
+	$(".wish").each(function() {
+		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
+		wishList(this, param);
+	});
+	$(".cart").each(function() {
+		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
+		cart(this, param);
+	});
+	$("#select").change(function(){
+		filter(this);	
+	});
+	$('.removeDesejo').on('click', function(){
+		$(this).parents('.grid').fadeOut();
+	});
+	$(".icon > a").mouseenter(function(){
+		$(this).find(".badge").css({'box-shadow': '0 5px 8px 1px rgba(0,0,0,0.4)'}).animate({'margin-top':'8px'}, 100);
+	});
+	$(".icon > a").mouseleave(function(){
+		$(this).find(".badge").css({'box-shadow': '0 4px 2px -2px rgba(0,0,0,0.4)'}).animate({'margin-top':'11px'}, 100);
+	});
 }
 
 $(document).ready(function(){ 
 	$("body").fadeIn(500);
-	removeDesejos($("#desejos"));
+	removeWhish($("#desejos"));
 	$('#mensagem').hide();
 	onScroll();
 	actions();
@@ -294,4 +315,5 @@ $(document).ready(function(){
 	categFilter();
 	filter($("#select"));
 	count({count:'carrinho'});
+	count({count:'desejos'});
 });

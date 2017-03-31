@@ -14,6 +14,11 @@ router.get('/', function(req, res, next) {
 			res.send(data);
 		});
 	}
+	else if(param.count=='desejos'){
+		file.readDesejos(function(data){
+			res.send(data);
+		});
+	}
 });
 
 module.exports = router;

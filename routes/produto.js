@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 			if (this.isbn==val.cod){
 				isbn = this.isbn
 				console.log(isbn);
-	  			res.render('./catalogo/produto', {title: "Bookstore", dados: this});
+	  			res.render('./catalogo/produto', {title: "Bookstore - "+this.titulo, dados: this});
 	  			res.end();
 			}
 		});

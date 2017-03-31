@@ -6,7 +6,7 @@ var file = require('./../controller/file');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	file.read(function(data){
-		res.render('./catalogo/index', {title: "Bookstore", dados: data});
+		res.render('./catalogo/index', {title: "Bookstore - Catálogo de Produtos", dados: data});
 		res.end();
 	});
 });

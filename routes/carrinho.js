@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
 		}
 		else{
 			file.read(function(dadosGerais){
-				res.render('./carrinho/index', {title: "Carrinho", dados: data, total: dadosGerais});
+				res.render('./carrinho/index', {title: "Carrinho de compras", dados: data, total: dadosGerais});
 				res.end();
 			});	
 		}

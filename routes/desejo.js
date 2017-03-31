@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
 		}
 		else{
 			file.read(function(dadosGerais){
-				res.render('./catalogo/desejos', {title: "Desejos", desejados: data, dados: dadosGerais});
+				res.render('./catalogo/desejos', {title: "Lista de desejos", desejados: data, dados: dadosGerais});
 				res.end();
 			});	
 		}

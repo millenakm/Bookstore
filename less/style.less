@@ -1,20 +1,40 @@
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina|Barrio|Baumans|Cinzel+Decorative:400,700,900|Dancing+Script:400,700|Fredericka+the+Great|Lobster+Two:400,400i,700,700i|Megrim|Oleo+Script+Swash+Caps|Parisienne|Rochester|Sacramento|Sue+Ellen+Francisco|Tangerine:400,700');
+@import url('https://fonts.googleapis.com/css?family=Cinzel:400,700,900|Baloo+Bhaina|Barrio|Baumans|Cinzel+Decorative:400,700,900|Dancing+Script:400,700|Fredericka+the+Great|Lobster+Two:400,400i,700,700i|Megrim|Oleo+Script+Swash+Caps|Parisienne|Rochester|Sacramento|Sue+Ellen+Francisco|Tangerine:400,700');
 
 @colorNav: #C12127;
 @colorSection: #000;
 @colorInput: #c71f27;
 @colorText: #e6e6e6;
+@resultColor: #00bfa5;
 
+/*.for(@list, @code) {
+    & {
+        .loop(@i:1) when (@i =< length(@list)) {
+            @value: extract(@list, @i);
+
+            @code();
+
+            .loop(@i + 1);
+        }
+
+        .loop();
+    }
+}
+
+
+.for(@colors, {
+    .livrosCor-@{i} {
+        color: @value;
+    }
+});*/
+/*
 .loop (0) {}
 .loop (@index) when (@index >= 0) {
-  .livrosCor-@{index} {
-    background-color: lighten(#638fbf, @index * 1%);
-  }
-  .livrosCor-@{index} > a{
-    color: black;
+  .livrosCor-@{index}{
+    color: lighten(#638fbf, @index * 1%);
+    font-size: large;
   }
   .loop (@index - 1);
-}
+}*/
 
 ::-webkit-scrollbar {
     width: 1em;
@@ -31,6 +51,30 @@
   border-radius: 5px;
 }
 
+#livros{
+	text-transform: uppercase;
+}
+
+#livros td{
+	vertical-align: middle;
+}
+
+#livros .colored{
+	font-family: 'Cinzel', serif;
+	color: @resultColor;
+	font-size: large;
+	font-weight: 600;
+}
+
+#livros .cod{
+	font-size: smaller;
+}
+
+#livros .autor{
+	font-size: smaller;
+	font-weight: 900;
+}
+
 .selectpicker{
 	background-color: @colorNav;
 	outline: none;
@@ -43,9 +87,9 @@
 	outline: none;
 }
  
-#livros {
+/*#livros {
   .loop(38);
-}
+}*/
 
 .infoCatalogo{
 	font-size: 20px;
@@ -409,9 +453,22 @@ body {
 }
 
 .navbar-content > .navbar-right > li > a:hover{
-	color: pink;
 	cursor: pointer;
 	border: none;
+}
+
+.navbar-right > .icon{
+	margin-top: -4px;
+}
+
+.badge{
+	background-color: #00a398;
+	box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
+	color: white;
+	position: inherit;
+	margin-top: 11px;
+	margin-left: -7px;
+
 }
 
 .search-modal{

@@ -1,4 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina|Barrio|Baumans|Cinzel+Decorative:400,700,900|Dancing+Script:400,700|Fredericka+the+Great|Lobster+Two:400,400i,700,700i|Megrim|Oleo+Script+Swash+Caps|Parisienne|Rochester|Sacramento|Sue+Ellen+Francisco|Tangerine:400,700');
+@import url('https://fonts.googleapis.com/css?family=Cinzel:400,700,900|Baloo+Bhaina|Barrio|Baumans|Cinzel+Decorative:400,700,900|Dancing+Script:400,700|Fredericka+the+Great|Lobster+Two:400,400i,700,700i|Megrim|Oleo+Script+Swash+Caps|Parisienne|Rochester|Sacramento|Sue+Ellen+Francisco|Tangerine:400,700');
+/*.for(@list, @code) {
+    & {
+        .loop(@i:1) when (@i =< length(@list)) {
+            @value: extract(@list, @i);
+
+            @code();
+
+            .loop(@i + 1);
+        }
+
+        .loop();
+    }
+}
+
+
+.for(@colors, {
+    .livrosCor-@{i} {
+        color: @value;
+    }
+});*/
+/*
+.loop (0) {}
+.loop (@index) when (@index >= 0) {
+  .livrosCor-@{index}{
+    color: lighten(#638fbf, @index * 1%);
+    font-size: large;
+  }
+  .loop (@index - 1);
+}*/
 ::-webkit-scrollbar {
   width: 1em;
 }
@@ -11,6 +40,25 @@
   -webkit-box-shadow: inset 0 0 10px #000000;
   border-radius: 5px;
 }
+#livros {
+  text-transform: uppercase;
+}
+#livros td {
+  vertical-align: middle;
+}
+#livros .colored {
+  font-family: 'Cinzel', serif;
+  color: #00bfa5;
+  font-size: large;
+  font-weight: 600;
+}
+#livros .cod {
+  font-size: smaller;
+}
+#livros .autor {
+  font-size: smaller;
+  font-weight: 900;
+}
 .selectpicker {
   background-color: #C12127;
   outline: none;
@@ -22,240 +70,9 @@
 .form-control {
   outline: none;
 }
-#livros .livrosCor-38 {
-  background-color: #ecf2f7;
-}
-#livros .livrosCor-38 > a {
-  color: black;
-}
-#livros .livrosCor-37 {
-  background-color: #e9eff6;
-}
-#livros .livrosCor-37 > a {
-  color: black;
-}
-#livros .livrosCor-36 {
-  background-color: #e5ecf4;
-}
-#livros .livrosCor-36 > a {
-  color: black;
-}
-#livros .livrosCor-35 {
-  background-color: #e2eaf3;
-}
-#livros .livrosCor-35 > a {
-  color: black;
-}
-#livros .livrosCor-34 {
-  background-color: #dee7f1;
-}
-#livros .livrosCor-34 > a {
-  color: black;
-}
-#livros .livrosCor-33 {
-  background-color: #dae5f0;
-}
-#livros .livrosCor-33 > a {
-  color: black;
-}
-#livros .livrosCor-32 {
-  background-color: #d7e2ee;
-}
-#livros .livrosCor-32 > a {
-  color: black;
-}
-#livros .livrosCor-31 {
-  background-color: #d3dfed;
-}
-#livros .livrosCor-31 > a {
-  color: black;
-}
-#livros .livrosCor-30 {
-  background-color: #cfddec;
-}
-#livros .livrosCor-30 > a {
-  color: black;
-}
-#livros .livrosCor-29 {
-  background-color: #ccdaea;
-}
-#livros .livrosCor-29 > a {
-  color: black;
-}
-#livros .livrosCor-28 {
-  background-color: #c8d8e9;
-}
-#livros .livrosCor-28 > a {
-  color: black;
-}
-#livros .livrosCor-27 {
-  background-color: #c5d5e7;
-}
-#livros .livrosCor-27 > a {
-  color: black;
-}
-#livros .livrosCor-26 {
-  background-color: #c1d3e6;
-}
-#livros .livrosCor-26 > a {
-  color: black;
-}
-#livros .livrosCor-25 {
-  background-color: #bdd0e4;
-}
-#livros .livrosCor-25 > a {
-  color: black;
-}
-#livros .livrosCor-24 {
-  background-color: #bacde3;
-}
-#livros .livrosCor-24 > a {
-  color: black;
-}
-#livros .livrosCor-23 {
-  background-color: #b6cbe1;
-}
-#livros .livrosCor-23 > a {
-  color: black;
-}
-#livros .livrosCor-22 {
-  background-color: #b3c8e0;
-}
-#livros .livrosCor-22 > a {
-  color: black;
-}
-#livros .livrosCor-21 {
-  background-color: #afc6de;
-}
-#livros .livrosCor-21 > a {
-  color: black;
-}
-#livros .livrosCor-20 {
-  background-color: #abc3dd;
-}
-#livros .livrosCor-20 > a {
-  color: black;
-}
-#livros .livrosCor-19 {
-  background-color: #a8c0db;
-}
-#livros .livrosCor-19 > a {
-  color: black;
-}
-#livros .livrosCor-18 {
-  background-color: #a4beda;
-}
-#livros .livrosCor-18 > a {
-  color: black;
-}
-#livros .livrosCor-17 {
-  background-color: #a0bbd8;
-}
-#livros .livrosCor-17 > a {
-  color: black;
-}
-#livros .livrosCor-16 {
-  background-color: #9db9d7;
-}
-#livros .livrosCor-16 > a {
-  color: black;
-}
-#livros .livrosCor-15 {
-  background-color: #99b6d5;
-}
-#livros .livrosCor-15 > a {
-  color: black;
-}
-#livros .livrosCor-14 {
-  background-color: #96b3d4;
-}
-#livros .livrosCor-14 > a {
-  color: black;
-}
-#livros .livrosCor-13 {
-  background-color: #92b1d2;
-}
-#livros .livrosCor-13 > a {
-  color: black;
-}
-#livros .livrosCor-12 {
-  background-color: #8eaed1;
-}
-#livros .livrosCor-12 > a {
-  color: black;
-}
-#livros .livrosCor-11 {
-  background-color: #8baccf;
-}
-#livros .livrosCor-11 > a {
-  color: black;
-}
-#livros .livrosCor-10 {
-  background-color: #87a9ce;
-}
-#livros .livrosCor-10 > a {
-  color: black;
-}
-#livros .livrosCor-9 {
-  background-color: #84a6cc;
-}
-#livros .livrosCor-9 > a {
-  color: black;
-}
-#livros .livrosCor-8 {
-  background-color: #80a4cb;
-}
-#livros .livrosCor-8 > a {
-  color: black;
-}
-#livros .livrosCor-7 {
-  background-color: #7ca1c9;
-}
-#livros .livrosCor-7 > a {
-  color: black;
-}
-#livros .livrosCor-6 {
-  background-color: #799fc8;
-}
-#livros .livrosCor-6 > a {
-  color: black;
-}
-#livros .livrosCor-5 {
-  background-color: #759cc6;
-}
-#livros .livrosCor-5 > a {
-  color: black;
-}
-#livros .livrosCor-4 {
-  background-color: #7199c5;
-}
-#livros .livrosCor-4 > a {
-  color: black;
-}
-#livros .livrosCor-3 {
-  background-color: #6e97c3;
-}
-#livros .livrosCor-3 > a {
-  color: black;
-}
-#livros .livrosCor-2 {
-  background-color: #6a94c2;
-}
-#livros .livrosCor-2 > a {
-  color: black;
-}
-#livros .livrosCor-1 {
-  background-color: #6792c0;
-}
-#livros .livrosCor-1 > a {
-  color: black;
-}
-#livros .livrosCor-0 {
-  background-color: #638fbf;
-}
-#livros .livrosCor-0 > a {
-  color: black;
-}
+/*#livros {
+  .loop(38);
+}*/
 .infoCatalogo {
   font-size: 20px;
   color: white;
@@ -576,9 +393,19 @@ body {
   border: none;
 }
 .navbar-content > .navbar-right > li > a:hover {
-  color: pink;
   cursor: pointer;
   border: none;
+}
+.navbar-right > .icon {
+  margin-top: -4px;
+}
+.badge {
+  background-color: #00a398;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+  color: white;
+  position: inherit;
+  margin-top: 11px;
+  margin-left: -7px;
 }
 .search-modal {
   z-index: 1023;
