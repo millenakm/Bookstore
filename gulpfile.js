@@ -22,3 +22,5 @@ gulp.task('less', function () {
 	.pipe(gulp.dest('./public/stylesheets'));
 });
 
+gulp.task('default', ['bootstrap', 'less']);
+
