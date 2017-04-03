@@ -75,30 +75,14 @@
 	font-weight: 900;
 }
 
-.navig-filter > .navbar-form > .form-group{
-	background-color: transparent;
-}
-
 .selectpicker{
-	background-color: transparent;
+	background-color: @colorNav;
 	outline: none;
 	font-family:  'Baloo Bhaina', cursive;
-	font-size: 15px;
+	font-size: 18px;
 	color: white;
 	padding: 0;
-	margin: 2px;
-	margin-top: -4px;
 }
-
-.selectpicker > option{
-	background-color: black;
-}
-
-.selectpicker > option:hover{
-	outline: none;
-	color: @colorNav;
-}
-
 .form-control{
 	outline: none;
 }
@@ -353,7 +337,7 @@ html,body {
 
 body {
 	display: none;
-    padding-top: 200px;
+    padding-top: 170px;
 }
 
 .background-image{
@@ -372,7 +356,7 @@ body {
 	overflow-y: hidden;
 }
 
-#msg{
+#mensagem{
 	color: white;
 }
 
@@ -403,7 +387,7 @@ body {
 
 .container{
 	width: 85%;
-	padding-bottom: 5%;
+	padding-bottom: 2%;
 	overflow-y: hidden;
 }
 
@@ -430,7 +414,7 @@ body {
 	position: absolute;
 }
 
-.pg-title, .search-modal, .navig, .navig-filter{
+.pg-title, .search-modal, .navig{
 	position: fixed;
 }
 
@@ -525,37 +509,7 @@ body {
 	height: 60px;
 	background: @colorNav;
 	border-radius: 10px;
-}
 
-.filter-icon{
-	position: fixed;
-	bottom: 4%;
-	left: 2%;
-	color: white;
-	border-radius: 50px;
-	height: 40px;
-	width: 40px;
-	text-align: center;
-}
-
-.filter-icon > span:first-child{
-	margin-bottom: -10px;
-}
-
-.filter-icon > span{
-	vertical-align: middle;
-	width: 100%;
-}
-
-.navig-filter{
-	display: none;
-	z-index: 1022;
-	box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.4);
-	bottom: 0;
-	right: 0;
-	left: 0;
-	height: 40px;
-	background: rgba(0, 0, 0, 0.9);
 }
 
 .navig-top{
@@ -632,7 +586,7 @@ body {
 	position:absolute;bottom:0;
 }
 
-.bookmark-display, .bookmark, .bookmark:after, .navig-top, .navig, .navig-filter, .navig-filter-top .pg-title, .cart-top, .cart-box{
+.bookmark-display, .bookmark, .bookmark:after, .navig-top, .navig, .pg-title, .cart-top, .cart-box{
 	transition: 0.5s;
     -webkit-transition:  0.5s;
 }

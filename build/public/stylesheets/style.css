@@ -59,25 +59,13 @@
   font-size: smaller;
   font-weight: 900;
 }
-.navig-filter > .navbar-form > .form-group {
-  background-color: transparent;
-}
 .selectpicker {
-  background-color: transparent;
+  background-color: #C12127;
   outline: none;
   font-family: 'Baloo Bhaina', cursive;
-  font-size: 15px;
+  font-size: 18px;
   color: white;
   padding: 0;
-  margin: 2px;
-  margin-top: -4px;
-}
-.selectpicker > option {
-  background-color: black;
-}
-.selectpicker > option:select {
-  outline: none;
-  color: #C12127;
 }
 .form-control {
   outline: none;
@@ -296,7 +284,7 @@ body {
 }
 body {
   display: none;
-  padding-top: 200px;
+  padding-top: 170px;
 }
 .background-image {
   background-image: url("../images/books4.jpg");
@@ -319,7 +307,7 @@ body {
   z-index: -1;
   overflow-y: hidden;
 }
-#msg {
+#mensagem {
   color: white;
 }
 .valor-fixo {
@@ -345,7 +333,7 @@ body {
 }
 .container {
   width: 85%;
-  padding-bottom: 5%;
+  padding-bottom: 2%;
   overflow-y: hidden;
 }
 /*cor dos links ativos*/
@@ -371,8 +359,7 @@ body {
 }
 .pg-title,
 .search-modal,
-.navig,
-.navig-filter {
+.navig {
   position: fixed;
 }
 .navbar-content {
@@ -455,33 +442,6 @@ body {
   background: #C12127;
   border-radius: 10px;
 }
-.filter-icon {
-  position: fixed;
-  bottom: 4%;
-  left: 2%;
-  color: white;
-  border-radius: 50px;
-  height: 40px;
-  width: 40px;
-  text-align: center;
-}
-.filter-icon > span:first-child {
-  margin-bottom: -10px;
-}
-.filter-icon > span {
-  vertical-align: middle;
-  width: 100%;
-}
-.navig-filter {
-  display: none;
-  z-index: 1022;
-  box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.4);
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.9);
-}
 .navig-top {
   z-index: 1022;
   top: 0;
@@ -553,8 +513,7 @@ body {
 .bookmark:after,
 .navig-top,
 .navig,
-.navig-filter,
-.navig-filter-top .pg-title,
+.pg-title,
 .cart-top,
 .cart-box {
   transition: 0.5s;

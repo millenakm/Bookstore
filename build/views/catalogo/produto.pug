@@ -1,0 +1,19 @@
+extends ./../layout
+
+block content
+	include ./../navbar.pug
+	div.container.produto
+		-if(dados=='error'){
+			h2 Produto não encontrado
+		-}
+		-else{	
+			img(src="../../images/livros/"+dados.capa+".jpg").col-md-4
+			h2.col-md-4= dados.titulo
+			h2.col-md-4 R$ #{dados.preço}
+			h3.col-md-4= dados.autor
+			h4.col-md-8= dados.descrição
+			h5.col-md-4 Editora: #{dados.editora}
+			h5.col-md-4 Ano: #{dados.ano}
+			h5.col-md-4 Páginas: #{dados.paginas}
+			h5.col-md-4 Categoria: #{dados.categoria}
+		-}

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+	include navbar.pug
+	div.container
+		div.catalogo
+			div(data-ride="carousel")#categorias.carousel.slide
+				ol.carousel-indicators
+					li(data-target="#categorias", data-slide-to="0").active
+					li(data-target="#categorias", data-slide-to="1")
+					li(data-target="#categorias", data-slide-to="2")
+					li(data-target="#categorias", data-slide-to="3")
+				div(role="listbox").carousel-inner
+					-for (var i = 0; i<categorias.length; i+=2) {
+						-if(i==0){
+							div.item.active
+								a(href="#")
+									img(src="../images/livros/"+categorias[i+1]+".jpg")
+									div.carousel-caption
+										h3= categorias[i]
+						-}
+						-else{
+							div.item
+								img(src="../images/livros/"+categorias[i+1]+".jpg")
+								div.carousel-caption
+									h3= categorias[i]
+
+						-}
+					-}
+				a(href="#categorias", role="button", data-slide="prev").left.carousel-control
+					span(aria-hidden="true").glyphicon.glyphicon-chevron-left
+					span.sr-only Anterior
+				a(href="#categorias",role="button",data-slide="next").right.carousel-control
+					span(aria-hidden="true").glyphicon.glyphicon-chevron-right
+					span.sr-only Próximo			
