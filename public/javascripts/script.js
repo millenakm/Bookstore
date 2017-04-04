@@ -1,6 +1,7 @@
 var tallest = 0;
 var valor = 0;
 var countEffect = 0;
+var clickEvent = false;
 	
 // Abre a tela de pesquisa
 function openSearch(){
@@ -123,18 +124,20 @@ function productPage(parameters){
 
 // conta a quantidade de produtos no carrinho e nos desejos e printa na tela
 function count(param){
-	$.get('/count', param, function(data){
-		if (param.count=='carrinho'){
+	if (param.count=='carrinho'){
+		$.get('/countcart', function(data){
 			$("#numberCart").html(data.length);
-		}
-		if (param.count=='desejos'){
+		});
+	}if(param.count=='desejos'){
+		$.get('/countwish', function(data){
 			$("#numberWish").html(data.length);
-		}
-	});
+		});
+	}
 }
 
 // adiciona ou remove produtos da lista de desejos
 function wishList(elem, param){
+	
 	$.get( '/catalogo/desejo',param, function(data) {
 		if(data == true){
 			$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
@@ -227,6 +230,12 @@ function createFilter(){
 // filtro da página
 function filter(elem){
 	var valor = $(elem).val();
+	if($(elem).parents('form').data('filter')!==undefined){
+		valor = $(elem).parents('form').data('filter');
+		$('.filter-icon').hide();
+		$('.titulo-pg').append(' - '+valor);
+	}
+
 	$('.grid').hide();
 	$('.grid').each(function(){
 		if($(this).data('categ')==valor || $(this).data('autor')==valor || $(this).data('editora')==valor){
@@ -363,8 +372,33 @@ function actions(){
 		$(".selectpicker").not(this).val('all');;
 
 	});
+	$(".catalogo-x").click(function(){
+		var param = $(this).data('filter');
+		// console.log(param);
+		window.location=('/catalogo?filter='+param);
+		// history.pushState(null, null, '?filter='+param);
+	})
 	count({count:'desejos'});
 	count({count:'carrinho'});
+}
+
+function carousel(){
+	$('#myCarousel').on('click', '.nav a', function() {
+			clickEvent = true;
+			$('.nav li').removeClass('active');
+			$(this).parent().addClass('active');		
+	}).on('slid.bs.carousel', function(e) {
+		if(!clickEvent) {
+			var count = $('.nav').children().length-1;
+			var current = $('.nav li.active');
+			current.removeClass('active').next().addClass('active');
+			var id = parseInt(current.data('slide-to'));
+			if(count == id) {
+				$('.nav li').first().addClass('active');	
+			}
+		}
+		clickEvent = false;
+	});
 }
 
 $(document).ready(function(){ 
@@ -376,4 +410,5 @@ $(document).ready(function(){
 	searchJson();
 	createFilter();
 	filter($('.selectpicker'));
+	carousel();
 });

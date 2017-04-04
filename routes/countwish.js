@@ -7,13 +7,9 @@ var document = jsdom('<html></html>', {});
 var window = document.defaultView;
 var $ = require('jquery')(window);
 
-
-/* GET home page. */
 router.get('/', function(req, res, next) {
-	file.read(function(data){
-		var filter = req.query.filter;
-		res.render('./catalogo/index', {title: "Bookstore - Catálogo de Produtos", dados: data, filter: filter});
-		res.end();
+	file.readDesejos(function(data){
+		res.json(data);
 	});
 });
 
