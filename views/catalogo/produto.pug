@@ -2,6 +2,7 @@ extends ./../layout
 
 block content
 	include ./../navbar.pug
+	h2.titulo-pg Detalhes do Produto - #{dados.titulo}
 	div.container.produto
 		-if(dados=='error'){
 			h2 Produto não encontrado

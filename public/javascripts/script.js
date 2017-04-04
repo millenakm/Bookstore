@@ -127,7 +127,7 @@ function count(param){
 		if (param.count=='carrinho'){
 			$("#numberCart").html(data.length);
 		}
-		else if (param.count=='desejos'){
+		if (param.count=='desejos'){
 			$("#numberWish").html(data.length);
 		}
 	});
@@ -359,7 +359,9 @@ function actions(){
 	});
 	$(".selectpicker").change(function(){
 		msg('');
-		filter($(this));	
+		filter($(this));
+		$(".selectpicker").not(this).val('all');;
+
 	});
 	count({count:'desejos'});
 	count({count:'carrinho'});

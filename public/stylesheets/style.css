@@ -75,7 +75,7 @@
 .selectpicker > option {
   background-color: black;
 }
-.selectpicker > option:select {
+.selectpicker > option:hover {
   outline: none;
   color: #C12127;
 }
@@ -296,7 +296,13 @@ body {
 }
 body {
   display: none;
-  padding-top: 200px;
+  padding-top: 170px;
+}
+.titulo-pg {
+  color: white;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  text-align: center;
 }
 .background-image {
   background-image: url("../images/books4.jpg");

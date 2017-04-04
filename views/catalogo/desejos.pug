@@ -4,6 +4,7 @@ block content
 	-var categorias = true
 	include ./../navbar.pug
 	div.container#desejos
+		h2.titulo-pg Lista de Desejos
 		-for(var z=0; z<desejados.length; z++){
 			-for(var i=0; i<dados.length; i++){
 				-if(dados[i].isbn == desejados[z]){
