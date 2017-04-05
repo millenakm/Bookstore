@@ -1,3 +1,12 @@
+// // box do carrinho
+// function cart(){
+//     // var state = parseInt($('.cart-box').css('height')) > 1;
+//     // $('.cart-box').animate({height:(state ? "30%" : '0')}, 100);
+//     // $('.cart-box').animate({height:(state ? '0': '30%')}, 200);
+//     $(".cart-box").slideToggle('slow');
+// }
+
+var routerProduto = '/catalogo/produto/';
 var tallest = 0;
 var valor = 0;
 var countEffect = 0;
@@ -111,82 +120,75 @@ function painelResult(elem){
 
 // vai para a página do produto clicado
 function productPage(parameters){
-	window.location=('/catalogo/produto?cod='+parameters);
+	window.location=(routerProduto+parameters);
 }
 
-// // box do carrinho
-// function cart(){
-//     // var state = parseInt($('.cart-box').css('height')) > 1;
-//     // $('.cart-box').animate({height:(state ? "30%" : '0')}, 100);
-//     // $('.cart-box').animate({height:(state ? '0': '30%')}, 200);
-//     $(".cart-box").slideToggle('slow');
+
+// // conta a quantidade de produtos no carrinho e nos desejos e printa na tela
+// function count(param){
+// 	if (param.count=='carrinho'){
+// 		$.get('/countcart', function(data){
+// 			$("#numberCart").html(data.length);
+// 		});
+// 	}if(param.count=='desejos'){
+// 		$.get('/countwish', function(data){
+// 			$("#numberWish").html(data.length);
+// 		});
+// 	}
 // }
 
-// conta a quantidade de produtos no carrinho e nos desejos e printa na tela
-function count(param){
-	if (param.count=='carrinho'){
-		$.get('/countcart', function(data){
-			$("#numberCart").html(data.length);
-		});
-	}if(param.count=='desejos'){
-		$.get('/countwish', function(data){
-			$("#numberWish").html(data.length);
-		});
-	}
-}
-
-// adiciona ou remove produtos da lista de desejos
-function wishList(elem, param){
+// // adiciona ou remove produtos da lista de desejos
+// function wishList(elem, param){
 	
-	$.get( '/catalogo/desejo',param, function(data) {
-		if(data == true){
-			$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
-		}
-		else if(data == false){	
-			$(elem).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty').css({'color':'white'});	
-		}
-		else{
-			var check = 0;
-			quant = data.length;
-			for(var i=0; i< data.length; i++){
-				if (data[i] == param.add){
-					$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
-					check = 1;
-				}
-			}
-			if (check == 0){
-				$(elem).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty').css({'color':'white'});	
-			}
-		}
-		count({count:'desejos'});
-	});
-}
+// 	$.get( '/catalogo/desejo',param, function(data) {
+// 		if(data == true){
+// 			$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
+// 		}
+// 		else if(data == false){	
+// 			$(elem).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty').css({'color':'white'});	
+// 		}
+// 		else{
+// 			var check = 0;
+// 			quant = data.length;
+// 			for(var i=0; i< data.length; i++){
+// 				if (data[i] == param.add){
+// 					$(elem).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css({'color':'red'});
+// 					check = 1;
+// 				}
+// 			}
+// 			if (check == 0){
+// 				$(elem).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty').css({'color':'white'});	
+// 			}
+// 		}
+// 		count({count:'desejos'});
+// 	});
+// }
 
-// adiciona ou remove produtos do carrinho
-function cart(elem, param) {
-	$.get( '/carrinho', param, function(data){
-		if(data == true){
-			$(elem).css({'color':'aqua'});
-		}
-		else if(data == false){	
-			$(elem).css({'color':'white'});	
-		}
-		else{
-			var check = 0;
-			for(var i=0; i< data.length; i++){
-				if (data[i] == param.add){
-					$(".nome").append(data[i]);
-					$(elem).css({'color':'aqua'});
-					check = 1;
-				}
-			}
-			if (check == 0){
-				$(elem).css({'color':'white'});	
-			}
-		}
-		count({count:'carrinho'});
-	});
-}
+// // adiciona ou remove produtos do carrinho
+// function cart(elem, param) {
+// 	$.get( '/carrinho', param, function(data){
+// 		if(data == true){
+// 			$(elem).css({'color':'aqua'});
+// 		}
+// 		else if(data == false){	
+// 			$(elem).css({'color':'white'});	
+// 		}
+// 		else{
+// 			var check = 0;
+// 			for(var i=0; i< data.length; i++){
+// 				if (data[i] == param.add){
+// 					$(".nome").append(data[i]);
+// 					$(elem).css({'color':'aqua'});
+// 					check = 1;
+// 				}
+// 			}
+// 			if (check == 0){
+// 				$(elem).css({'color':'white'});	
+// 			}
+// 		}
+// 		count({count:'carrinho'});
+// 	});
+// }
 
 // valor total do carrinho
 function totalValue(group) {	
@@ -252,26 +254,6 @@ function filter(elem){
 	// filterAutor(categoria);
 }
 
-// function filterAutor(categoria){
-// 	$("#select-autor").html('').append('<option value="all">Todos Autores</option>');
-// 	var autores = [];
-// 	$.get('/dados', function(data){
-// 		$.each(data, function(index, value) {
-// 			if ($.inArray(value.autor, autores)==-1) {
-// 				if(value.categoria==categoria){
-// 					autores.push(value.autor);
-// 				}
-// 				else if(categoria=='all'){
-// 					autores.push(value.autor);
-// 				}
-// 			}
-// 		});
-// 		for(i in autores){
-// 			$("#select-autor").append('<option value="'+autores[i]+'">'+autores[i]+'</option>');
-// 		}
-// 	});
-// }
-
 function msg(msg){
 	if($('.grid:visible').length==0){
 		$('#msg').html(msg).show(300);
@@ -279,23 +261,23 @@ function msg(msg){
 }
 
 // gerencia os produtos
-function removeProduct(elem){
-	if($(elem).hasClass('wish')){		
-		$(elem).parents('.grid').fadeOut(function(){
-			$(this).remove();
-			msg('Nenhum item na lista de desejos.');
-		});
-	}
+// function removeProduct(elem){
+// 	if($(elem).hasClass('wish')){		
+// 		$(elem).parents('.grid').fadeOut(function(){
+// 			$(this).remove();
+// 			msg('Nenhum item na lista de desejos.');
+// 		});
+// 	}
 
-	else if($(elem).hasClass('cart')){
-		$(elem).parents('.isbn').addClass('removeCart');
-		$('.removeCart').hide(function(){ 
-			$('.removeCart').remove(); 
-			valor = 0;
-			totalValue($(".valor"));
-		});
-	}
-}
+// 	else if($(elem).hasClass('cart')){
+// 		$(elem).parents('.isbn').addClass('removeCart');
+// 		$('.removeCart').hide(function(){ 
+// 			$('.removeCart').remove(); 
+// 			valor = 0;
+// 			totalValue($(".valor"));
+// 		});
+// 	}
+// }
 
 // efeito do filtro
 function filterEffect(){
@@ -306,8 +288,7 @@ function filterEffect(){
 	});
 }
 
-// ações
-function actions(){
+function style(){
 	window.onscroll = function() {
 		onScroll();
 	}
@@ -316,31 +297,6 @@ function actions(){
 	});
 	$('#close-search').click(function(){
 		closeSearch();
-	});
-	$('.box-book').on('click', function(){
-		productPage($(this).parents('.isbn').data('id'));
-	});
-	$('.wish').click(function(){
-		var param = {add: $(this).parents('.isbn').data('id'), op: 'adicionar'};
-		wishList(this, param);
-	});
-	$('.cart').click(function(){
-		var param = {add: $(this).parents('.isbn').data('id'), op: 'adicionar'};
-		cart(this, param);
-	});
-	$('#removeCart').click(function(){
-		removeProduct(this);
-	});
-	$("#desejos").find('.wish').click(function(){
-		removeProduct(this);
-	});
-	$(".wish").each(function() {
-		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
-		wishList(this, param);
-	});
-	$(".cart").each(function() {
-		var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
-		cart(this, param);
 	});
 	$(".icon > a").mouseenter(function(){
 		$(this).find(".badge").css({'box-shadow': '0 5px 8px 1px rgba(0,0,0,0.4)'}).animate({'margin-top':'8px'}, 100);
@@ -366,6 +322,40 @@ function actions(){
 			filterEffect();
 		}
 	});
+}
+
+// ações
+function actions(){
+	style();
+	$('.box-book').on('click', function(){
+		productPage($(this).parents('.isbn').data('id'));
+	});
+	$('.wish').click(function(){	
+		$(this).toggleClass("glyphicon-heart-empty glyphicon-heart");	
+		var cod = $(this).parents('.isbn').data('id');
+
+		// var param = {add: $(this).parents('.isbn').data('id'), op: 'adicionar'};
+		// wishList(this, param);
+	});
+	$('.cart').click(function(){
+		// var param = {add: $(this).parents('.isbn').data('id'), op: 'adicionar'};
+		// cart(this, param);
+	});
+
+	// $('#removeCart').click(function(){
+	// 	removeProduct(this);
+	// });
+	// $("#desejos").find('.wish').click(function(){
+	// 	removeProduct(this);
+	// });
+	// $(".wish").each(function() {
+	// 	var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
+	// 	wishList(this, param);
+	// });
+	// $(".cart").each(function() {
+	// 	var param = {add: $(this).parents('.isbn').data('id'), op: 'listar'};
+	// 	cart(this, param);
+	// });
 	$(".selectpicker").change(function(){
 		msg('');
 		filter($(this));
@@ -378,8 +368,8 @@ function actions(){
 		window.location=('/catalogo?filter='+param);
 		// history.pushState(null, null, '?filter='+param);
 	})
-	count({count:'desejos'});
-	count({count:'carrinho'});
+	// count({count:'desejos'});
+	// count({count:'carrinho'});
 }
 
 function carousel(){
@@ -411,4 +401,5 @@ $(document).ready(function(){
 	createFilter();
 	filter($('.selectpicker'));
 	carousel();
+	$("#img-produto").elevateZoom({zoomType: "lens", lensShape : "round", lensSize : 200});
 });

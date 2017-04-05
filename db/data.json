@@ -12,7 +12,9 @@
 		"preço": 17.99,
 		"categoria":"Poesia",
 		"capa":"01",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":2,
@@ -27,7 +29,9 @@
 		"preço": 32.50,
 		"categoria":"Poesia",
 		"capa":"02", 
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":3,
@@ -42,7 +46,9 @@
 		"preço": 22.42,
 		"categoria":"Poesia",
 		"capa":"03",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":4,
@@ -57,7 +63,9 @@
 		"preço": 9.90,
 		"categoria":"Poesia",
 		"capa":"04",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":5,
@@ -72,7 +80,9 @@
 		"preço": 38.40,
 		"categoria":"Poesia",
 		"capa":"05",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":6,
@@ -87,7 +97,9 @@
 		"preço":38.90,
 		"categoria":"Policial",
 		"capa":"06",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":7,
@@ -102,7 +114,9 @@
 		"preço": 49.90,
 		"categoria":"Policial",
 		"capa":"07",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":8,
@@ -117,7 +131,9 @@
 		"preço": 25.99,
 		"categoria":"Policial",
 		"capa":"08",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":9,
@@ -132,7 +148,9 @@
 		"preço": 26.17,
 		"categoria":"Policial",
 		"capa":"09",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":10,
@@ -147,7 +165,9 @@
 		"preço": 32.92,
 		"categoria":"Policial",
 		"capa":"10",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":11,
@@ -162,7 +182,9 @@
 		"preço": 51.90,
 		"categoria":"Policial",
 		"capa":"11",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":12,
@@ -177,7 +199,9 @@
 		"preço": 22.90,
 		"categoria":"Policial",
 		"capa":"12",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":13,
@@ -192,7 +216,9 @@
 		"preço": 22.90,
 		"categoria":"Policial",
 		"capa":"13",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":14,
@@ -207,7 +233,9 @@
 		"preço": 26.17,
 		"categoria":"Policial",
 		"capa":"14",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":15,
@@ -222,7 +250,9 @@
 		"preço": 23.47,
 		"categoria":"Policial",
 		"capa":"15",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":16,
@@ -237,7 +267,9 @@
 		"preço": 30.39,
 		"categoria":"Policial",
 		"capa":"16",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":17,
@@ -252,7 +284,9 @@
 		"preço": 27.40,
 		"categoria":"Policial",
 		"capa":"17",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":18,
@@ -267,7 +301,9 @@
 		"preço": 26.17,
 		"categoria":"Policial",
 		"capa":"18",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":19,
@@ -282,7 +318,9 @@
 		"preço": 34.50,
 		"categoria":"Policial",
 		"capa":"19",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":20,
@@ -297,7 +335,9 @@
 		"preço": 25.40,
 		"categoria":"Policial",
 		"capa":"20",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":21,
@@ -312,7 +352,9 @@
 		"preço": 26.79,
 		"categoria":"Policial",
 		"capa":"21",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":22,
@@ -327,7 +369,9 @@
 		"preço": 32.99,
 		"categoria":"Romance",
 		"capa":"22",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":23,
@@ -342,7 +386,9 @@
 		"preço": 19.90,
 		"categoria":"Romance",
 		"capa":"23",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":24,
@@ -357,7 +403,9 @@
 		"preço": 19.90,
 		"categoria":"Romance",
 		"capa":"24",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":25,
@@ -372,7 +420,9 @@
 		"preço": 24.59,
 		"categoria":"Romance",
 		"capa":"25",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":26,
@@ -387,7 +437,9 @@
 		"preço": 27.99,
 		"categoria":"Romance",
 		"capa":"26",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":27,
@@ -402,7 +454,9 @@
 		"preço": 33.95,
 		"categoria":"Romance",
 		"capa":"27",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":28,
@@ -417,7 +471,9 @@
 		"preço": 19.90,
 		"categoria":"Romance",
 		"capa":"28",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":29,
@@ -432,7 +488,9 @@
 		"preço": 18.95,
 		"categoria":"Romance",
 		"capa":"29",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":30,
@@ -447,7 +505,9 @@
 		"preço": 199.90,
 		"categoria":"Coleção",
 		"capa":"30",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":31,
@@ -462,7 +522,9 @@
 		"preço": 249.90,
 		"categoria":"Coleção",
 		"capa":"31",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":32,
@@ -477,7 +539,9 @@
 		"preço": 223.80,
 		"categoria":"Coleção",
 		"capa":"32",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":33,
@@ -492,7 +556,9 @@
 		"preço": 79.90,
 		"categoria":"Coleção",
 		"capa":"33",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":34,
@@ -507,7 +573,9 @@
 		"preço": 59.90,
 		"categoria":"Coleção",
 		"capa":"34",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":35,
@@ -522,7 +590,9 @@
 		"preço": 79.95,
 		"categoria":"Coleção",
 		"capa":"35",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":36,
@@ -537,7 +607,9 @@
 		"preço": 19.90,
 		"categoria":"Coleção",
 		"capa":"36",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":37,
@@ -552,7 +624,9 @@
 		"preço": 120.99,
 		"categoria":"Coleção",
 		"capa":"37",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	},
 	{
 		"id":38,
@@ -567,6 +641,8 @@
 		"preço": 159.85,
 		"categoria":"Coleção",
 		"capa":"38",
-		"vendidos":0
+		"vendidos":0,
+		"carrinho": false,
+		"favorito": false
 	}
 ]

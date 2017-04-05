@@ -59,6 +59,12 @@
   font-size: smaller;
   font-weight: 900;
 }
+.glyphicon-heart {
+  color: red;
+}
+.heart-navbar {
+  color: white;
+}
 .navig-filter > .navbar-form > .form-group {
   background-color: transparent;
 }
