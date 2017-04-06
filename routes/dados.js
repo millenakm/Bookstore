@@ -42,7 +42,7 @@ router.get('/:type/:cod', function(req, res) {
 				file.write(dataJson, res);
 			}
 		}
-    res.end();
+    	res.end();
 	});
 });
 

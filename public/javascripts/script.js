@@ -6,11 +6,7 @@
 //     $(".cart-box").slideToggle('slow');
 // }
 
-var routerProduto = '/catalogo/produto/';
-var tallest = 0;
-var valor = 0;
-var countEffect = 0;
-var clickEvent = false;
+var listaProdutos = '/catalogo/produto/';
 	
 // Abre a tela de pesquisa
 function openSearch(){
@@ -47,6 +43,7 @@ function onScroll(){
 
 // muda a altura das divs .grid, para todas terem a mesma altura
 function equalHeight(grid){
+	var tallest = 0;
 	grid.each(function(){
 		var thisHeight = $(this).height();
 		if(thisHeight > tallest) {
@@ -120,16 +117,17 @@ function painelResult(elem){
 
 // vai para a página do produto clicado
 function productPage(parameters){
-	window.location=(routerProduto+parameters);
+	window.location=(listaProdutos+parameters);
 }
 
 // valor total do carrinho
-// function totalValue(group) {	
-// 	group.each(function() {
-// 		valor+=Number($(this).data('valor').replace(',','.'));
-// 	});
-// 	$('.valorTotal').html('<h3>Total: R$ '+valor.toFixed(2).toString().replace('.',',')+'</h3>');
-// } 
+function totalValue(group) {
+	var valor = 0;	
+	group.each(function() {
+		valor+= $(this).data('valor');
+	});
+	$('.valorTotal').html('<h3>Total: R$ '+valor.toFixed(2).toString().replace('.',',')+'</h3>');
+} 
 
 function createFilter(){
 	var categorias = [];
@@ -192,18 +190,20 @@ function msg(msg){
 	}
 }
 
-
-function filterController(elem){
-	countEffect++;
-	filterEffect();
-	$(elem).css({bottom: '60px'});
-	$('.navig-filter').css({display:'block'});
-	if(	countEffect==2){
-		countEffect=0;
-		$(elem).css({bottom: '5%'});
-		$('.navig-filter').css({display:'none'});
+function filterController(){
+	var countEffect=0;
+	$('.filter-icon').click(function(){
+		countEffect++;
 		filterEffect();
-	}
+		$(this).css({bottom: '60px'});
+		$('.navig-filter').css({display:'block'});
+		if(	countEffect==2){
+			countEffect=0;
+			$(this).css({bottom: '5%'});
+			$('.navig-filter').css({display:'none'});
+			filterEffect();
+		}
+	});
 }
 
 function filterEffect(){
@@ -237,9 +237,6 @@ function style(){
 	$('.filter-icon').mouseleave(function(){
 		$('.filter-icon > span').animate({'font-size' : '14px'}, 100);
 	});
-	$('.filter-icon').click(function(){
-		filterController(this);
-	});
 	$('.wish').click(function(){	
 		$(this).toggleClass("glyphicon-heart-empty glyphicon-heart");
 	});
@@ -251,7 +248,10 @@ function style(){
 function listFav(type, cod){
 	$.ajax({
 		type: 'GET',
-		url: "/dados/"+type+"/"+cod
+		url: "/dados/"+type+"/"+cod,
+		success:function(){
+			iconsNav();	
+		}
 	});
 }
 
@@ -265,6 +265,9 @@ function actions(){
 		var cod = $(this).parents('.isbn').data('id');
 		listFav("wish", cod);
 	});
+	$("#desejos").find(".glyphicon-heart").click(function(){
+		$(this).parents('.grid').slideUp();
+	})
 	$('.cart').click(function(){
 		var cod = $(this).parents('.isbn').data('id');
 		listFav("cart", cod);
@@ -273,7 +276,6 @@ function actions(){
 		msg('');
 		filter($(this));
 		$(".selectpicker").not(this).val('all');;
-
 	});
 	$(".catalogo-x").click(function(){
 		var param = $(this).data('filter');
@@ -282,6 +284,7 @@ function actions(){
 }
 
 function carousel(){
+	var clickEvent = false;
 	$('#myCarousel').on('click', '.nav a', function() {
 			clickEvent = true;
 			$('.nav li').removeClass('active');
@@ -300,15 +303,42 @@ function carousel(){
 	});
 }
 
+function zoomImg(){
+	$("#img-produto").elevateZoom({
+		zoomType: "lens",
+		lensShape : "round",
+		lensSize : 200
+	});
+}
+
+function iconsNav(){
+	var carrinho=0, favorito=0;
+	$.get("/dados", function(data){
+		$(data).each(function(){
+			if(this.carrinho==true){
+				carrinho++
+			}
+			if(this.favorito==true){
+				favorito++
+			}
+		});
+		$("#numberCart").html(carrinho);
+		$("#numberWish").html(favorito);
+		console.log("carrinho:", carrinho, "favoritos:", favorito);
+	});
+}
+
 $(document).ready(function(){ 
 	$("body").fadeIn(500);
 	onScroll();
 	actions();
-	// totalValue($(".valor"));
+	totalValue($(".valor"));
 	equalHeight($(".grid")); 
 	searchJson();
 	createFilter();
 	filter($('.selectpicker'));
 	carousel();
-	$("#img-produto").elevateZoom({zoomType: "lens", lensShape : "round", lensSize : 200});
+	zoomImg();
+	filterController();
+	iconsNav();
 });
