@@ -2,7 +2,7 @@ extends ./../layout
 
 block content
 	include ./../navbar.pug
-	div.container
+	div.container#carrinho
 		h2.titulo-pg Carrinho de compras
 		table.table
 			thead
@@ -15,7 +15,7 @@ block content
 			tbody
 				-for(var i=0; i<dados.length; i++){
 					-if(dados[i].carrinho == true){
-						tr.isbn(data-id=dados[i].isbn)
+						tr.isbn.rowTab(data-id=dados[i].isbn)
 							td
 								img(src="../images/livros/"+dados[i].capa+".jpg", height="100px").box-book
 							td= dados[i].isbn
@@ -24,7 +24,7 @@ block content
 								h4 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 							td 
 								a
-									i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-remove.cart#removeCart
+									i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-remove.cart
 					-}
 				-}
 				tr

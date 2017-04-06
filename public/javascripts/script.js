@@ -255,6 +255,14 @@ function listFav(type, cod){
 	});
 }
 
+function removeCartProduct(elem){
+	$(elem).parents('.isbn').addClass('removeCart');
+	$('.removeCart').hide(function(){ 
+		$('.removeCart').remove(); 
+		totalValue($(".valor"));
+	});
+}
+
 // ações
 function actions(){
 	style();
@@ -267,7 +275,11 @@ function actions(){
 	});
 	$("#desejos").find(".glyphicon-heart").click(function(){
 		$(this).parents('.grid').slideUp();
-	})
+	});
+	$(".glyphicon-remove").click(function(){
+		removeCartProduct(this);
+		
+	});
 	$('.cart').click(function(){
 		var cod = $(this).parents('.isbn').data('id');
 		listFav("cart", cod);
@@ -324,7 +336,6 @@ function iconsNav(){
 		});
 		$("#numberCart").html(carrinho);
 		$("#numberWish").html(favorito);
-		console.log("carrinho:", carrinho, "favoritos:", favorito);
 	});
 }
 
