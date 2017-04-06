@@ -6,36 +6,6 @@
 @colorText: #e6e6e6;
 @resultColor: #00bfa5;
 
-/*.for(@list, @code) {
-    & {
-        .loop(@i:1) when (@i =< length(@list)) {
-            @value: extract(@list, @i);
-
-            @code();
-
-            .loop(@i + 1);
-        }
-
-        .loop();
-    }
-}
-
-
-.for(@colors, {
-    .livrosCor-@{i} {
-        color: @value;
-    }
-});*/
-/*
-.loop (0) {}
-.loop (@index) when (@index >= 0) {
-  .livrosCor-@{index}{
-    color: lighten(#638fbf, @index * 1%);
-    font-size: large;
-  }
-  .loop (@index - 1);
-}*/
-
 ::-webkit-scrollbar {
     width: 1em;
 }
@@ -77,6 +47,14 @@
 
 .glyphicon-heart{
 	color: red;
+}
+
+.cart-empty{
+	color: white;
+} 
+
+.cart-full{
+	color: aqua;
 }
 
 .heart-navbar{

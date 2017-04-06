@@ -12,7 +12,7 @@ var $ = require('jquery')(window);
 router.get('/', function(req, res, next) {
 	file.read(function(data){
 		var filter = req.query.filter;
-		res.render('./catalogo/index', {title: "Bookstore - Catálogo de Produtos", dados: data, filter: filter});
+		res.render('./catalogo/index', {title: "Bookstore - Catálogo de Produtos", dados: data.produtos, filter: filter});
 		res.end();
 	});
 });

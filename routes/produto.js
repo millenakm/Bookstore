@@ -13,7 +13,7 @@ var isbn;
 router.get('/:cod', function(req, res, next) {
 	var cod = req.params.cod;
 	file.read(function(data){
-		$(data).each(function (){
+		$(data.produtos).each(function (){
 			if (this.isbn==cod){
 	  			res.render('./catalogo/produto', {title: "Bookstore - "+this.titulo, dados: this});
 	  			res.end();

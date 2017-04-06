@@ -13,20 +13,18 @@ block content
 					th Preço
 					th
 			tbody
-				-for(var z=0; z<dados.length; z++){
-					-for(var i=0; i<total.length; i++){
-						-if(total[i].isbn == dados[z]){
-							tr.isbn(data-id=total[i].isbn)
-								td
-									img(src="../images/livros/"+total[i].capa+".jpg", height="100px").box-book
-								td= total[i].isbn
-								td= total[i].titulo
-								td.valor(data-valor=total[i].preço)
-									h4 R$ #{total[i].preço}
-								td 
-									a
-										i(data-id=""+total[i].isbn+"").glyphicon.glyphicon-remove.cart#removeCart
-						-}
+				-for(var i=0; i<dados.length; i++){
+					-if(dados[i].carrinho == true){
+						tr.isbn(data-id=dados[i].isbn)
+							td
+								img(src="../images/livros/"+dados[i].capa+".jpg", height="100px").box-book
+							td= dados[i].isbn
+							td= dados[i].titulo
+							td.valor(data-valor=dados[i].valor)
+								h4 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+							td 
+								a
+									i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-remove.cart#removeCart
 					-}
 				-}
 				tr

@@ -5,12 +5,23 @@ div(data-id=dados[i].isbn, data-categ=dados[i].categoria, data-autor=dados[i].au
 			h2.tagsNome.col-md-7.box-book #{dados[i].titulo}
 				br
 				span= dados[i].autor
-			h2.tagsPreco.col-md-5.box-book R$ #{dados[i].preço}
+			-var valor = (parseFloat(dados[i].valor).toFixed(2).toString().replace('.',','));
+			h2.tagsPreco.col-md-5.box-book R$ #{valor}
 		figcaption.col-md-12
 			p
 				a
-					i.glyphicon.glyphicon-heart-empty.wish
+					-if(dados[i].favorito==false){
+						i.glyphicon.glyphicon-heart-empty.wish
+					-}
+					-else if(dados[i].favorito==true){
+						i.glyphicon.glyphicon-heart.wish
+					-}
 				a 
-					i.glyphicon.glyphicon-shopping-cart.cart
+					-if(dados[i].carrinho==false){
+						i.glyphicon.glyphicon-shopping-cart.cart.cart-empty
+					-}
+					-else if(dados[i].carrinho==true){
+						i.glyphicon.glyphicon-shopping-cart.cart.cart-full
+					-}
 				a.box-book 
 					i.glyphicon.glyphicon-info-sign

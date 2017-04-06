@@ -1,33 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Cinzel:400,700,900|Baloo+Bhaina|Barrio|Baumans|Cinzel+Decorative:400,700,900|Dancing+Script:400,700|Fredericka+the+Great|Lobster+Two:400,400i,700,700i|Megrim|Oleo+Script+Swash+Caps|Parisienne|Rochester|Sacramento|Sue+Ellen+Francisco|Tangerine:400,700|Pavanam&subset=latin-ext,tamil');
-/*.for(@list, @code) {
-    & {
-        .loop(@i:1) when (@i =< length(@list)) {
-            @value: extract(@list, @i);
-
-            @code();
-
-            .loop(@i + 1);
-        }
-
-        .loop();
-    }
-}
-
-
-.for(@colors, {
-    .livrosCor-@{i} {
-        color: @value;
-    }
-});*/
-/*
-.loop (0) {}
-.loop (@index) when (@index >= 0) {
-  .livrosCor-@{index}{
-    color: lighten(#638fbf, @index * 1%);
-    font-size: large;
-  }
-  .loop (@index - 1);
-}*/
 ::-webkit-scrollbar {
   width: 1em;
 }
@@ -61,6 +32,12 @@
 }
 .glyphicon-heart {
   color: red;
+}
+.cart-empty {
+  color: white;
+}
+.cart-full {
+  color: aqua;
 }
 .heart-navbar {
   color: white;

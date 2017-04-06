@@ -12,7 +12,7 @@ var categorias = [];
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	file.read(function(data){
-		$.each(data, function(index, value) {
+		$.each(data.produtos, function(index, value) {
 		    if ($.inArray(value.categoria, categorias)==-1) {
 		        categorias.push(value.categoria, value.capa);
 		    }

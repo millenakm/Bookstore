@@ -10,7 +10,7 @@ block content
 		-else{	
 			img(src="../../images/livros/"+dados.capa+".jpg").col-md-3#img-produto
 			h2.col-md-4= dados.titulo
-			h2.col-md-4 R$ #{dados.preço}
+			h2.col-md-4 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
 			h3.col-md-4= dados.autor
 			h4.col-md-8= dados.descrição
 			h5.col-md-3 Editora: #{dados.editora}
