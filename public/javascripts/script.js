@@ -255,7 +255,7 @@ function listFav(type, cod){
 	});
 }
 
-function removeCartProduct(elem){
+function removeFromCart(elem){
 	$(elem).parents('.isbn').addClass('removeCart');
 	$('.removeCart').hide(function(){ 
 		$('.removeCart').remove(); 
@@ -277,7 +277,7 @@ function actions(){
 		$(this).parents('.grid').slideUp();
 	});
 	$(".glyphicon-remove").click(function(){
-		removeCartProduct(this);
+		removeFromCart(this);
 		
 	});
 	$('.cart').click(function(){
