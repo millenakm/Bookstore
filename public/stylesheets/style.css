@@ -39,6 +39,13 @@
 .cart-full {
   color: aqua;
 }
+.btn-table {
+  font-size: 17px;
+}
+.btn-table:hover {
+  color: aqua;
+  cursor: pointer;
+}
 .heart-navbar {
   color: white;
 }
@@ -476,6 +483,13 @@ body {
 .navbar-right > .icon {
   margin-top: -4px;
 }
+.filter-icon span {
+  font-size: 14px;
+  transition: font-size 0.1s;
+}
+.filter-icon:hover span {
+  font-size: 20px;
+}
 .badge {
   background-color: #00a398;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
@@ -483,6 +497,11 @@ body {
   position: inherit;
   margin-top: 11px;
   margin-left: -7px;
+  transition: box-shadow 0.09s, margin-top 0.09s;
+}
+.icon a:hover .badge {
+  box-shadow: 0 5px 8px 1px rgba(0, 0, 0, 0.4);
+  margin-top: 8px;
 }
 .search-modal {
   z-index: 1023;
@@ -509,6 +528,15 @@ body {
 }
 .cart-top {
   top: 70px;
+}
+.quantidade {
+  color: white;
+  background-color: transparent;
+  width: 60%;
+  outline: none;
+}
+.quantidade:focus {
+  border: white solid 3px;
 }
 .navig {
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);

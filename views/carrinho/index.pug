@@ -11,6 +11,8 @@ block content
 					th Produto
 					th Título
 					th Preço
+					th Quantidade
+					th
 					th
 			tbody
 				-for(var i=0; i<dados.length; i++){
@@ -22,10 +24,19 @@ block content
 							td= dados[i].titulo
 							td.valor(data-valor=dados[i].valor)
 								h4 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+							td
+								input(type="number", min="1", max=dados[i].estoque, value="1").quantidade
 							td 
-								a
-									i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-remove.cart
+								i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-remove.cart.btn-table
+							td 
+								-if(dados[i].favorito==false){
+									i.glyphicon.glyphicon-heart-empty.wish.btn-table
+								-}
+								-else if(dados[i].favorito==true){
+									i.glyphicon.glyphicon-heart.wish.btn-table
+								-}
 					-}
 				-}
 				tr
-					td(align="right", colspan="5").valorTotal 
+					td(align="right", colspan="7").valorTotal 
+		button.btn.btn-primary#comprar Comprar

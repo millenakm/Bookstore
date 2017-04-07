@@ -120,13 +120,23 @@ function productPage(parameters){
 	window.location=(listaProdutos+parameters);
 }
 
+function quantidadeCart(elem){
+	var quantidade = $(elem).val();
+	var valorAtual = $(elem).parent().prev().data('valor');
+	var valorQuant = valorAtual*quantidade;
+	$(elem).parent().prev().attr('data-valor', valorQuant);
+	$(elem).parent().prev().children('h4').html("R$ "+parseFloat(valorQuant).toFixed(2).toString().replace('.',','));
+	console.log($(elem).parent().prev().attr('data-valor'));
+	totalValue($('.valor'));
+}
+
 // valor total do carrinho
 function totalValue(group) {
 	var valor = 0;	
 	group.each(function() {
-		valor+= $(this).data('valor');
+		valor+= Number($(this).attr('data-valor'));
 	});
-	$('.valorTotal').html('<h3>Total: R$ '+valor.toFixed(2).toString().replace('.',',')+'</h3>');
+	$('.valorTotal').html('<h3>Total: R$ '+valor.toFixed(2).toString().replace('.',','))+'</h3>';
 } 
 
 function createFilter(){
@@ -225,18 +235,6 @@ function style(){
 	$('#close-search').click(function(){
 		closeSearch();
 	});
-	$(".icon > a").mouseenter(function(){
-		$(this).find(".badge").css({'box-shadow': '0 5px 8px 1px rgba(0,0,0,0.4)'}).animate({'margin-top':'8px'}, 100);
-	});
-	$(".icon > a").mouseleave(function(){
-		$(this).find(".badge").css({'box-shadow': '0 4px 2px -2px rgba(0,0,0,0.4)'}).animate({'margin-top':'11px'}, 100);
-	});
-	$('.filter-icon').mouseenter(function(){
-		$('.filter-icon > span').animate({'font-size' : '20px'}, 100);
-	});
-	$('.filter-icon').mouseleave(function(){
-		$('.filter-icon > span').animate({'font-size' : '14px'}, 100);
-	});
 	$('.wish').click(function(){	
 		$(this).toggleClass("glyphicon-heart-empty glyphicon-heart");
 	});
@@ -278,7 +276,6 @@ function actions(){
 	});
 	$(".glyphicon-remove").click(function(){
 		removeFromCart(this);
-		
 	});
 	$('.cart').click(function(){
 		var cod = $(this).parents('.isbn').data('id');
@@ -292,7 +289,13 @@ function actions(){
 	$(".catalogo-x").click(function(){
 		var param = $(this).data('filter');
 		window.location=('/catalogo?filter='+param);
-	})
+	});
+	$('.quantidade').change(function(){
+		quantidadeCart(this);
+	});
+	$("#comprar").click(function(){
+		
+	});
 }
 
 function carousel(){
