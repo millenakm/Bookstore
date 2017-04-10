@@ -8,13 +8,35 @@ block content
 			h2 Produto não encontrado
 		-}
 		-else{	
-			img(src="../../images/livros/"+dados.capa+".jpg").col-md-3#img-produto
-			h2.col-md-4= dados.titulo
-			h2.col-md-4 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
-			h3.col-md-4= dados.autor
-			h4.col-md-8= dados.descrição
-			h5.col-md-3 Editora: #{dados.editora}
-			h5.col-md-3 Ano: #{dados.ano}
-			h5.col-md-3 Páginas: #{dados.paginas}
-			h5.col-md-3 Categoria: #{dados.categoria}
+			.component
+				ul.align
+					li
+						figure.book
+							ul.hardcover_front
+								li
+									img(src="../../images/livros/"+dados.capa+".jpg", alt='', width='100%', height='100%')
+									span.ribbon.bestseller N&ordm;1
+								li
+							ul.page
+								li
+								li
+									a.btn(href='#') Go .........
+								li
+								li
+								li
+							ul.hardcover_back
+								li
+								li
+							ul.book_spine
+								li
+								li
+			// img(src="../../images/livros/"+dados.capa+".jpg").col-md-3#img-produto
+			// h2.col-md-4= dados.titulo
+			// h2.col-md-4 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
+			// h3.col-md-4= dados.autor
+			// h4.col-md-8= dados.descrição
+			// h5.col-md-3 Editora: #{dados.editora}
+			// h5.col-md-3 Ano: #{dados.ano}
+			// h5.col-md-3 Páginas: #{dados.paginas}
+			// h5.col-md-3 Categoria: #{dados.categoria}
 		-}
