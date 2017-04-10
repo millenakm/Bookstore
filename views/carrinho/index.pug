@@ -20,7 +20,7 @@ block content
 						tr.isbn.rowTab(data-id=dados[i].isbn)
 							td
 								img(src="../images/livros/"+dados[i].capa+".jpg", height="100px").box-book
-							td= dados[i].isbn
+							td.isbn(data-isbn=dados[i].isbn)= dados[i].isbn
 							td= dados[i].titulo
 							td.valor(data-valor=dados[i].valor)
 								h4 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}

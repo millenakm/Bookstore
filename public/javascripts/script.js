@@ -126,7 +126,6 @@ function quantidadeCart(elem){
 	var valorQuant = valorAtual*quantidade;
 	$(elem).parent().prev().attr('data-valor', valorQuant);
 	$(elem).parent().prev().children('h4').html("R$ "+parseFloat(valorQuant).toFixed(2).toString().replace('.',','));
-	console.log($(elem).parent().prev().attr('data-valor'));
 	totalValue($('.valor'));
 }
 
@@ -253,6 +252,24 @@ function listFav(type, cod){
 	});
 }
 
+function listCart(){
+	var compras = [];
+	$('.quantidade').each(function(){
+		compras.push({
+			cod: $(this).parent().siblings('.isbn').data('isbn'),
+			quant: $(this).val()
+		});
+	});
+	$.ajax({
+		type: 'GET',
+		url: "/dados/compra",
+		data: {compras},
+		success:function(){
+			console.log("compra concluída");	
+		}
+	});
+}
+
 function removeFromCart(elem){
 	$(elem).parents('.isbn').addClass('removeCart');
 	$('.removeCart').hide(function(){ 
@@ -294,7 +311,7 @@ function actions(){
 		quantidadeCart(this);
 	});
 	$("#comprar").click(function(){
-		
+		listCart();
 	});
 }
 

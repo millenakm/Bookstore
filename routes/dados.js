@@ -46,4 +46,25 @@ router.get('/:type/:cod', function(req, res) {
 	});
 });
 
+router.get('/compra', function(req, res, next) {
+	var compras = req.query.compras;
+	file.read(function(data){
+		for(x in compras){
+			var quant = Number(compras[x].quant);
+			for(i in data.produtos){
+				if(data.produtos[i].isbn==compras[x].cod){
+					data.produtos[i].comprado=true;
+					data.produtos[i].estoque-=quant;
+					data.produtos[i].vendidos+=quant;
+
+					var dataBuy = data;
+					dataJson = JSON.stringify(dataBuy);
+					file.write(dataJson, res);
+				}
+			}
+		}
+    	res.end();
+	});
+});
+
 module.exports = router;
