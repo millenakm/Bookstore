@@ -8,29 +8,7 @@ block content
 			h2 Produto não encontrado
 		-}
 		-else{	
-			.component
-				ul.align
-					li
-						figure.book
-							ul.hardcover_front
-								li
-									img(src="../../images/livros/"+dados.capa+".jpg", alt='', width='100%', height='100%')
-									span.ribbon.bestseller N&ordm;1
-								li
-							ul.page
-								li
-								li
-									a.btn(href='#') Go .........
-								li
-								li
-								li
-							ul.hardcover_back
-								li
-								li
-							ul.book_spine
-								li
-								li
-			// img(src="../../images/livros/"+dados.capa+".jpg").col-md-3#img-produto
+			img(src="../../images/livros/"+dados.capa+".jpg", height="320px")#img-produto
 			// h2.col-md-4= dados.titulo
 			// h2.col-md-4 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
 			// h3.col-md-4= dados.autor

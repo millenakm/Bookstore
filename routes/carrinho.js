@@ -15,10 +15,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/compra', function(req, res, next) {
-	file.read(function(data){
-		res.render('./carrinho/comprar', {title: "Finalizar compra", dados: data.produtos});
-		res.end();
-	});	
+	res.render('./carrinho/comprar', {title: "Finalizar compra", dados: data.produtos});
+	res.end();	
 });
 
 module.exports = router;

@@ -10,9 +10,9 @@ block content
 					th
 					th Produto
 					th Título
-					th Preço
+					th Valor Unitário
+					th Valor Total
 					th Quantidade
-					th
 					th
 			tbody
 				-for(var i=0; i<dados.length; i++){
@@ -20,23 +20,59 @@ block content
 						tr.isbn.rowTab(data-id=dados[i].isbn)
 							td
 								img(src="../images/livros/"+dados[i].capa+".jpg", height="100px").box-book
-							td.isbn(data-isbn=dados[i].isbn)= dados[i].isbn
+							td= dados[i].isbn
 							td= dados[i].titulo
+							td R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 							td.valor(data-valor=dados[i].valor)
 								h4 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
-							td
-								input(type="number", min="1", max=dados[i].estoque, value="1").quantidade
+							td(data-estoque=dados[i].estoque)
+								span.badge.badge-cart.minus
+									i.fa.fa-minus
+								span.quantidade 1
+								span.badge.badge-cart.plus
+									i.fa.fa-plus
 							td 
-								i(data-id=""+dados[i].isbn+"").glyphicon.glyphicon-remove.cart.btn-table
-							td 
-								-if(dados[i].favorito==false){
-									i.glyphicon.glyphicon-heart-empty.wish.btn-table
-								-}
-								-else if(dados[i].favorito==true){
-									i.glyphicon.glyphicon-heart.wish.btn-table
-								-}
+								i.glyphicon.glyphicon-remove.cart.btn-table
 					-}
 				-}
 				tr
 					td(align="right", colspan="7").valorTotal 
-		button.btn.btn-primary#comprar Comprar
+		button.btn.btn-primary(data-toggle="modal", data-target="#modalConfirm") Comprar
+
+		div#modalConfirm.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+			div.modal-dialog(role='document')
+				div.modal-content
+					div.modal-header
+						button.close(type='button', data-dismiss='modal', aria-label='Close')
+							span(aria-hidden='true') &times;
+						h4#myModalLabel.modal-title Confirmar compra
+					div.modal-body
+						table
+							thead
+								th 
+								th
+							tbody
+								tr
+									td Valor da compra: 
+									td R$ 0,00
+								tr 
+									td Valor do frete:
+									td ----
+								tr
+									td Valor Total:
+									td R$ 0,00
+					div.modal-footer
+						button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+						button.btn.btn-primary#comprar Confirmar Compra
+
+		div#modalMsg.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+			div.modal-dialog(role='document')
+				div.modal-content
+					div.modal-header
+						button.close(type='button', data-dismiss='modal', aria-label='Close')
+							span(aria-hidden='true') &times;
+						h4#myModalLabel.modal-title mimimi
+					div.modal-body
+					div.modal-footer
+						a.btn.btn-default(href="/catalogo") Continuar comprando
+						a.btn.btn-primary(href="/") Página Inicial
