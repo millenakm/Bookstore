@@ -389,6 +389,16 @@ body .navig-top {
 .nav-pills li[data-slide-to="5"].active a {
   background-color: #C12127;
 }
+#msgCart {
+  background-color: #f2f2f2;
+  color: black;
+  text-align: center;
+  display: none;
+  padding-bottom: 10px;
+}
+.text-center {
+  text-align: center;
+}
 #msg {
   color: white;
 }
@@ -512,6 +522,13 @@ body .navig-top {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
+.quantidade {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 25px;
+  text-align: center;
+}
 .quantidade::selection {
   background-color: transparent;
 }
@@ -593,6 +610,23 @@ body .navig-top {
 }
 .search-section h4 {
   color: #e6e6e6;
+}
+.cart-box {
+  padding: 3px;
+  height: auto;
+  position: fixed;
+  top: 150px;
+  right: 86px;
+  z-index: 1020;
+  background-color: antiquewhite;
+  width: 300px;
+  display: none;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+  moz-box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+  webikt-box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+}
+.cart-top {
+  top: 70px;
 }
 .navig-top,
 .navig,

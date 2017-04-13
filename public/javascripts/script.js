@@ -6,23 +6,31 @@
 //     $(".cart-box").slideToggle('slow');
 // }
 
-var listaProdutos = '/catalogo/produto/';
-	
-// Abre a tela de pesquisa
-function openSearch(){
-	$(".search-modal").animate({width: '100%'});
-	$('body, html').css({'overflow-y':'hidden'});
-	$('.search-input').focus();
+var product = '/catalogo/produto/';
+
+// função geral para buscar os dados
+function getData(handleData) {
+	$.ajax({
+		url:"/dados",  
+		success:function(data) {
+			handleData(data); 
+		}
+	});
 }
 
-// Fecha a tela de pesquisa
-function closeSearch(){
-	$(".search-modal").animate({width: '0%'});
-	$('.search-input').val(''); 
-	$('body, html').css({'overflow-y':'auto'});
-	$('.list-result, #box-result').html('');
-}
 
+/*************** STYLE ***************/
+
+// funções de style ao carregar a página
+function styles(){
+	$("body").fadeIn(500);
+	equalHeight($(".grid")); 
+	onScroll();
+	carousel();
+	zoomImg();
+	filterController();
+	iconsNav();
+}
 // Muda caracteristicas conforme a scrollbar
 function onScroll(){
 	var scrollY = 0;
@@ -42,7 +50,6 @@ function onScroll(){
 		$('#logoNav').fadeOut(100);
 	}
 }
-
 // muda a altura das divs .grid, para todas terem a mesma altura
 function equalHeight(grid){
 	var tallest = 0;
@@ -56,7 +63,73 @@ function equalHeight(grid){
 		$(this).height(tallest); 
 	});
 } 
+// caracteristicas do carrossel
+function carousel(){
+	var clickEvent = false;
+	$('#myCarousel').on('click', '.nav a', function() {
+			clickEvent = true;
+			$('.nav li').removeClass('active');
+			$(this).parent().addClass('active');		
+	}).on('slid.bs.carousel', function(e) {
+		if(!clickEvent) {
+			var count = $('.nav').children().length-1;
+			var current = $('.nav li.active');
+			current.removeClass('active').next().addClass('active');
+			var id = parseInt(current.data('slide-to'));
+			if(count == id) {
+				$('.nav li').first().addClass('active');	
+			}
+		}
+		clickEvent = false;
+	});
+}
+// zoom da imagem na página singular do produto
+function zoomImg(){
+	$("#img-produto").elevateZoom({
+		zoomType: "lens",
+		lensShape : "round",
+		lensSize : 200
+	});
+}
+// muda os números nos ícones da navbar
+function iconsNav(){
+	var carrinho=0, favorito=0;
+	getData(function(data){
+		$(data).each(function(){
+			if(this.carrinho==true){
+				carrinho++;
+			}
+			if(this.favorito==true){
+				favorito++;
+			}
+		});
+		$("#numberCart").html(carrinho);
+		$("#numberWish").html(favorito);
+	});
+}
+// mostra mensagem se não houverem produtos na categoria selecionada
+function msg(msg){
+	if($('.grid:visible').length==0){
+		$('#msg').html(msg).show(300);
+	}
+}
 
+
+/*************** SEARCH ***************/
+
+// Abre a tela de pesquisa
+function openSearch(){
+	$(".search-modal").animate({width: '100%'});
+	$('body, html').css({'overflow-y':'hidden'});
+	$('.search-input').focus();
+}
+// Fecha a tela de pesquisa
+function closeSearch(){
+	$(".search-modal").animate({width: '0%'});
+	$('.search-input').val(''); 
+	$('body, html').css({'overflow-y':'auto'});
+	$('.list-result, #box-result').html('');
+}
 // faz a busca dos dados
 function searchJson(){
 	$('#search-input').keyup(function(){//quando escrever na input, realiza a busca
@@ -68,7 +141,7 @@ function searchJson(){
 
 		var results = '<table class="table"><thead><tr><th>Produto</th><th>Título</th><th>Autor</th><th>Preço(R$)</th><th>Categoria</th><th>Editora</th></tr></thead><tbody>';
 		var regex = new RegExp(searchField, "i");//define a busca sem case sensitive
-		$.get("/dados", function(data){//procura os dados
+		getData(function(data){//procura os dados
 			var cor = 1;
 			for(i in data){
 				var titulo = data[i].titulo;
@@ -91,7 +164,6 @@ function searchJson(){
 		});
 	});
 }
-
 // define a lista dos resultados
 function searchResult(results){
 	$('.list-result').html(results);//define a div com os resultados
@@ -104,10 +176,9 @@ function searchResult(results){
 		$("#box-result").html("");
 	}		
 }
-
 // painel com informações de resultados da pesquisa
 function painelResult(elem){
-	$.get("/dados", function(data){//procura os dados
+	getData(function(data){//procura os dados
 		$(data).each(function (){//percorre um por um
 			if($(elem).data('id') == this.isbn){
 				var livro = '<img src="../../images/livros/'+this.capa+'.jpg" height="400px">';
@@ -117,30 +188,15 @@ function painelResult(elem){
 	});
 }
 
-// vai para a página do produto clicado
-function productPage(parameters){
-	window.location=(listaProdutos+parameters);
-}
 
-function quantidadeCart(quantidade, valorAtual){
-	var valorQuant = valorAtual*quantidade;
-	return parseFloat(valorQuant).toFixed(2).toString().replace('.',',');
-}
+/*************** FILTER ***************/
 
-// valor total do carrinho
-function totalValue(group) {
-	var valor = 0;	
-	group.each(function() {
-		valor+= Number($(this).attr('data-valor'));
-	});
-	$('.valorTotal').html('<h3>Total: R$ '+valor.toFixed(2).toString().replace('.',','))+'</h3>';
-} 
-
+// cria o filtro
 function createFilter(){
 	var categorias = [];
 	var editoras = [];
 	var autores = [];
-	$.get('/dados', function(data){
+	getData(function(data){
 		$.each(data, function() {
 			if ($.inArray(this.categoria, categorias)==-1) {
 					categorias.push(this.categoria);
@@ -166,7 +222,6 @@ function createFilter(){
 		}
 	});
 }
-
 // filtro da página
 function filter(elem){
 	var valor = $(elem).val();
@@ -191,13 +246,7 @@ function filter(elem){
 		msg('Não foram encontrados itens nesta categoria.');
 	}
 }
-
-function msg(msg){
-	if($('.grid:visible').length==0){
-		$('#msg').html(msg).show(300);
-	}
-}
-
+// icone do filtro
 function filterController(){
 	var countEffect=0;
 	$('.filter-icon').click(function(){
@@ -213,7 +262,7 @@ function filterController(){
 		}
 	});
 }
-
+// efeito do icone
 function filterEffect(){
 	$('.filter-icon > span').each(function(){
 		$(this).rotate(180,{
@@ -222,8 +271,128 @@ function filterEffect(){
 	});
 }
 
+
+/*************** CARRINHO ***************/
+
+// calcula o valor total quando a página é carregada
+function checkCart(){
+	getData(function(data){
+		for(i in data){
+			$('.rowTab').each(function(){
+				if($(this).data('id')== data[i].isbn){
+					$(this).find(".valor").data('valor', data[i].valor);
+					totalValue($(".valor"));
+				}
+			});
+		}
+	});
+}
+// remove produto do carrinho 
+function removeFromCart(elem){
+	$(elem).parents('.isbn').addClass('removeCart');
+	$('.removeCart').hide(function(){ 
+		$('.removeCart').remove(); 
+		totalValue($(".valor"));
+	});
+}
+// muda o valor do produto conforme a quantidade
+function valueQnt(elem){
+	var qnt = changeQnt(elem);
+	var isbn = $(elem).parents('.isbn').data("id");
+	getData(function(data){
+		$(data).each(function(){
+			if(this.isbn==isbn){
+				var valor=this.valor;
+				var valorProduto = valueProduct(qnt, valor);
+				$(elem).parent().siblings('.valor').html("<h4>R$ "+valorProduto+"</h4>");
+				$(elem).parent().siblings('.valor').data("valor", Number(valorProduto.replace(',','.')));
+			}
+		});
+		totalValue($(".valor"));
+	});
+}
+// muda a quantidade do produto no carrinho
+function changeQnt(elem){
+	var qnt = $(elem).siblings(".quantidade").val();
+	var isbn = $(elem).parents('.isbn').data('id');
+
+	if($(elem).hasClass("minus") && qnt>1){
+		qnt--;
+	}else if($(elem).hasClass("plus")){
+		qnt++;
+	}
+	$(elem).siblings(".quantidade").val(qnt);
+	return $(elem).siblings(".quantidade").val();
+}
+// calcula o valor total de cada produto
+function valueProduct(quantidade, valorAtual){
+	var valorQuant = valorAtual*quantidade;
+	return parseFloat(valorQuant).toFixed(2).toString().replace('.',',');
+}
+// valor total do carrinho
+function totalValue(group) {
+	var valor = 0;	
+	group.each(function() {
+		valor+= Number($(this).data('valor'));
+	});
+	$('.valorTotal').html('R$ '+valor.toFixed(2).toString().replace('.',','));
+}
+// confirma a compra
+function confirmPurchase(){
+	$("#modalConfirm").modal('hide');
+	var compras = [];
+	$('.quantidade').each(function(){
+		compras.push({
+			cod: $(this).parents('.isbn').data('id'),
+			quant: $(this).html()
+		});
+	});
+	changeDataBuy(compras);
+}
+// muda estoque e status dos itens comprados
+function changeDataBuy(compras){
+	$.ajax({
+		type: 'GET',
+		url: "/dados/compra",
+		data: {compras},
+		success:function(){
+			emptyCart();
+
+		}
+	});
+}
+// esvazia o carrinho
+function emptyCart(){
+	$("#tableCart").hide('slow', function(){ 
+		$('#tableCart, #tableBtn').remove(); 
+	});	
+	$("#msgCart > h3").html("Compra concluída com sucesso!");
+	$("#msgCart").show('slow');
+	$(".rowTab").each(function(){
+		var cod = $(this).data('id');
+		listFav("cart", cod);
+	});
+}
+
+
+/*************** ACTIONS ***************/
+
+// adiciona ou remove do carrinho e/ou desejo
+function listFav(type, cod){
+	$.ajax({
+		type: 'GET',
+		url: "/dados/"+type+"/"+cod,
+		success:function(){
+			iconsNav();	
+		}
+	});
+}
+// vai para a página do produto clicado
+function productPage(parameters){
+	window.location=(product+parameters);
+}
 // actions style
-function style(){
+function actionStyle(){
 	window.onscroll = function() {
 		onScroll();
 	}
@@ -240,48 +409,9 @@ function style(){
 		$(this).toggleClass("cart-empty cart-full");
 	});
 }
-
-function listFav(type, cod){
-	$.ajax({
-		type: 'GET',
-		url: "/dados/"+type+"/"+cod,
-		success:function(){
-			iconsNav();	
-		}
-	});
-}
-
-function listCart(){
-	$("#modalConfirm").modal('hide');
-	var compras = [];
-	$('.quantidade').each(function(){
-		compras.push({
-			cod: $(this).parents('.isbn').data('id'),
-			quant: $(this).html()
-		});
-	});
-	$.ajax({
-		type: 'GET',
-		url: "/dados/compra",
-		data: {compras},
-		success:function(){
-			console.log("compra concluída");
-			$("#modalMsg").modal('show');	
-		}
-	});
-}
-
-function removeFromCart(elem){
-	$(elem).parents('.isbn').addClass('removeCart');
-	$('.removeCart').hide(function(){ 
-		$('.removeCart').remove(); 
-		totalValue($(".valor"));
-	});
-}
-
-// ações
+// ações dos botoes/inputs
 function actions(){
-	style();
+	actionStyle();
 	$('.box-book').on('click', function(){
 		productPage($(this).parents('.isbn').data('id'));
 	});
@@ -309,100 +439,31 @@ function actions(){
 		window.location=('/catalogo?filter='+param);
 	});
 	$("#comprar").click(function(){
-		listCart();
+		confirmPurchase();
 	});
 	$(".plus, .minus").click(function(){
-		valueCartTable($(this));
+		valueQnt($(this));
 	});
-	$("#select-valor").change(function(){
-		var valores =[];
-		$('.grid').each(function(){
-			valores.push($(this).data('valor'));
-			valores.sort();
-		});
-		$('.grid').slideUp();
-	      for(var i=0; i<valores.length; i++){
-	      }
+	$("#openCart").click(function(){
+		$(".cart-box").slideToggle(500);
 	});
 }
 
-function valueCartTable(elem){
-	var qnt = changeQnt(elem);
-	var valor = $(elem).parent().siblings('.valor').data("valor");
-	var valorProduto = quantidadeCart(qnt, valor);
-	$(elem).parent().siblings('.valor').html("<h4>R$ "+valorProduto+"</h4>");
-	$(elem).parent().siblings('.valor').attr("data-valor", Number(valorProduto.replace(",",".")));
-	totalValue($(".valor"));
-}
 
-function changeQnt(elem){
-	var qnt = Number($(elem).siblings(".quantidade").html());
-	var estoque = $(elem).parent().data('estoque');
-	if($(elem).hasClass("minus") && qnt>1){
-		qnt--;
-	}
-	else if($(elem).hasClass("plus") && qnt<estoque){
-		qnt++;
-	}
-	$(elem).siblings(".quantidade").html(qnt);
-	return $(elem).siblings(".quantidade").html();
-}
-
-function carousel(){
-	var clickEvent = false;
-	$('#myCarousel').on('click', '.nav a', function() {
-			clickEvent = true;
-			$('.nav li').removeClass('active');
-			$(this).parent().addClass('active');		
-	}).on('slid.bs.carousel', function(e) {
-		if(!clickEvent) {
-			var count = $('.nav').children().length-1;
-			var current = $('.nav li.active');
-			current.removeClass('active').next().addClass('active');
-			var id = parseInt(current.data('slide-to'));
-			if(count == id) {
-				$('.nav li').first().addClass('active');	
-			}
-		}
-		clickEvent = false;
-	});
-}
-
-function zoomImg(){
-	$("#img-produto").elevateZoom({
-		zoomType: "lens",
-		lensShape : "round",
-		lensSize : 200
-	});
-}
-
-function iconsNav(){
-	var carrinho=0, favorito=0;
-	$.get("/dados", function(data){
-		$(data).each(function(){
-			if(this.carrinho==true){
-				carrinho++
-			}
-			if(this.favorito==true){
-				favorito++
-			}
-		});
-		$("#numberCart").html(carrinho);
-		$("#numberWish").html(favorito);
-	});
-}
-
-$(document).ready(function(){ 
-	$("body").fadeIn(500);
-	onScroll();
+$(document).ready(function(){
+	var mouse_is_inside=false; 
+	styles(); 
 	actions();
-	totalValue($(".valor"));
-	equalHeight($(".grid")); 
+	checkCart();
 	searchJson();
 	createFilter();
 	filter($('.selectpicker'));
-	carousel();
-	zoomImg();
-	filterController();
-	iconsNav();
+	$('.cart-box').hover(function(){ 
+        mouse_is_inside=true; 
+    }, function(){ 
+        mouse_is_inside=false; 
+    });
+    $("body").mouseup(function(){ 
+        if(! mouse_is_inside) $('.cart-box').hide();
+    });
 });
