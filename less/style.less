@@ -333,6 +333,7 @@ body {
 		height: 60px;
 		background: @colorNav;
 		border-radius: 10px;
+		z-index: 1022;
 	}
 
 	.navig-top{
@@ -706,23 +707,61 @@ body {
 }
 
 .cart-box{
-	padding: 3px;
-	height: auto;
-    position: fixed;
-    top: 150px;
-    right: 86px;
-    z-index: 1020;
-    background-color: antiquewhite;
-    width: 300px;
-    display: none;
-    .shadow(0, 4px, 2px, -2px, rgba(0, 0, 0, 0.4));
+	display: none;
+
+	.cart-content {
+		position: absolute;
+		width: 300px;
+		height: auto;
+		background-color: #f2f2f2;
+		border-radius: 4px;
+		top: 60px;
+		right: -35px;
+		.shadow(0, 7px, 2px, -2px, rgba(0,0,0,0.4));
+		padding: 5px;
+
+		a{
+			font-size: 15px;
+			border: none;
+			color: @resultColor;
+			text-decoration: none;
+			margin: 0;
+			padding: 0;
+
+			&:hover{
+				border: none;
+				text-decoration: underline;
+			}
+		}
+
+		hr{
+			margin-top: 5px;
+			margin-bottom: 5px;
+			border: 1px solid @resultColor;
+		}
+
+		table{
+			font-size: 16px;
+			font-family: initial;
+			color: black;
+			width: 100%;
+		}
+
+		.cart-arrow {
+			position: relative;
+			top: -12px;
+			right: -135px;
+			border-left: 12px solid transparent;
+			border-right: 12px solid transparent;
+			border-bottom: 12px solid #f2f2f2;
+			width: 0;
+			height: 0;
+		}
+	}
 }
 
-.cart-top{
-	top: 70px;
-}
 
-.navig-top, .navig, .navig-filter, .navig-filter-top .pg-title, .cart-top, .cart-box{
+.navig-top, .navig, .navig-filter, .navig-filter-top .pg-title{
 	transition: 0.5s;
     -webkit-transition:  0.5s;
 }

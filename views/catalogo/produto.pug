@@ -2,19 +2,19 @@ extends ./../layout
 
 block content
 	include ./../navbar.pug
-	h2.titulo-pg Detalhes do Produto - #{dados.titulo}
+	h2.titulo-pg Detalhes do Produto
 	div.container.produto
 		-if(dados=='error'){
 			h2 Produto não encontrado
 		-}
 		-else{	
-			img(src="../../images/livros/"+dados.capa+".jpg", height="320px")#img-produto
-			// h2.col-md-4= dados.titulo
-			// h2.col-md-4 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
-			// h3.col-md-4= dados.autor
-			// h4.col-md-8= dados.descrição
-			// h5.col-md-3 Editora: #{dados.editora}
-			// h5.col-md-3 Ano: #{dados.ano}
-			// h5.col-md-3 Páginas: #{dados.paginas}
-			// h5.col-md-3 Categoria: #{dados.categoria}
+			img(src="../../images/livros/"+dados.capa+".jpg")#img-produto.col-md-4
+			h2.col-md-4= dados.titulo
+			h2.col-md-4 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
+			h3.col-md-4= dados.autor
+			h4.col-md-8= dados.descrição
+			h5.col-md-3 Editora: #{dados.editora}
+			h5.col-md-3 Ano: #{dados.ano}
+			h5.col-md-3 Páginas: #{dados.paginas}
+			h5.col-md-3 Categoria: #{dados.categoria}
 		-}

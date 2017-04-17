@@ -22,7 +22,7 @@ nav.navig
 							span.glyphicon.glyphicon-heart.heart-navbar
 							span.badge.badge-nav#numberWish 0
 					li.icon
-						a#openCart
+						a#cartBox
 							span.glyphicon.glyphicon-shopping-cart
 							span.badge.badge-nav#numberCart 0
 					li.icon
@@ -32,6 +32,8 @@ nav.navig
 					li
 						a#open-search
 							span.glyphicon.glyphicon-search
+					include carrinho.pug
+					
 -if(categorias==true){
 	div.filter-icon
 		span.glyphicon.glyphicon-menu-up
@@ -40,4 +42,3 @@ nav.navig
 -}
 
 include search.pug
-include carrinho.pug

@@ -1,11 +1,3 @@
-// // box do carrinho
-// function cart(){
-//     // var state = parseInt($('.cart-box').css('height')) > 1;
-//     // $('.cart-box').animate({height:(state ? "30%" : '0')}, 100);
-//     // $('.cart-box').animate({height:(state ? '0': '30%')}, 200);
-//     $(".cart-box").slideToggle('slow');
-// }
-
 var product = '/catalogo/produto/';
 
 // função geral para buscar os dados
@@ -37,14 +29,12 @@ function onScroll(){
 	var pageScroll = window.pageYOffset;
 	if(scrollY < pageScroll) {
 		$('.navig').addClass('navig-top');
-		$('.cart-box').addClass('cart-top');
 		$('.navbar-content').css({top: '15%'});
 		$('#pg-title').fadeOut(200);
 		$('#logoNav').fadeIn(200);
 	}
 	else if(pageScroll == scrollY){
 		$('.navig').removeClass('navig-top');
-		$('.cart-box').removeClass('cart-top');
 		$('.navbar-content').css({top: '10%'});
 		$('#pg-title').fadeIn(500);
 		$('#logoNav').fadeOut(100);
@@ -374,6 +364,17 @@ function emptyCart(){
 	});
 }
 
+function cartBox(){
+	var content = '';
+	getData(function(data){
+		$(data).each(function(){
+			if(this.carrinho){
+				content+="<tr><td>"+this.titulo+"</td><td>R$ "+this.valor.toFixed(2).toString().replace(".", ",")+"</td></tr>"
+			}
+		});	
+	$(".cart-content").html("<table><tbody>"+content+"</tbody></table><hr><a href='/carrinho'>Ir para o carrinho</a>");
+	});
+}
 
 /*************** ACTIONS ***************/
 
@@ -383,7 +384,8 @@ function listFav(type, cod){
 		type: 'GET',
 		url: "/dados/"+type+"/"+cod,
 		success:function(){
-			iconsNav();	
+			iconsNav();
+			cartBox();
 		}
 	});
 }
@@ -408,6 +410,10 @@ function actionStyle(){
 	$('.cart').click(function(){	
 		$(this).toggleClass("cart-empty cart-full");
 	});
+	$("#cartBox").click(function(){
+		$(".cart-box").fadeToggle();
+		cartBox();
+	})
 }
 // ações dos botoes/inputs
 function actions(){
@@ -444,26 +450,14 @@ function actions(){
 	$(".plus, .minus").click(function(){
 		valueQnt($(this));
 	});
-	$("#openCart").click(function(){
-		$(".cart-box").slideToggle(500);
-	});
 }
 
 
 $(document).ready(function(){
-	var mouse_is_inside=false; 
 	styles(); 
 	actions();
 	checkCart();
 	searchJson();
 	createFilter();
 	filter($('.selectpicker'));
-	$('.cart-box').hover(function(){ 
-        mouse_is_inside=true; 
-    }, function(){ 
-        mouse_is_inside=false; 
-    });
-    $("body").mouseup(function(){ 
-        if(! mouse_is_inside) $('.cart-box').hide();
-    });
 });
