@@ -19,7 +19,7 @@ function styles(){
 	equalHeight($(".grid")); 
 	onScroll();
 	carousel();
-	zoomImg();
+
 	filterController();
 	iconsNav();
 }
@@ -74,13 +74,7 @@ function carousel(){
 	});
 }
 // zoom da imagem na página singular do produto
-function zoomImg(){
-	$("#img-produto").elevateZoom({
-		zoomType: "lens",
-		lensShape : "round",
-		lensSize : 200
-	});
-}
+
 // muda os números nos ícones da navbar
 function iconsNav(){
 	var carrinho=0, favorito=0;
@@ -230,7 +224,6 @@ function filter(elem){
 	
 	if(valor=='all'){
 		$('.grid').slideDown(1000);
-		msg('Nenhum item na lista de desejos.');
 	}
 	else{
 		msg('Não foram encontrados itens nesta categoria.');
@@ -327,6 +320,39 @@ function totalValue(group) {
 	});
 	$('.valorTotal').html('R$ '+valor.toFixed(2).toString().replace('.',','));
 }
+
+
+function checkEstoque(compras){
+	var check = [];
+	getData(function(data){
+		$(compras).each(function(){
+			var cod = this.cod;
+			var qnt = this.quant;
+			$(data).each(function(){
+				if(this.isbn==cod){
+					if(this.estoque<qnt){
+						if(this.estoque>0){
+							$("#alert > p").html('A quantidade selecionada no livro "'+this.titulo+'" é maior que o estoque. Por favor, selecione um valor menor que '+this.estoque+'.');
+							$("#alert").show('slow');
+						}
+						else{
+							$("#alert > p").html('O livro "'+this.titulo+'" está em falta.');
+							$("#alert").show('slow');
+						}
+						check.push(false);
+					}
+					else{
+						check.push(true);
+					}
+				}
+			});
+		});
+		if ($.inArray(false, check)==-1){
+			$("#alert").hide('fast');
+			changeDataBuy(compras);
+		}
+	});
+}
 // confirma a compra
 function confirmPurchase(){
 	$("#modalConfirm").modal('hide');
@@ -334,10 +360,10 @@ function confirmPurchase(){
 	$('.quantidade').each(function(){
 		compras.push({
 			cod: $(this).parents('.isbn').data('id'),
-			quant: $(this).html()
+			quant: $(this).val()
 		});
 	});
-	changeDataBuy(compras);
+	checkEstoque(compras);
 }
 // muda estoque e status dos itens comprados
 function changeDataBuy(compras){
@@ -347,7 +373,6 @@ function changeDataBuy(compras){
 		data: {compras},
 		success:function(){
 			emptyCart();
-
 		}
 	});
 }
@@ -363,16 +388,18 @@ function emptyCart(){
 		listFav("cart", cod);
 	});
 }
-
+// carrinhoda navbar
 function cartBox(){
 	var content = '';
+	var valorTotal = 0;
 	getData(function(data){
 		$(data).each(function(){
 			if(this.carrinho){
+				valorTotal+=this.valor;
 				content+="<tr><td>"+this.titulo+"</td><td>R$ "+this.valor.toFixed(2).toString().replace(".", ",")+"</td></tr>"
 			}
 		});	
-	$(".cart-content").html("<table><tbody>"+content+"</tbody></table><hr><a href='/carrinho'>Ir para o carrinho</a>");
+		$(".cart-content").html("<table><tbody>"+content+"<tr class='totalBox'><td>Total:</td><td>R$ "+valorTotal.toFixed(2).toString().replace('.',',')+"</td></tr></tbody></table><hr><a href='/carrinho'>Ir para o carrinho</a>");
 	});
 }
 
@@ -405,10 +432,10 @@ function actionStyle(){
 		closeSearch();
 	});
 	$('.wish').click(function(){	
-		$(this).toggleClass("glyphicon-heart-empty glyphicon-heart");
+		$(this).children().toggleClass("glyphicon-heart-empty glyphicon-heart");
 	});
 	$('.cart').click(function(){	
-		$(this).toggleClass("cart-empty cart-full");
+		$(this).children().toggleClass("cart-empty cart-full");
 	});
 	$("#cartBox").click(function(){
 		$(".cart-box").fadeToggle();
@@ -451,7 +478,6 @@ function actions(){
 		valueQnt($(this));
 	});
 }
-
 
 $(document).ready(function(){
 	styles(); 

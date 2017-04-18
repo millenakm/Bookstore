@@ -407,8 +407,67 @@ body .navig-top {
   text-decoration: line-through;
 }
 .produto {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #ffffff;
   padding: 1%;
+}
+.produto .product-left {
+  margin: 0;
+  padding: 0;
+}
+.produto .product-left .price h3 {
+  background-color: transparent;
+  color: black;
+  margin-top: 5%;
+  border: 2px solid #00bfa5;
+  border-radius: 2px;
+  padding: 5%;
+  font-weight: 600;
+}
+.produto .product-left .icons-product {
+  text-align: center;
+}
+.produto .product-left .icons-product a {
+  border-radius: 2px;
+  color: #337ab7;
+  text-decoration: none;
+  float: left;
+  background: #00bfa5;
+  margin-top: 5%;
+  width: 100%;
+  color: white;
+  cursor: pointer;
+}
+.produto .product-left .icons-product a i {
+  margin: 1%;
+  color: white;
+  cursor: pointer;
+  font-size: 22px;
+}
+.produto .product-left h3 {
+  background-color: black;
+  margin: 0;
+  color: white;
+  text-align: center;
+  padding: 2.5%;
+}
+.produto .product-left p {
+  text-align: justify;
+}
+.produto .product-right {
+  padding: 0;
+}
+.produto .product-right #img-produto {
+  border: 12px solid black;
+}
+.produto .product-right .descr {
+  background: linear-gradient(#000, #666);
+  padding: 0;
+  color: white;
+}
+.produto .product-right .descr h3,
+.produto .product-right .descr h5 {
+  margin: 0;
+  padding: 2%;
 }
 .box-book:hover,
 .cart:hover {
@@ -651,15 +710,24 @@ body .navig-top {
   color: black;
   width: 100%;
 }
+.cart-box .cart-content table .totalBox {
+  font-weight: bold;
+}
+.cart-box .cart-content table .totalBox td:last-child {
+  border-top: 1px solid black;
+}
 .cart-box .cart-arrow {
   position: relative;
-  top: -12px;
-  right: -135px;
+  top: 48px;
+  right: -88px;
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-bottom: 12px solid #f2f2f2;
   width: 0;
   height: 0;
+}
+#alert {
+  display: none;
 }
 .navig-top,
 .navig,

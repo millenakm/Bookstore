@@ -1,5 +1,5 @@
 div.pg-title
-	img(src="../../images/logo.jpg")#pg-title
+	img(src="../../images/logo-white.png")#pg-title
 nav.navig
 	div.navbar-header
 		button(type="button", data-toggle="collapse",data-target="#colaspse-content", aria-expanded="false").navbar-toggle.collapsed
@@ -32,7 +32,9 @@ nav.navig
 					li
 						a#open-search
 							span.glyphicon.glyphicon-search
-					include carrinho.pug
+					-if(!carrinho){
+						include carrinho.pug
+					-}
 					
 -if(categorias==true){
 	div.filter-icon

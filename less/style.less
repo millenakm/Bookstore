@@ -482,8 +482,99 @@ body {
 }
 
 .produto{
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 1);
 	padding: 1%;
+
+	.product-left{
+		margin:0;
+		padding: 0;
+
+		.price{
+			h3{
+				background-color: transparent;
+				background-color: transparent;
+				color: black;
+				margin-top: 5%;
+				border: 2px solid @resultColor;
+				border-radius: 2px;
+				padding: 5%;
+				font-weight: 600;
+			}
+		}
+
+		.icons-product{
+			text-align: center;
+
+			a{
+				border-radius: 2px;
+				color: #337ab7;
+				text-decoration: none;
+				float: left;
+				background: #00bfa5;
+				margin-top: 5%;
+				width: 100%;
+				color: white;
+				cursor: pointer;
+
+				    i{
+				    	margin: 1%;
+				    	color: white;
+				    	cursor: pointer;
+				    	font-size: 22px;
+				    }
+			}
+		}
+
+		h3{
+			background-color: black;
+			margin: 0;
+			color: white;
+			text-align: center;
+			padding: 2.5%;
+		}
+
+		p{
+			text-align: justify;
+		}
+	}
+
+	.product-right{
+		padding: 0;
+		
+		// .iconsDesc{
+		// 	margin: 0;
+		// 	background-color: #000;
+		// 	text-align: center;
+
+		// 	h2{
+		// 		background-color: black;
+		// 		margin: 0;
+		// 		padding: 2%;
+
+		// 		i{
+		// 		cursor: pointer;
+
+		// 			&:hover{
+		// 				color: @resultColor;
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+		#img-produto{
+			border: 12px solid black;
+		}
+		.descr{
+			background: linear-gradient(#000, #666);
+			padding: 0;
+			color: white;
+
+			h3, h5{
+				margin: 0;
+				padding: 2%;
+			}
+		}
+	}
 }
 
 .box-book:hover, .cart:hover{
@@ -745,21 +836,31 @@ body {
 			font-family: initial;
 			color: black;
 			width: 100%;
-		}
 
-		.cart-arrow {
-			position: relative;
-			top: -12px;
-			right: -135px;
-			border-left: 12px solid transparent;
-			border-right: 12px solid transparent;
-			border-bottom: 12px solid #f2f2f2;
-			width: 0;
-			height: 0;
+			.totalBox{
+				font-weight: bold;
+
+				td:last-child{
+					border-top: 1px solid black;
+				}
+			}
 		}
+	}
+	.cart-arrow {
+		position: relative;
+		top: 48px;
+		right: -88px;
+		border-left: 12px solid transparent;
+		border-right: 12px solid transparent;
+		border-bottom: 12px solid #f2f2f2;
+		width: 0;
+		height: 0;
 	}
 }
 
+#alert{
+	display: none;
+}
 
 .navig-top, .navig, .navig-filter, .navig-filter-top .pg-title{
 	transition: 0.5s;

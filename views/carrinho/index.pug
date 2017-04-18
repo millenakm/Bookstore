@@ -1,9 +1,13 @@
 extends ./../layout
 
 block content
+	-var carrinho = true;
 	include ./../navbar.pug
 	div.container#carrinho
 		h2.titulo-pg Carrinho de compras
+		div.alert.alert-danger.alert-dismissable#alert
+			a(href="#", data-dismiss="alert", aria-label="close").close &times;	
+			p
 		div#msgCart.col-md-12
 			h3
 			a.btn.btn-default(href="/") Página Inicial
