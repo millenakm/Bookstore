@@ -11,7 +11,7 @@ block content
 		div#msgCart.col-md-12
 			h3
 			a.btn.btn-default(href="/") Página Inicial
-			a.btn.btn-default(href="/catalogo") Continuar Comprando
+			a.btn.btn-default(href="/catalogo") Catálogo
 		table.table#tableCart
 			thead
 				tr
@@ -35,16 +35,17 @@ block content
 								td.valor(data-valor)
 									h4 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 							-}else{
-								td R$ #{parseFloat(dados[i].valor-(dados[i].valor*dados[i].desconto/100)).toFixed(2).toString().replace('.',',')}
+								td 
+									strike R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+									br
+									|R$ #{parseFloat(dados[i].valor-(dados[i].valor*dados[i].desconto/100)).toFixed(2).toString().replace('.',',')}
 								td.valor(data-valor)
 									h4 R$ #{parseFloat(dados[i].valor-(dados[i].valor*dados[i].desconto/100)).toFixed(2).toString().replace('.',',')}
 							-}
 							td
-								span.badge.badge-cart.minus
-									i.fa.fa-minus
+								span.fa.fa-lg.fa-minus-circle.minus.badge-cart
 								input(value="1", readonly="readonly").quantidade
-								span.badge.badge-cart.plus
-									i.fa.fa-plus
+								span.fa.fa-plus-circle.fa-lg.plus.badge-cart
 							td 
 								i.glyphicon.glyphicon-remove.cart.btn-table
 					-}

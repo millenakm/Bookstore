@@ -432,7 +432,7 @@ body .navig-top {
   margin-left: 10%;
 }
 .carousel-caption > h3 {
-  margin-top: 10%;
+  margin-top: 6%;
   font-size: 70px;
 }
 .carousel-caption > p {
@@ -442,22 +442,41 @@ body .navig-top {
   cursor: pointer;
 }
 .carousel-inner > .item {
-  height: 60vh;
+  height: 50vh;
 }
-.index {
-  margin-top: 5%;
-  background-color: rgba(0, 0, 0, 0.5);
+.container-index {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
 }
-.index div h3 {
-  color: white;
-  font-family: 'Pavanam', sans-serif;
+.container-index .index div {
+  padding: 0;
+}
+.container-index .index div h4 {
   font-weight: 600;
 }
-.index div div .box-thumb a:hover .thumbnail {
-  border: 5px solid black;
+.container-index .index div h3 {
+  margin-top: 3%;
+  color: black;
+  font-family: 'Pavanam', sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+}
+.container-index .index div div .box-thumb {
+  padding: 2px;
+}
+.container-index .index div div .box-thumb a:hover .thumbnail {
+  border: 1px solid #00bfa5;
+}
+.container-index .index div div .box-thumb a .thumbnail {
+  margin-bottom: 2px;
+  border-radius: 0;
+  border: 1px solid #999;
+  padding: 2%;
 }
 #myCarousel {
-  margin-top: 3%;
+  margin: 0;
+  margin-top: -10px;
+  padding: 0;
   font-family: 'Pavanam', sans-serif;
   border: 1px solid white;
 }
@@ -508,14 +527,45 @@ body .navig-top {
   background-color: #C12127;
 }
 #msgCart {
-  background-color: #f2f2f2;
+  background-color: rgba(255, 255, 255, 0.3);
   color: black;
   text-align: center;
   display: none;
   padding-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 16px -3px black;
+  moz-box-shadow: 0px 5px 16px -3px black;
+  webikt-box-shadow: 0px 5px 16px -3px black;
+  font-family: 'Baloo Bhaina', cursive;
+}
+#msgCart a {
+  margin: 0;
+  color: white;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-right: 3%;
+  padding-left: 3%;
+  border: 1px solid white;
+  background: #00bfa5;
+}
+#msgCart a:hover {
+  background-color: #00bfa5;
 }
 .text-center {
   text-align: center;
+}
+#tableBtn {
+  float: right;
+  color: white;
+  background-color: #00bfa5;
+  font-weight: 800;
+  padding-right: 5%;
+  padding-left: 5%;
+  border: 1px solid white;
+}
+#tableBtn:hover {
+  background-color: #008c79;
+  border: 1px solid #b3b3b3;
 }
 #msg {
   color: white;
@@ -533,6 +583,24 @@ body .navig-top {
   box-shadow: 0px 4px 25px -5px black;
   moz-box-shadow: 0px 4px 25px -5px black;
   webikt-box-shadow: 0px 4px 25px -5px black;
+}
+.box-thumb a .thumbnail {
+  font-family: 'Cinzel', serif;
+  font-weight: 800;
+}
+.box-thumb a .thumbnail .desconto {
+  font-family: 'Baloo Bhaina', cursive;
+  color: white;
+  font-size: 15px;
+  padding-top: 4px;
+  width: 100%;
+  text-align: center;
+  background: #00c4a9;
+}
+.box-thumb a .thumbnail .caption .price {
+  font-weight: 900;
+  font-size: 15px;
+  color: #008c79;
 }
 .produto {
   background-color: #ffffff;
@@ -732,10 +800,23 @@ body .navig-top {
   margin-left: -7px;
   transition: box-shadow 0.09s, margin-top 0.09s;
 }
+.confirm-product {
+  color: #C12127;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+  moz-box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+  webikt-box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+  position: inherit;
+  margin-top: 11px;
+  margin-left: -7px;
+  transition: box-shadow 0.09s, margin-top 0.09s;
+}
 .badge-cart {
   cursor: pointer;
   margin-left: 5px;
   margin-right: 5px;
+}
+.badge-cart:hover {
+  color: #4fffe7;
 }
 .icon a:hover .badge-nav {
   box-shadow: 0 5px 8px 1px rgba(0, 0, 0, 0.4);
@@ -753,8 +834,19 @@ body .navig-top {
   bottom: 0;
 }
 .table {
-  background-color: rgba(0, 0, 0, 0.5);
   color: white;
+}
+.table tbody tr:not(:last-child) {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.table tbody tr:last-child td {
+  font-weight: 900;
+}
+.table tbody tr:last-child td h3 {
+  font-weight: 700;
+}
+.table thead {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .quantidade {
   border: none;
@@ -769,6 +861,7 @@ body .navig-top {
 }
 .quantidade::selection {
   background-color: transparent;
+  color: white;
 }
 .filter-icon {
   z-index: 100;

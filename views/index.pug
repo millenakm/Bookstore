@@ -2,54 +2,53 @@ extends layout
 
 block content
 	include navbar.pug
-	div.container
-		#myCarousel.carousel.slide(data-ride='carousel')
-			.carousel-inner
-				.item.active
-					a(href='/catalogo/desejo')
-						img(src='../images/wallpaper.jpg')
-						.carousel-caption
-							h3 Lista de Desejos
-							p Não perca nenhuma oferta! Adicione livros à sua lista de desejos e receba notificações quando houverem descontos.
-				.item
-					a(href='#mais-vendidos')
-						img(src='../images/books5.jpg')
-						.carousel-caption
-							h3 Mais Vendidos
-							p Confira a lista de livros que mais são comprados pelos usuários
-				.item
-					a(href="#promocoes")
-						img(src='../images/books2.jpg')
-						.carousel-caption
-							h3 Promoções
-							p Veja os produtos que estão em promoção!
-				.item
-					a(href="/catalogo")
-						img(src='../images/books8.jpg')
-						.carousel-caption
-							h3 Catálogo de livros
-							p Nosso catálogo contém livros de diversas categorias. Confira!
-				.item
-					a(href="#colecoes")
-						img(src='../images/books.jpg')
-						.carousel-caption
-							h3 Coleções
-							p Novas séries de livros toda semana
-      
-			ul.nav.nav-pills.nav-justified
-				li.active(data-target='#myCarousel', data-slide-to='0')
-					a(href='#') 
-				li(data-target='#myCarousel', data-slide-to='1')
-					a(href='#') 
-				li(data-target='#myCarousel', data-slide-to='2')
-					a(href='#') 
-				li(data-target='#myCarousel', data-slide-to='3')
-					a(href='#') 
-				li(data-target='#myCarousel', data-slide-to='4')
-					a(href='#') 
-		div.index.col-md-12
+	#myCarousel.carousel.slide(data-ride='carousel').col-md-12
+		.carousel-inner
+			.item.active
+				a(href='/catalogo/desejo')
+					img(src='../images/wallpaper.jpg')
+					.carousel-caption
+						h3 Lista de Desejos
+						p Não perca nenhuma oferta! Adicione livros à sua lista de desejos e receba notificações quando houverem descontos.
+			.item
+				a(href='#mais-vendidos')
+					img(src='../images/books5.jpg')
+					.carousel-caption
+						h3 Mais Vendidos
+						p Confira a lista de livros que mais são comprados pelos usuários
+			.item
+				a(href="#promocoes")
+					img(src='../images/books2.jpg')
+					.carousel-caption
+						h3 Promoções
+						p Veja os produtos que estão em promoção!
+			.item
+				a(href="#colecoes")
+					img(src='../images/books.jpg')
+					.carousel-caption
+						h3 Coleções
+						p Novas séries de livros toda semana
+			.item
+				a(href="/catalogo")
+					img(src='../images/books8.jpg')
+					.carousel-caption
+						h3 Catálogo de livros
+						p Nosso catálogo contém livros de diversas categorias. Confira!
+  
+		ul.nav.nav-pills.nav-justified
+			li.active(data-target='#myCarousel', data-slide-to='0')
+				a(href='#') 
+			li(data-target='#myCarousel', data-slide-to='1')
+				a(href='#') 
+			li(data-target='#myCarousel', data-slide-to='2')
+				a(href='#') 
+			li(data-target='#myCarousel', data-slide-to='3')
+				a(href='#') 
+			li(data-target='#myCarousel', data-slide-to='4')
+				a(href='#') 
+	div.container-index
+		div.index.container
 			div.col-md-12#mais-vendidos
-				hr
 				h3 Mais Vendidos
 				div.row
 					-for(i in dados){
@@ -58,13 +57,16 @@ block content
 								a(href="/catalogo/produto/"+dados[i].isbn)
 									div.thumbnail.relacionados
 										img(src="../../images/livros/"+dados[i].capa+".jpg")
+										-if(dados[i].desconto!=0){
+											div.desconto #{dados[i].desconto}% de desconto
+										-}
 										div.caption
 											h4= dados[i].titulo
 											p= dados[i].autor
 											-if(dados[i].desconto==0){
-												h5 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+												h5.price R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 											-}else{
-												h5 R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
+												h5.price R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
 												h6 R$
 													strike #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 											-}
@@ -72,7 +74,6 @@ block content
 						-}
 					-}
 			div.col-md-12#promocoes
-				hr
 				h3 Promoções
 				div.row
 					-for(i in dados){
@@ -81,13 +82,16 @@ block content
 								a(href="/catalogo/produto/"+dados[i].isbn)
 									div.thumbnail.relacionados
 										img(src="../../images/livros/"+dados[i].capa+".jpg")
+										-if(dados[i].desconto!=0){
+											div.desconto #{dados[i].desconto}% de desconto
+										-}
 										div.caption
 											h4= dados[i].titulo
 											p= dados[i].autor
 											-if(dados[i].desconto==0){
-												h5 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+												h5.price R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 											-}else{
-												h5 R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
+												h5.price R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
 												h6 R$
 													strike #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 											-}
@@ -95,7 +99,6 @@ block content
 						-}
 					-}
 			div.col-md-12#colecoes
-				hr
 				h3 Coleções
 				div.row
 					-for(i in dados){
@@ -104,13 +107,16 @@ block content
 								a(href="/catalogo/produto/"+dados[i].isbn)
 									div.thumbnail.relacionados
 										img(src="../../images/livros/"+dados[i].capa+".jpg")
+										-if(dados[i].desconto!=0){
+											div.desconto #{dados[i].desconto}% de desconto
+										-}
 										div.caption
 											h4= dados[i].titulo
 											p= dados[i].autor
 											-if(dados[i].desconto==0){
-												h5 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+												h5.price R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 											-}else{
-												h5 R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
+												h5.price R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
 												h6 R$
 													strike #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
 											-}

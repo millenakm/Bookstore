@@ -23,26 +23,30 @@ block content
 					-}
 				div.col-md-6.icons-product
 					div.col-md-12
-						a.wish
+						a.wish.confirm-wish
 							-if(dados.favorito==false){
-								i.glyphicon.glyphicon-heart-empty
+								i.glyphicon.glyphicon-heart
+								span.fa.fa-check.confirm-product.hide
 							-}
 							-else if(dados.favorito==true){
 								i.glyphicon.glyphicon-heart
+								span.fa.fa-check.confirm-product
 							-}
 							br
 							|Lista de desejos
 					div.col-md-12
 						-if(dados.estoque!=0){
-							a.cart
+							a.cart.confirm-cart
 								-if(dados.carrinho==false){
-									i.glyphicon.glyphicon-shopping-cart.cart-empty
+									i.glyphicon.glyphicon-shopping-cart
+									span.fa.fa-check.confirm-product.hide
 								-}
 								-else if(dados.carrinho==true){
 									i.glyphicon.glyphicon-shopping-cart.cart-full
+									span.fa.fa-check.confirm-product
 								-}
 								br
-								|Adicionar ao carrinho
+								|Carrinho
 						-}else{
 							h4.falta Produto em falta
 						-}
@@ -67,13 +71,16 @@ block content
 								a(href="/catalogo/produto/"+geral[i].isbn)
 									div.thumbnail.relacionados
 										img(src="../../images/livros/"+geral[i].capa+".jpg")
+										-if(geral[i].desconto!=0){
+											div.desconto #{geral[i].desconto}% de desconto
+										-}
 										div.caption
 											h4= geral[i].titulo
 											p= geral[i].autor
 											-if(geral[i].desconto==0){
-												h5 R$ #{parseFloat(geral[i].valor).toFixed(2).toString().replace('.',',')}
+												h5.price R$ #{parseFloat(geral[i].valor).toFixed(2).toString().replace('.',',')}
 											-}else{
-												h5 R$ #{parseFloat(geral[i].valor-(geral[i].valor*(geral[i].desconto/100))).toFixed(2).toString().replace('.',',')}
+												h5.price R$ #{parseFloat(geral[i].valor-(geral[i].valor*(geral[i].desconto/100))).toFixed(2).toString().replace('.',',')}
 												h6 R$
 													strike #{parseFloat(geral[i].valor).toFixed(2).toString().replace('.',',')}
 											-}

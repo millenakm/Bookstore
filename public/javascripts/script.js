@@ -21,7 +21,6 @@ function styles(){
 	equalHeight($(".relacionados")); 
 	onScroll();
 	carousel();
-
 	filterController();
 	iconsNav();
 }
@@ -82,7 +81,6 @@ function carousel(){
 		clickEvent = false;
 	});
 }
-// zoom da imagem na página singular do produto
 
 // muda os números nos ícones da navbar
 function iconsNav(){
@@ -98,15 +96,16 @@ function iconsNav(){
 		});
 		$("#numberCart").html(carrinho);
 		$("#numberWish").html(favorito);
+		if(carrinho==0){
+			emptyCart("O carrinho está vazio", false);
+		}
+		if(favorito==0){
+			setTimeout(function(){
+				$("#desejos").find("#msg").html('Nenhum item na lista de desejos');
+			},500);
+		}
 	});
 }
-// mostra mensagem se não houverem produtos na categoria selecionada
-function msg(msg){
-	if($('.grid:visible').length==0){
-		$('#msg').html(msg).show(300);
-	}
-}
-
 
 /*************** SEARCH ***************/
 
@@ -230,6 +229,7 @@ function createFilter(){
 }
 
 function select(elem){
+	$("#desejos").find("#msg").html('');
 	$(elem).toggleClass('ativo', '');
 	$(elem).find('.fa').toggleClass('fa-check-square-o fa-square-o ');
 	selected(elem);
@@ -243,6 +243,9 @@ function select(elem){
 	}
 	if(selecionados.length==0){
 		$(".grid").show();
+	}
+	if($(".grid:visible").length==0){
+		$("#desejos").find("#msg").html('Nenhum item encontrado');
 	}
 	
 	// // filter(elem);
@@ -424,21 +427,23 @@ function changeDataBuy(compras){
 		url: "/dados/compra",
 		data: {compras},
 		success:function(){
-			emptyCart();
+			emptyCart("Compra concluída com sucesso!");
 		}
 	});
 }
 // esvazia o carrinho
-function emptyCart(){
+function emptyCart(msg, condit){
+	if(condit!=false){
+		$(".rowTab").each(function(){
+			var cod = $(this).data('id');
+			listFav("cart", cod);
+		});
+	}
 	$("#tableCart").hide('slow', function(){ 
 		$('#tableCart, #tableBtn').remove(); 
 	});	
-	$("#msgCart > h3").html("Compra concluída com sucesso!");
+	$("#msgCart > h3").html(msg);
 	$("#msgCart").show('slow');
-	$(".rowTab").each(function(){
-		var cod = $(this).data('id');
-		listFav("cart", cod);
-	});
 }
 // carrinho da navbar
 function cartBox(){
@@ -525,6 +530,9 @@ function actionStyle(){
 		notifBox();
 	});
   	$('.filter-icon').tooltip()
+  	$(".quantidade").select(function(event){
+  		event.preventDefault();
+  	});
 }
 // ações dos botoes/inputs
 function actions(){
@@ -560,6 +568,13 @@ function actions(){
 	$(".plus, .minus").click(function(){
 		valueQnt($(this));
 	});
+	$(".confirm-wish").click(function(){
+		$(this).children('span').toggleClass('hide');
+		$(this).children('i').removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
+	});
+	$(".confirm-cart").click(function(){
+		$(this).children('span').toggleClass('hide');
+	});
 }
 
 $(document).ready(function(){
@@ -569,5 +584,4 @@ $(document).ready(function(){
 	checkCart();
 	searchJson();
 	notifBox();
-	msg("Nenhum produto na lista");
 });
