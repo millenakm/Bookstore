@@ -10,8 +10,17 @@ block content
 		-else{	
 			div.col-md-8.product-left
 				h3.col-md-12= dados.titulo
+					span  (cod: #{dados.id})
 				div.price.col-md-6
-					h3.col-md-12 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
+					-if(dados.desconto==0){
+						h3.col-md-12 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
+					-}else{
+						div.col-md-8
+							h6 De: R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
+							h6 Por : 
+								span R$ #{parseFloat(dados.valor-(dados.valor*(dados.desconto/100))).toFixed(2).toString().replace('.',',')}
+						h5.desconto.col-md-4 #{dados.desconto}% de desconto
+					-}
 				div.col-md-6.icons-product
 					div.col-md-12
 						a.wish
@@ -24,18 +33,20 @@ block content
 							br
 							|Lista de desejos
 					div.col-md-12
-						a.cart
-							-if(dados.carrinho==false){
-								i.glyphicon.glyphicon-shopping-cart.cart-empty
-							-}
-							-else if(dados.carrinho==true){
-								i.glyphicon.glyphicon-shopping-cart.cart-full
-							-}
-							br
-							|Adicionar ao carrinho
-
-
-				// h3.col-md-6 R$ #{parseFloat(dados.valor).toFixed(2).toString().replace('.',',')}
+						-if(dados.estoque!=0){
+							a.cart
+								-if(dados.carrinho==false){
+									i.glyphicon.glyphicon-shopping-cart.cart-empty
+								-}
+								-else if(dados.carrinho==true){
+									i.glyphicon.glyphicon-shopping-cart.cart-full
+								-}
+								br
+								|Adicionar ao carrinho
+						-}else{
+							h4.falta Produto em falta
+						-}
+				h2.col-md-12.descTitle Descrição
 				p.col-md-12= dados.descrição
 			div.col-md-4.product-right
 				img(src="../../images/livros/"+dados.capa+".jpg").col-md-12#img-produto
@@ -45,4 +56,28 @@ block content
 					h5.col-md-12 Ano: #{dados.ano}
 					h5.col-md-12 Páginas: #{dados.paginas}
 					h5.col-md-12 Categoria: #{dados.categoria}
+					h5.col-md-12 ISBN: #{dados.isbn}
+			div.col-md-12
+				hr
+				h3 Produtos relacionados
+				div.row
+					-for(i in geral){
+						-if(geral[i].categoria==dados.categoria && geral[i].estoque!=0 && geral[i].titulo!=dados.titulo){
+							div.col-md-3.box-thumb
+								a(href="/catalogo/produto/"+geral[i].isbn)
+									div.thumbnail.relacionados
+										img(src="../../images/livros/"+geral[i].capa+".jpg")
+										div.caption
+											h4= geral[i].titulo
+											p= geral[i].autor
+											-if(geral[i].desconto==0){
+												h5 R$ #{parseFloat(geral[i].valor).toFixed(2).toString().replace('.',',')}
+											-}else{
+												h5 R$ #{parseFloat(geral[i].valor-(geral[i].valor*(geral[i].desconto/100))).toFixed(2).toString().replace('.',',')}
+												h6 R$
+													strike #{parseFloat(geral[i].valor).toFixed(2).toString().replace('.',',')}
+											-}
+
+						-}
+					-}
 		-}

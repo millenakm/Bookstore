@@ -15,7 +15,7 @@ router.get('/:cod', function(req, res, next) {
 	file.read(function(data){
 		$(data.produtos).each(function (){
 			if (this.isbn==cod){
-	  			res.render('./catalogo/produto', {title: "Bookstore - "+this.titulo, dados: this});
+	  			res.render('./catalogo/produto', {title: "Bookstore - "+this.titulo, dados: this, geral: data.produtos});
 	  			res.end();
 			}
 		});

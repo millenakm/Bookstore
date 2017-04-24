@@ -1,4 +1,5 @@
 var product = '/catalogo/produto/';
+var selecionados = [];
 
 // função geral para buscar os dados
 function getData(handleData) {
@@ -17,6 +18,7 @@ function getData(handleData) {
 function styles(){
 	$("body").fadeIn(500);
 	equalHeight($(".grid")); 
+	equalHeight($(".relacionados")); 
 	onScroll();
 	carousel();
 
@@ -29,15 +31,22 @@ function onScroll(){
 	var pageScroll = window.pageYOffset;
 	if(scrollY < pageScroll) {
 		$('.navig').addClass('navig-top');
+		$('.filter-side').addClass('filter-top');
 		$('.navbar-content').css({top: '15%'});
-		$('#pg-title').fadeOut(200);
-		$('#logoNav').fadeIn(200);
+		$('.pg-title, #pg-title').fadeOut(200);
+		$('#img-logo').removeClass('logo-top');
+		$('#logoNav').css({'top':'0'});
+		$(".filter-icon").css({'top':'85px'});
 	}
 	else if(pageScroll == scrollY){
 		$('.navig').removeClass('navig-top');
-		$('.navbar-content').css({top: '10%'});
-		$('#pg-title').fadeIn(500);
-		$('#logoNav').fadeOut(100);
+		$('.filter-side').removeClass('filter-top');
+		$('.navbar-content').css({top: '25%'});
+		$('.pg-title, #pg-title').fadeIn(500);
+		$('#img-logo').addClass('logo-top');
+		$('#logoNav').css({'top':'-15px'});
+		$(".filter-icon").css({'top':'100px'});
+
 	}
 }
 // muda a altura das divs .grid, para todas terem a mesma altura
@@ -180,6 +189,7 @@ function createFilter(){
 	var categorias = [];
 	var editoras = [];
 	var autores = [];
+	var descontos = [];
 	getData(function(data){
 		$.each(data, function() {
 			if ($.inArray(this.categoria, categorias)==-1) {
@@ -191,43 +201,75 @@ function createFilter(){
 			if ($.inArray(this.autor, autores)==-1){
 					autores.push(this.autor);
 			}
+			if ($.inArray(this.desconto, descontos)==-1 && this.desconto!=0) {
+					descontos.push(this.desconto);
+			}
 		});
 		for(i in categorias){
 			categorias.sort();
-			$("#select-categ").append('<option value="'+categorias[i]+'">'+categorias[i]+'</option>');
-		}
-		for(i in editoras){
-			editoras.sort();
-			$("#select-editora").append('<option value="'+editoras[i]+'">'+editoras[i]+'</option>');
+			$(".listCateg").append('<h4 data-name='+categorias[i]+' onclick=select(this)><i class="fa fa-square-o"></i> '+categorias[i]+'</h4>');
 		}
 		for(i in autores){
 			autores.sort();
-			$("#select-autor").append('<option value="'+autores[i]+'">'+autores[i]+'</option>');
+			var valor = autores[i];
+			valor = valor.split(" ").join("+");
+			$(".listAutor").append('<h4 data-name='+valor+' onclick=select(this)><i class="fa fa-square-o"></i> '+autores[i]+'</h4>');
+		}
+		for(i in editoras){
+			editoras.sort();
+			var valor = editoras[i];
+			valor = valor.split(" ").join("+");
+			$(".listEditora").append('<h4 data-name='+valor+' onclick=select(this)><i class="fa fa-square-o"></i> '+editoras[i]+'</h4>');
+		}
+		for(i in descontos){
+			descontos.sort();
+			var valor = descontos[i];
+			$(".listDescontos").append('<h4 data-name='+valor+' onclick=select(this)><i class="fa fa-square-o"></i> '+descontos[i]+'%</h4>');
 		}
 	});
 }
+
+function select(elem){
+	$(elem).toggleClass('ativo', '');
+	$(elem).find('.fa').toggleClass('fa-check-square-o fa-square-o ');
+	selected(elem);
+	$('.grid').hide();
+	for(i in selecionados){
+		$('.grid').each(function(){
+			if($(this).data('desconto')==selecionados[i] || $(this).data('categ')==selecionados[i] || $(this).data('autor')==selecionados[i] || $(this).data('editora')==selecionados[i]){
+				$(this).show();
+			}
+		});
+	}
+	if(selecionados.length==0){
+		$(".grid").show();
+	}
+	
+	// // filter(elem);
+}
+function selected(elem){
+	if(isNaN($(elem).data('name'))){
+		var data = $(elem).data('name').split("+").join(" ");
+	}else{
+		var data = $(elem).data('name');
+	}
+	var check = false;
+	for(i in selecionados){
+		if(data==selecionados[i]){
+			selecionados.splice(i, 1);
+			check = true;
+		}
+	}
+	if(check==false){
+		selecionados.push(data);
+	}
+}
+
 // filtro da página
 function filter(elem){
-	var valor = $(elem).val();
-	if($(elem).parents('form').data('filter')!==undefined){
-		valor = $(elem).parents('form').data('filter');
-		$('.filter-icon').hide();
-		$('.titulo-pg').append(' - '+valor);
-	}
-
+	var selected = $(elem).data('name').split("+").join(" ");
 	$('.grid').hide();
-	$('.grid').each(function(){
-		if($(this).data('categ')==valor || $(this).data('autor')==valor || $(this).data('editora')==valor){
-			$(this).slideDown(1000);
-		}
-	});
 	
-	if(valor=='all'){
-		$('.grid').slideDown(1000);
-	}
-	else{
-		msg('Não foram encontrados itens nesta categoria.');
-	}
 }
 // icone do filtro
 function filterController(){
@@ -235,12 +277,14 @@ function filterController(){
 	$('.filter-icon').click(function(){
 		countEffect++;
 		filterEffect();
-		$(this).css({bottom: '60px'});
-		$('.navig-filter').css({display:'block'});
+		$('.filter-side').css({display:'block'});
+		$("#catalogo-container, #desejos").css({'margin-right':'0'});
+		$(this).tooltip('hide').attr('data-original-title', 'Fechar Filtro').tooltip('fixTitle');
 		if(	countEffect==2){
 			countEffect=0;
-			$(this).css({bottom: '5%'});
-			$('.navig-filter').css({display:'none'});
+			$('.filter-side').css({display:'none'});
+			$("#catalogo-container, #desejos").css({'margin-right':'10%'});
+			$(this).tooltip('hide').attr('data-original-title', 'Filtrar produtos').tooltip('fixTitle');
 			filterEffect();
 		}
 	});
@@ -263,7 +307,11 @@ function checkCart(){
 		for(i in data){
 			$('.rowTab').each(function(){
 				if($(this).data('id')== data[i].isbn){
-					$(this).find(".valor").data('valor', data[i].valor);
+					if(data[i].desconto==0){
+						$(this).find(".valor").data('valor', data[i].valor);
+					}else{
+						$(this).find(".valor").data('valor', data[i].valor-(data[i].valor*data[i].desconto/100));
+					}
 					totalValue($(".valor"));
 				}
 			});
@@ -285,7 +333,11 @@ function valueQnt(elem){
 	getData(function(data){
 		$(data).each(function(){
 			if(this.isbn==isbn){
-				var valor=this.valor;
+				if(this.desconto==0){
+					var valor=this.valor;
+				}else{
+					var valor=this.valor-(this.valor*this.desconto/100);
+				}
 				var valorProduto = valueProduct(qnt, valor);
 				$(elem).parent().siblings('.valor').html("<h4>R$ "+valorProduto+"</h4>");
 				$(elem).parent().siblings('.valor').data("valor", Number(valorProduto.replace(',','.')));
@@ -388,18 +440,48 @@ function emptyCart(){
 		listFav("cart", cod);
 	});
 }
-// carrinhoda navbar
+// carrinho da navbar
 function cartBox(){
 	var content = '';
 	var valorTotal = 0;
+	var count = 0;
 	getData(function(data){
 		$(data).each(function(){
 			if(this.carrinho){
-				valorTotal+=this.valor;
-				content+="<tr><td>"+this.titulo+"</td><td>R$ "+this.valor.toFixed(2).toString().replace(".", ",")+"</td></tr>"
+				count++;
+				if(this.desconto==0){
+					var valor = this.valor;
+				}else{
+					var valor = this.valor-(this.valor*this.desconto/100);
+				}
+				valorTotal+=valor;
+				content+="<tr><td>"+this.titulo+"</td><td>R$ "+valor.toFixed(2).toString().replace(".", ",")+"</td></tr>"
 			}
 		});	
 		$(".cart-content").html("<table><tbody>"+content+"<tr class='totalBox'><td>Total:</td><td>R$ "+valorTotal.toFixed(2).toString().replace('.',',')+"</td></tr></tbody></table><hr><a href='/carrinho'>Ir para o carrinho</a>");
+		if(count==0){
+			$(".cart-content").html("<h5 class='listNotif'>Nenhum item no carrinho de compras.</h5>");
+		}
+	});
+}
+
+// notificações navbar
+function notifBox(){
+	var content = '';
+	var list = 0;
+	getData(function(data){
+		$(data).each(function(){
+			if(this.favorito==true && this.desconto!=0){
+				list++;
+				var valor = this.valor-(this.valor*this.desconto/100);
+				content+="<a href='../catalogo/produto/"+this.isbn+"'><div class='listNotif col-md-12'><h5 class='col-md-12'>O livro que você gostou está com desconto. Aproveite!</h5><img class='col-md-3' src='../../images/livros/"+this.capa+".jpg'><h6 class='col-md-3'>"+this.titulo+"</h6><h6 class='col-md-4'>R$ "+valor.toFixed(2).toString().replace(".", ",")+"</h6><h6 class='col-md-2'>"+this.desconto+"%</h6></div></a>";
+			}
+		});	
+		$(".notif-content").html(content+"<hr><a href='/catalogo/desejo'>Ver lista de desejos completa</a>");
+		$("#numberBell").html(list)
+		if(list==0){
+			$(".notif-content").html("<h5 class='listNotif'>Nenhuma notificação.</h5>");
+		}
 	});
 }
 
@@ -413,6 +495,7 @@ function listFav(type, cod){
 		success:function(){
 			iconsNav();
 			cartBox();
+			notifBox();
 		}
 	});
 }
@@ -431,16 +514,17 @@ function actionStyle(){
 	$('#close-search').click(function(){
 		closeSearch();
 	});
-	$('.wish').click(function(){	
-		$(this).children().toggleClass("glyphicon-heart-empty glyphicon-heart");
-	});
-	$('.cart').click(function(){	
-		$(this).children().toggleClass("cart-empty cart-full");
-	});
 	$("#cartBox").click(function(){
 		$(".cart-box").fadeToggle();
+		$(".notif-box").hide();
 		cartBox();
-	})
+	});
+	$("#notifBox").click(function(){
+		$(".notif-box").fadeToggle();
+		$(".cart-box").hide();
+		notifBox();
+	});
+  	$('.filter-icon').tooltip()
 }
 // ações dos botoes/inputs
 function actions(){
@@ -449,23 +533,22 @@ function actions(){
 		productPage($(this).parents('.isbn').data('id'));
 	});
 	$('.wish').click(function(){	
+		$(this).children().toggleClass("glyphicon-heart-empty glyphicon-heart");
 		var cod = $(this).parents('.isbn').data('id');
 		listFav("wish", cod);
 	});
-	$("#desejos").find(".glyphicon-heart").click(function(){
-		$(this).parents('.grid').slideUp();
+	$("#desejos .wish").click(function(){
+		$(this).parents('.grid').slideUp(function(){
+			$(this).remove(); 
+		});
 	});
 	$(".glyphicon-remove").click(function(){
 		removeFromCart(this);
 	});
 	$('.cart').click(function(){
+		$(this).children().toggleClass("cart-empty cart-full");
 		var cod = $(this).parents('.isbn').data('id');
 		listFav("cart", cod);
-	});
-	$(".selectpicker").change(function(){
-		msg('');
-		filter($(this));
-		$(".selectpicker").not(this).val('all');;
 	});
 	$(".catalogo-x").click(function(){
 		var param = $(this).data('filter');
@@ -480,10 +563,11 @@ function actions(){
 }
 
 $(document).ready(function(){
+	createFilter();
 	styles(); 
 	actions();
 	checkCart();
 	searchJson();
-	createFilter();
-	filter($('.selectpicker'));
+	notifBox();
+	msg("Nenhum produto na lista");
 });

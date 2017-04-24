@@ -1,5 +1,3 @@
-div.pg-title
-	img(src="../../images/logo-white.png")#pg-title
 nav.navig
 	div.navbar-header
 		button(type="button", data-toggle="collapse",data-target="#colaspse-content", aria-expanded="false").navbar-toggle.collapsed
@@ -14,8 +12,10 @@ nav.navig
 						a(href="/") Página Inicial
 					li
 						a(href="/catalogo") Catálogo
+					li
+						a(href="/catalogo/comprados") Meus itens
 					li#logoNav
-						img(src="../../images/logo-white.png", height="50px")
+						img(src="../../images/logo-white.png", height="50px")#img-logo
 				ul.nav.navbar-nav.navbar-right
 					li.icon
 						a(href="/catalogo/desejo")
@@ -26,7 +26,7 @@ nav.navig
 							span.glyphicon.glyphicon-shopping-cart
 							span.badge.badge-nav#numberCart 0
 					li.icon
-						a
+						a#notifBox
 							span.glyphicon.glyphicon-bell
 							span.badge.badge-nav#numberBell 0
 					li
@@ -35,11 +35,10 @@ nav.navig
 					-if(!carrinho){
 						include carrinho.pug
 					-}
-					
--if(categorias==true){
-	div.filter-icon
-		span.glyphicon.glyphicon-menu-up
-		span.glyphicon.glyphicon-menu-up
+					include notifica.pug
+-if(categorias==true){				
+	div.filter-icon(data-toggle="tooltip", data-placement="right", title="Filtrar produtos")
+		span.fa.fa-angle-double-right.fa-2x(aria-hidden="true")
 	include filtro.pug
 -}
 

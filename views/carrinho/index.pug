@@ -30,9 +30,15 @@ block content
 								img(src="../images/livros/"+dados[i].capa+".jpg", height="100px").box-book
 							td= dados[i].isbn
 							td= dados[i].titulo
-							td R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
-							td.valor(data-valor)
-								h4 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+							-if(dados[i].desconto==0){
+								td R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+								td.valor(data-valor)
+									h4 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+							-}else{
+								td R$ #{parseFloat(dados[i].valor-(dados[i].valor*dados[i].desconto/100)).toFixed(2).toString().replace('.',',')}
+								td.valor(data-valor)
+									h4 R$ #{parseFloat(dados[i].valor-(dados[i].valor*dados[i].desconto/100)).toFixed(2).toString().replace('.',',')}
+							-}
 							td
 								span.badge.badge-cart.minus
 									i.fa.fa-minus

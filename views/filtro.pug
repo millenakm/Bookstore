@@ -1,15 +1,34 @@
-nav.navig-filter
-		form.navbar-form.navbar-left(data-filter=filter)
-			div.form-group
-				select.selectpicker.form-control#select-categ
-					option(value="all") Todas Categorias
-			div.form-group
-				select.selectpicker.form-control#select-autor
-					option(value="all") Todos Autores
-			div.form-group
-				select.selectpicker.form-control#select-editora
-					option(value="all") Todas Editoras
-			div.form-group
-				select.selectpicker.form-control#select-valor
-					option(value="maior") Maior Preço
-					option(value="menor") Menor Preço
+div.filter-side
+	h4 Filtros
+	div#option.panel-group(role='tablist', aria-multiselectable='true')
+		div.panel.panel-default
+			a(role='button', data-toggle='collapse', data-parent='#option', href='#categ', aria-expanded='false', aria-controls='listOptions') 
+				div#categorias.panel-heading(role='tab')
+					h2.panel-title Categorias
+			div#categ.panel-collapse.collapse.listCateg(role='tabpanel', aria-labelledby='categorias')
+		div.panel.panel-default
+			a(role='button', data-toggle='collapse', data-parent='#option', href='#autors', aria-expanded='false', aria-controls='listOptions')
+				div#autores.panel-heading(role='tab')
+					h2.panel-title Autores
+			div#autors.panel-collapse.collapse.listAutor(role='tabpanel', aria-labelledby='autores')
+		div.panel.panel-default
+			a(role='button', data-toggle='collapse', data-parent='#option', href='#edit', aria-expanded='false', aria-controls='listOptions')
+				div#editoras.panel-heading(role='tab')
+					h2.panel-title Editoras
+			div#edit.panel-collapse.collapse.listEditora(role='tabpanel', aria-labelledby='editoras')
+		div.panel.panel-default
+			a(role='button', data-toggle='collapse', data-parent='#option', href='#desconto', aria-expanded='false', aria-controls='listOptions')
+				div#desc.panel-heading(role='tab')
+					h2.panel-title Descontos
+			div#desconto.panel-collapse.collapse.listDescontos(role='tabpanel', aria-labelledby='desc')
+				
+
+	//- div.form-group
+	//- 	select.selectpicker.form-control#select-categ
+	//- 		option(value="all") Todas Categorias
+	//- div.form-group
+	//- 	select.selectpicker.form-control#select-autor
+	//- 		option(value="all") Todos Autores
+	//- div.form-group
+	//- 	select.selectpicker.form-control#select-editora
+	//- 		option(value="all") Todas Editoras

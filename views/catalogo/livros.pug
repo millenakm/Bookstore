@@ -1,14 +1,27 @@
-div(data-id=dados[i].isbn, data-categ=dados[i].categoria, data-autor=dados[i].autor, data-editora=dados[i].editora, data-valor=dados[i].valor).grid.col-md-4.col-lg-4.col-sm-6.isbn
-
+div(data-id=dados[i].isbn, data-categ=dados[i].categoria, data-autor=dados[i].autor, data-editora=dados[i].editora, data-desconto=dados[i].desconto).grid.col-md-4.col-lg-4.col-sm-6.isbn
 	figure.effect-terry
-		div.desconto
+		-if(dados[i].desconto!=0){
+			div.desconto #{dados[i].desconto}% de desconto
+		-}else if(dados[i].estoque==0){
+			div.esgotado Produto Esgotado
+		-}
 		img(src=("../images/livros/"+dados[i].capa+".jpg"))
 		div.infoCatalogo
 			h2.tagsNome.col-md-7.box-book #{dados[i].titulo}
 				br
 				span= dados[i].autor
 			-var valor = (parseFloat(dados[i].valor).toFixed(2).toString().replace('.',','));
-			h2.tagsPreco.col-md-5.box-book R$ #{valor}
+			-var desconto = (parseFloat(dados[i].valor-(dados[i].valor*dados[i].desconto/100)).toFixed(2).toString().replace('.',','));
+			-if(dados[i].desconto!=0){
+				h2.tagsPreco.col-md-5.box-book R$ #{desconto}
+					span
+						h6.col-md-12.box-book 
+							strike R$ #{valor}
+			-}else if(dados[i].estoque==0){
+				h6.tagsPreco.col-md-5 Em falta
+			-}else{
+				h2.tagsPreco.col-md-5.box-book R$ #{valor}
+			-}
 		figcaption.col-md-12
 			p
 				a.wish
@@ -18,12 +31,14 @@ div(data-id=dados[i].isbn, data-categ=dados[i].categoria, data-autor=dados[i].au
 					-else if(dados[i].favorito==true){
 						i.glyphicon.glyphicon-heart
 					-}
-				a.cart
-					-if(dados[i].carrinho==false){
-						i.glyphicon.glyphicon-shopping-cart.cart-empty
-					-}
-					-else if(dados[i].carrinho==true){
-						i.glyphicon.glyphicon-shopping-cart.cart-full
-					-}
+				-if(dados[i].estoque!=0){
+					a.cart
+						-if(dados[i].carrinho==false){
+							i.glyphicon.glyphicon-shopping-cart.cart-empty
+						-}
+						-else if(dados[i].carrinho==true){
+							i.glyphicon.glyphicon-shopping-cart.cart-full
+						-}
+				-}
 				a.box-book 
 					i.glyphicon.glyphicon-info-sign

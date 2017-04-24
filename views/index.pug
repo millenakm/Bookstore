@@ -11,31 +11,30 @@ block content
 						.carousel-caption
 							h3 Lista de Desejos
 							p Não perca nenhuma oferta! Adicione livros à sua lista de desejos e receba notificações quando houverem descontos.
-				.item.catalogo-x(data-filter="Policial")
-					img(src='../images/books5.jpg')
-					.carousel-caption
-						h3 20% de desconto
-						p Categoria policial: todos os livros com 20% de desconto. Aproveite!
-				.item.catalogo-x(data-filter="Poesia")
-					img(src='../images/books2.jpg')
-					.carousel-caption
-						h3 Poesia
-						p Novos livros na categoria Poesia. Vanha conferir!
-				.item.catalogo-x(data-filter="Arqueiro")
-					img(src='../images/books8.jpg')
-					.carousel-caption
-						h3 Editora Arqueiro
-						p Leve 2 livros da editora Arqueiro por R$19,99 cada!
-				.item.catalogo-x(data-filter="Jojo Moyes")
-					img(src='../images/books7.jpg')
-					.carousel-caption
-						h3 Jojo Moyes
-						p "Como eu era antes de você" e "Depois de você" na nossa lista de romances!
-				.item.catalogo-x(data-filter="Coleção")
-					img(src='../images/books.jpg')
-					.carousel-caption
-						h3 Coleções
-						p Novas séries de livros todos os dias
+				.item
+					a(href='#mais-vendidos')
+						img(src='../images/books5.jpg')
+						.carousel-caption
+							h3 Mais Vendidos
+							p Confira a lista de livros que mais são comprados pelos usuários
+				.item
+					a(href="#promocoes")
+						img(src='../images/books2.jpg')
+						.carousel-caption
+							h3 Promoções
+							p Veja os produtos que estão em promoção!
+				.item
+					a(href="/catalogo")
+						img(src='../images/books8.jpg')
+						.carousel-caption
+							h3 Catálogo de livros
+							p Nosso catálogo contém livros de diversas categorias. Confira!
+				.item
+					a(href="#colecoes")
+						img(src='../images/books.jpg')
+						.carousel-caption
+							h3 Coleções
+							p Novas séries de livros toda semana
       
 			ul.nav.nav-pills.nav-justified
 				li.active(data-target='#myCarousel', data-slide-to='0')
@@ -48,13 +47,74 @@ block content
 					a(href='#') 
 				li(data-target='#myCarousel', data-slide-to='4')
 					a(href='#') 
-				li(data-target='#myCarousel', data-slide-to='5')
-					a(href='#') 
-		//- div.populares
-		//- 	br
-		//- 	-for(i in populares){
-		//- 		p= populares[i]
-		//- 		hr
-		//- 	-}
-		//- 	h1 Livros mais vendidos com 25% de desconto. Só hoje!
-		//- 	hr
+		div.index.col-md-12
+			div.col-md-12#mais-vendidos
+				hr
+				h3 Mais Vendidos
+				div.row
+					-for(i in dados){
+						-if(dados[i].vendidos>0){
+							div.col-md-3.box-thumb
+								a(href="/catalogo/produto/"+dados[i].isbn)
+									div.thumbnail.relacionados
+										img(src="../../images/livros/"+dados[i].capa+".jpg")
+										div.caption
+											h4= dados[i].titulo
+											p= dados[i].autor
+											-if(dados[i].desconto==0){
+												h5 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+											-}else{
+												h5 R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
+												h6 R$
+													strike #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+											-}
+
+						-}
+					-}
+			div.col-md-12#promocoes
+				hr
+				h3 Promoções
+				div.row
+					-for(i in dados){
+						-if(dados[i].desconto!=0){
+							div.col-md-3.box-thumb
+								a(href="/catalogo/produto/"+dados[i].isbn)
+									div.thumbnail.relacionados
+										img(src="../../images/livros/"+dados[i].capa+".jpg")
+										div.caption
+											h4= dados[i].titulo
+											p= dados[i].autor
+											-if(dados[i].desconto==0){
+												h5 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+											-}else{
+												h5 R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
+												h6 R$
+													strike #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+											-}
+
+						-}
+					-}
+			div.col-md-12#colecoes
+				hr
+				h3 Coleções
+				div.row
+					-for(i in dados){
+						-if(dados[i].categoria=='Coleção'){
+							div.col-md-3.box-thumb
+								a(href="/catalogo/produto/"+dados[i].isbn)
+									div.thumbnail.relacionados
+										img(src="../../images/livros/"+dados[i].capa+".jpg")
+										div.caption
+											h4= dados[i].titulo
+											p= dados[i].autor
+											-if(dados[i].desconto==0){
+												h5 R$ #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+											-}else{
+												h5 R$ #{parseFloat(dados[i].valor-(dados[i].valor*(dados[i].desconto/100))).toFixed(2).toString().replace('.',',')}
+												h6 R$
+													strike #{parseFloat(dados[i].valor).toFixed(2).toString().replace('.',',')}
+											-}
+
+						-}
+					-}
+
