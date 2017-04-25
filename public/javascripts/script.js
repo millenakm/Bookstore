@@ -563,7 +563,7 @@ function actions(){
 		productPage($(this).parents('.isbn').data('id'));
 	});
 	$('.wish').click(function(){	
-		$(this).children().toggleClass("glyphicon-heart-empty glyphicon-heart");
+		$(this).children('span').toggleClass('hide');
 		var cod = $(this).parents('.isbn').data('id');
 		listFav("wish", cod);
 	});
@@ -576,7 +576,7 @@ function actions(){
 		removeFromCart(this);
 	});
 	$('.cart').click(function(){
-		$(this).children().toggleClass("cart-empty cart-full");
+		$(this).children('span').toggleClass('hide');
 		var cod = $(this).parents('.isbn').data('id');
 		listFav("cart", cod);
 	});
@@ -590,13 +590,13 @@ function actions(){
 	$(".plus, .minus").click(function(){
 		valueQnt($(this));
 	});
-	$(".confirm-wish").click(function(){
-		$(this).children('span').toggleClass('hide');
-		$(this).children('i').removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
-	});
-	$(".confirm-cart").click(function(){
-		$(this).children('span').toggleClass('hide');
-	});
+	// $(".confirm-wish").click(function(){
+	// 	$(this).children('span').toggleClass('hide');
+	// 	$(this).children('i').removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
+	// });
+	// $(".confirm-cart").click(function(){
+	// 	$(this).children('span').toggleClass('hide');
+	// });
 }
 
 $(document).ready(function(){

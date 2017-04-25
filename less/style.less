@@ -75,15 +75,24 @@
 }
 
 .glyphicon-heart{
-	color: red;
+	color: teal;
+	&:hover{
+		color: #777;
+	}
 }
 
 .cart-empty{
-	color: white;
+	color: teal;
+	&:hover{
+		color: #777;
+	}
 } 
 
 .cart-full{
-	color: aqua;
+	color: teal;
+	&:hover{
+		color: #777;
+	}
 }
 
 .btn-table{
@@ -97,6 +106,9 @@
 
 .heart-navbar{
 	color: white;
+	&:hover{
+		color: white;
+	}
 }
 
 .navig-filter > .navbar-form > .form-group{
@@ -132,8 +144,8 @@
 		font-family: 'Baloo Bhaina', cursive;
 		color: white;
 		font-size: 15px;
-		border: 5px solid #333;
-		border-bottom: 2px solid #333;
+		border: 5px solid #fff;
+		border-bottom: 2px solid #fff;
 		padding-top: 4px;
 		width: 100%;
 		position: absolute;
@@ -166,18 +178,20 @@
 			max-width: 90%;
 			opacity: 0.9;
 			margin-bottom: 13%;
+			margin-top: 3%;
 		}
 
 		.infoCatalogo {
-			color: #fff;
+			color: #000;
 			text-transform: uppercase;
 			font-size: 1.25em;
 			.position(absolute, auto, auto, 0, auto);
 			width: 100%;
+			color: black;
 
 			h2 {
 				height: initial;
-				background-color: #2A2A2A;
+				background-color: #fff;
 				font-size: 14px;
 				font-weight: 600;
 				margin: 0;
@@ -201,10 +215,20 @@
 				margin-top: 20px;
 
 				a, .wish, .cart{
+					color: teal;
 					cursor: pointer;
+					font-size: 22px;
 
 					&:hover, &:focus{
-						color: #f3cf3f;
+						color: #777;
+					}
+					.catalogo-check{
+						color: tomato;
+						font-size: 19px;
+						position: absolute;
+						left: 45px;
+						top: -8px;
+
 					}
 				}
 			}
@@ -254,14 +278,14 @@
 
 		figcaption {
 			padding: 1.5em;
-			border: solid 5px #2A2A2A;
+			border: solid 5px #fff;
 
 			&::before, &::after{
 				position: absolute;
 				width: 200%;
 				height: 200%;
 				border-style: solid;
-				border-color: #2A2A2A;
+				border-color: #fff;
 				content: '';
 				-webkit-transition: -webkit-transform 0.35s;
 				transition: transform 0.35s;
@@ -294,7 +318,7 @@
 				a{
 					display: block;
 					margin-bottom: 1em;
-					color: #fff;
+					color: teal;
 					opacity: 0;
 					-webkit-transform: translate3d(90px,0,0);
 					transform: translate3d(90px,0,0);
@@ -314,6 +338,8 @@
 			opacity: 0.9;
 		}
 		.infoCatalogo{
+			background-color: #fff;
+			color: black;
 			.tagsNome, .tagsPreco{
 				padding: 10px;
 				padding-left: 20px;
@@ -322,7 +348,7 @@
 			}
 			.tagsPreco{
 				font-size: 18px;
-				color: aqua;
+				color: darken(@resultColor, 10%);
 			}
 		}
 	}
@@ -1239,7 +1265,6 @@ body {
 			margin: 0;
 			padding: 0;
 			width: 100%;
-			background-color: white;
 
 			&:hover{
 				border: none;

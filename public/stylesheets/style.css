@@ -44,13 +44,22 @@
   color: #C12127;
 }
 .glyphicon-heart {
-  color: red;
+  color: teal;
+}
+.glyphicon-heart:hover {
+  color: #777;
 }
 .cart-empty {
-  color: white;
+  color: teal;
+}
+.cart-empty:hover {
+  color: #777;
 }
 .cart-full {
-  color: aqua;
+  color: teal;
+}
+.cart-full:hover {
+  color: #777;
 }
 .btn-table {
   font-size: 17px;
@@ -60,6 +69,9 @@
   cursor: pointer;
 }
 .heart-navbar {
+  color: white;
+}
+.heart-navbar:hover {
   color: white;
 }
 .navig-filter > .navbar-form > .form-group {
@@ -91,8 +103,8 @@
   font-family: 'Baloo Bhaina', cursive;
   color: white;
   font-size: 15px;
-  border: 5px solid #333;
-  border-bottom: 2px solid #333;
+  border: 5px solid #fff;
+  border-bottom: 2px solid #fff;
   padding-top: 4px;
   width: 100%;
   position: absolute;
@@ -126,9 +138,10 @@
   max-width: 90%;
   opacity: 0.9;
   margin-bottom: 13%;
+  margin-top: 3%;
 }
 .grid figure .infoCatalogo {
-  color: #fff;
+  color: #000;
   text-transform: uppercase;
   font-size: 1.25em;
   position: absolute;
@@ -137,10 +150,11 @@
   bottom: 0;
   left: auto;
   width: 100%;
+  color: black;
 }
 .grid figure .infoCatalogo h2 {
   height: initial;
-  background-color: #2A2A2A;
+  background-color: #fff;
   font-size: 14px;
   font-weight: 600;
   margin: 0;
@@ -169,7 +183,9 @@
 .grid figure figcaption p a,
 .grid figure figcaption p .wish,
 .grid figure figcaption p .cart {
+  color: teal;
   cursor: pointer;
+  font-size: 22px;
 }
 .grid figure figcaption p a:hover,
 .grid figure figcaption p .wish:hover,
@@ -177,7 +193,16 @@
 .grid figure figcaption p a:focus,
 .grid figure figcaption p .wish:focus,
 .grid figure figcaption p .cart:focus {
-  color: #f3cf3f;
+  color: #777;
+}
+.grid figure figcaption p a .catalogo-check,
+.grid figure figcaption p .wish .catalogo-check,
+.grid figure figcaption p .cart .catalogo-check {
+  color: tomato;
+  font-size: 19px;
+  position: absolute;
+  left: 45px;
+  top: -8px;
 }
 .grid .effect-terry {
   background: #fff;
@@ -213,7 +238,7 @@
 }
 .grid .effect-terry figcaption {
   padding: 1.5em;
-  border: solid 5px #2A2A2A;
+  border: solid 5px #fff;
 }
 .grid .effect-terry figcaption::before,
 .grid .effect-terry figcaption::after {
@@ -221,7 +246,7 @@
   width: 200%;
   height: 200%;
   border-style: solid;
-  border-color: #2A2A2A;
+  border-color: #fff;
   content: '';
   -webkit-transition: -webkit-transform 0.35s;
   transition: transform 0.35s;
@@ -251,7 +276,7 @@
 .grid .effect-terry figcaption p a {
   display: block;
   margin-bottom: 1em;
-  color: #fff;
+  color: teal;
   opacity: 0;
   -webkit-transform: translate3d(90px, 0, 0);
   transform: translate3d(90px, 0, 0);
@@ -267,6 +292,10 @@
   margin-bottom: 15%;
   opacity: 0.9;
 }
+.grid .effect-terry .infoCatalogo {
+  background-color: #fff;
+  color: black;
+}
 .grid .effect-terry .infoCatalogo .tagsNome,
 .grid .effect-terry .infoCatalogo .tagsPreco {
   padding: 10px;
@@ -276,7 +305,7 @@
 }
 .grid .effect-terry .infoCatalogo .tagsPreco {
   font-size: 18px;
-  color: aqua;
+  color: #008c79;
 }
 .filter-side {
   overflow-y: auto;
@@ -1078,7 +1107,6 @@ body .navig-top {
   margin: 0;
   padding: 0;
   width: 100%;
-  background-color: white;
 }
 .notif-box .notif-content a:last-child:hover {
   border: none;

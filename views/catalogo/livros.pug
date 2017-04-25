@@ -26,19 +26,24 @@ div(data-id=dados[i].isbn, data-categ=dados[i].categoria, data-autor=dados[i].au
 			p
 				a.wish
 					-if(dados[i].favorito==false){
-						i.glyphicon.glyphicon-heart-empty
+						i.glyphicon.glyphicon-heart
+						span.fa.fa-check.confirm-product.catalogo-check.hide
 					-}
 					-else if(dados[i].favorito==true){
 						i.glyphicon.glyphicon-heart
+						span.fa.fa-check.confirm-product.catalogo-check
 					-}
 				-if(dados[i].estoque!=0){
 					a.cart
 						-if(dados[i].carrinho==false){
-							i.glyphicon.glyphicon-shopping-cart.cart-empty
+							i.glyphicon.glyphicon-shopping-cart
+							span.fa.fa-check.confirm-product.catalogo-check.hide
 						-}
 						-else if(dados[i].carrinho==true){
 							i.glyphicon.glyphicon-shopping-cart.cart-full
+							span.fa.fa-check.confirm-product.catalogo-check
 						-}
 				-}
+
 				a.box-book 
 					i.glyphicon.glyphicon-info-sign
