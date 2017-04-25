@@ -357,7 +357,7 @@ body #catalogo-container {
   margin-right: 10%;
 }
 body .body-image {
-  background-image: url("../images/books4.jpg");
+  background-image: url("../images/books7.jpg");
   background-size: cover;
   z-index: -2;
   overflow-y: hidden;
@@ -373,7 +373,7 @@ body .body-color {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: -1;
   overflow-y: hidden;
 }
@@ -444,8 +444,57 @@ body .navig-top {
 .carousel-inner > .item {
   height: 50vh;
 }
+.index-bg {
+  overflow-y: auto;
+  position: fixed;
+  top: 70px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-color: white;
+}
+.index-bg .section {
+  background: url('../../images/books2_1.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100%;
+  padding: 60px 0 40px;
+}
+.index-bg .section .container .row .col-md-3 a:hover,
+.index-bg .section .container .row .col-md-3 a:focus {
+  text-decoration: none;
+}
+.index-bg .section .container .row .col-md-3 a .ring {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  padding-top: 70px;
+  opacity: 1;
+}
+.index-bg .section .container .row .col-md-3 a .ring .content {
+  color: white;
+  font-size: 30px;
+  line-height: 30px;
+  display: block;
+  text-align: center;
+}
+.index-bg .section .container .row .col-md-3 a .ring .obs {
+  color: white;
+  font-size: 15px;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+}
+.index-bg .section .container .row .col-md-3 a .ring:hover {
+  transition: background-color 0.5s ease-out;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.index-bg .container {
+  margin-top: 2%;
+}
 .container-index {
-  background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
 }
 .container-index .index div {
@@ -457,7 +506,7 @@ body .navig-top {
 .container-index .index div h3 {
   margin-top: 3%;
   color: black;
-  font-family: 'Pavanam', sans-serif;
+  font-family: 'Baloo Bhaina', cursive;
   font-weight: 600;
   font-size: 28px;
 }
@@ -696,7 +745,7 @@ body .navig-top {
 .produto .product-right {
   padding: 0;
 }
-.produto .product-right #img-produto {
+.produto .product-right .img-produto {
   border: 12px solid black;
 }
 .produto .product-right .descr {

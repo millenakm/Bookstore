@@ -508,11 +508,33 @@ function listFav(type, cod){
 function productPage(parameters){
 	window.location=(product+parameters);
 }
+
+function scrollTarget(){
+	$(document).on("scroll", onScroll);
+
+	$('a[href^="#"]').on('click', function (e) {
+		e.preventDefault();
+		$(document).off("scroll");
+		var target = this.hash,
+		$target = $(target);
+		$('.index-bg').stop().animate({
+			'scrollTop': $target.offset().top-90
+		}, 800, 'swing', function () {
+			window.location.hash = target;
+			console.log($target.offset().top);
+		});
+	});
+}
 // actions style
 function actionStyle(){
 	window.onscroll = function() {
 		onScroll();
 	}
+	scrollTarget();
+	$(".img-produto").elevateZoom({
+	  zoomType				: "inner",
+	  cursor: "crosshair"
+	});
 	$('#open-search').click(function(){
 		openSearch();
 	});
